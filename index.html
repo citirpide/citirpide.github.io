@@ -1,215 +1,343 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buca Çıtır Pide - Menü</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Buca Çıtır Pide | Pide, Kebap, Lahmacun, Izgara – Buca/İzmir</title>
+
+<!-- SEO -->
+<meta name="description" content="Buca Çıtır Pide: Pide, lahmacun, kebap, ızgara ve çorbalar. Sıcak teslimat, tek tıkla ara, WhatsApp sipariş ve Yemeksepeti, Getir, Trendyol bağlantıları. Menderes, Erdem Cd. No:125 Buca/İzmir." />
+<meta name="theme-color" content="#0f0f0f" />
+<link rel="canonical" href="https://example.com/" />
+
+<!-- Icons & Fonts -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
 <style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        margin: 0;
-        background-color: #0f0f0f;
-        color: #f5f5f5;
-    }
-    header {
-        background: linear-gradient(135deg, #1a1a1a, #222);
-        color: #d4af37;
-        padding: 25px;
-        text-align: center;
-        font-size: 28px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.6);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        transition: padding 0.3s ease, font-size 0.3s ease, background 0.3s ease, opacity 0.3s ease;
-    }
-    header.shrink {
-        padding: 10px;
-        font-size: 22px;
-        background: linear-gradient(135deg, #1a1a1a, #111);
-        opacity: 0.95;
-    }
-    section {
-        padding: 20px;
-    }
-    h2 {
-        padding: 15px;
-        margin: 0;
-        cursor: pointer;
-        background: #1a1a1a;
-        border-left: 6px solid #d4af37;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: background 0.3s, transform 0.2s;
-        font-size: 18px;
-    }
-    h2:hover {
-        background-color: #242424;
-        transform: translateX(3px);
-    }
-    .menu-category {
-        background: #121212;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.6);
-        overflow: hidden;
-    }
-    .menu-content {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease, opacity 0.5s ease;
-    }
-    .menu-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 15px;
-        border-bottom: 1px dashed rgba(212,175,55,0.3);
-        font-size: 16px;
-    }
-    .menu-item:last-child {
-        border-bottom: none;
-    }
-    .order-buttons {
-        text-align: center;
-        margin: 20px 0;
-    }
-    .order-buttons a {
-        display: inline-block;
-        margin: 5px;
-        padding: 12px 20px;
-        border-radius: 8px;
-        background: linear-gradient(135deg, #d4af37, #b8860b);
-        color: black;
-        text-decoration: none;
-        font-weight: bold;
-        transition: 0.3s;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.6);
-    }
-    .order-buttons a:hover {
-        background: linear-gradient(135deg, #e6c200, #c99a00);
-        transform: scale(1.05);
-    }
-    footer {
-        background-color: #1a1a1a;
-        color: #ccc;
-        padding: 20px;
-        text-align: center;
-        font-size: 14px;
-        border-top: 1px solid rgba(212,175,55,0.3);
-    }
-    footer p {
-        margin: 8px 0;
-    }
-    .active .menu-content {
-        max-height: 2000px;
-        opacity: 1;
-        padding: 10px 0;
-    }
+  :root{
+    --bg:#0f0f0f;
+    --surface:#121212;
+    --surface-2:#1a1a1a;
+    --text:#f5f5f5;
+    --muted:#cfcfcf;
+    --gold:#d4af37;
+    --gold-2:#b8860b;
+    --line:rgba(212,175,55,.3);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif}
+  a{color:inherit}
+
+  /* Header (sticky, shrink on scroll) */
+  header{
+    position:sticky;top:0;z-index:1000;
+    background:linear-gradient(135deg,#171717,#202020);
+    color:var(--gold);
+    padding:26px 16px;
+    text-align:center;
+    font-weight:700;letter-spacing:.3px;
+    box-shadow:0 6px 18px rgba(0,0,0,.45);
+    transition:padding .3s ease,font-size .3s ease,background .3s ease,opacity .3s ease,backdrop-filter .3s ease;
+    backdrop-filter:saturate(140%) blur(0px);
+  }
+  header.shrink{
+    padding:12px 16px;font-size:.95rem;
+    background:linear-gradient(135deg,#151515,#0f0f0f);
+    opacity:.98; backdrop-filter:saturate(180%) blur(6px);
+  }
+  header .title{font-size:1.75rem}
+  header .subtitle{color:var(--muted);font-size:.95rem;margin-top:4px}
+
+  /* Top order buttons */
+  .order-hub{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:18px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 16px;border-radius:12px;
+    background:linear-gradient(135deg,var(--gold),var(--gold-2));
+    color:#111;font-weight:700;text-decoration:none;
+    box-shadow:0 6px 16px rgba(0,0,0,.5);
+    transition:transform .18s ease,filter .18s ease;
+    border:1px solid rgba(255,255,255,.08)
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn.secondary{
+    background:linear-gradient(135deg,#1e1e1e,#262626);
+    color:var(--text);border:1px solid var(--line)
+  }
+
+  main{padding:18px;max-width:1100px;margin:0 auto}
+
+  /* Category cards */
+  .cat{background:var(--surface);border-radius:14px;overflow:hidden;margin:16px 0;
+       border:1px solid rgba(255,255,255,.04);box-shadow:0 10px 28px rgba(0,0,0,.5)}
+  .cat h2{
+    margin:0;display:flex;align-items:center;gap:10px;
+    padding:16px 16px;cursor:pointer;
+    background:var(--surface-2);
+    border-left:6px solid var(--gold);
+    transition:background .25s ease,transform .15s ease
+  }
+  .cat h2 .chev{margin-left:auto;transition:transform .25s ease}
+  .cat h2:hover{background:#232323;transform:translateX(2px)}
+  .cat.open h2 .chev{transform:rotate(90deg)}
+  .cat .content{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .45s ease,padding .45s ease}
+  .cat.open .content{max-height:2400px;opacity:1;padding:8px 0}
+
+  /* Items */
+  .item{display:flex;align-items:center;justify-content:space-between;
+        padding:12px 16px;border-bottom:1px dashed var(--line);font-size:1rem}
+  .item:last-child{border-bottom:none}
+  .item .name{display:flex;align-items:center;gap:8px}
+  .price{font-variant-numeric:tabular-nums}
+
+  /* Section titles */
+  .section-title{
+    margin:26px 0 10px;font-weight:800;letter-spacing:.3px;color:var(--gold)
+  }
+  .divider{
+    height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);
+    margin:8px 0 14px
+  }
+
+  /* Info grid (hours + about) */
+  .grid{display:grid;gap:14px}
+  @media(min-width:720px){.grid{grid-template-columns:1.1fr .9fr}}
+
+  .card{background:var(--surface);border:1px solid rgba(255,255,255,.05);
+        border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+
+  /* Footer */
+  footer{margin-top:24px;background:var(--surface-2);border-top:1px solid var(--line);padding:16px}
+  .note{color:var(--muted);font-size:.95rem;text-align:center}
+
+  /* Sticky Bottom Bar (mobile-first) */
+  .dock{
+    position:fixed;left:0;right:0;bottom:10px;z-index:1100;
+    display:flex;gap:10px;justify-content:center;
+    pointer-events:none; /* so only buttons are clickable */
+  }
+  .dock .dock-inner{
+    display:flex;background:linear-gradient(135deg,#161616,#202020);
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 18px 40px rgba(0,0,0,.6), inset 0 0 0 1px rgba(0,0,0,.4);
+    border-radius:16px;overflow:hidden;pointer-events:auto
+  }
+  .dock .dock-btn{
+    display:flex;align-items:center;gap:8px;padding:12px 14px;
+    color:var(--text);text-decoration:none;font-weight:700;
+    border-right:1px solid rgba(255,255,255,.06);
+    transition:background .2s ease,transform .15s ease
+  }
+  .dock .dock-btn:last-child{border-right:none}
+  .dock .dock-btn:hover{background:#2a2a2a;transform:translateY(-1px)}
+  @media(min-width:880px){.dock{bottom:18px}}
+
+  /* Subtle reveal on scroll */
+  .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.show{opacity:1;transform:none}
+
+  /* Small print */
+  small, .muted{color:var(--muted)}
 </style>
 </head>
 <body>
 
-<header>
-    🍽 Buca Çıtır Pide - Menü
+<header id="siteHeader">
+  <div class="title">🍽️ Buca Çıtır Pide</div>
+  <div class="subtitle">Sıcak – Taze – Hızlı Teslimat • Buca / İzmir</div>
 </header>
 
-<section>
-    <div class="order-buttons">
-        <a href="tel:+902324424555">📞 Tek Tıkla Ara</a>
-        <a href="https://wa.me/905517112064" target="_blank">💬 WhatsApp</a>
-        <a href="https://yemek.go.link/2hf3u" target="_blank">🍽 Yemeksepeti</a>
-        <a href="https://getir.com/yemek/restoran/buca-citir-pide-buca-menderes-mah-buca-izmir/" target="_blank">🚀 Getir</a>
-        <a href="https://tgoyemek.com/restoranlar/230624" target="_blank">📦 Trendyol</a>
+<main>
+
+  <!-- Quick actions -->
+  <div class="order-hub reveal" id="orderHub">
+    <a class="btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Tek Tıkla Ara</a>
+    <a class="btn" href="https://wa.me/905517112064" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Sipariş</a>
+    <a class="btn secondary" href="https://yemek.go.link/2hf3u" target="_blank" rel="noopener"><i class="fa-solid fa-bowl-food"></i> Yemeksepeti</a>
+    <a class="btn secondary" href="https://getir.com/yemek/restoran/buca-citir-pide-buca-menderes-mah-buca-izmir/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i> Getir</a>
+    <a class="btn secondary" href="https://tgoyemek.com/restoranlar/230624" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Trendyol</a>
+  </div>
+
+  <!-- MENU -->
+  <h3 class="section-title">Menü</h3>
+  <div class="divider"></div>
+
+  <!-- Pide Çeşitleri -->
+  <section class="cat reveal open">
+    <h2><i class="fa-solid fa-pizza-slice"></i> Pide Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kıymalı Sade</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Kıymalı Yumurtalı</span><span class="price">160,00₺</span></div>
+      <div class="item"><span class="name">Kıymalı Kaşarlı</span><span class="price">170,00₺</span></div>
+      <div class="item"><span class="name">Kaşarlı Sade</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Kaşarlı Yumurtalı</span><span class="price">160,00₺</span></div>
+      <div class="item"><span class="name">Vejetaryen (Kaşar, Domates, Yeşil Biber, Mantar)</span><span class="price">200,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Sade</span><span class="price">230,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Kaşarlı</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Kaşarlı Mantarlı</span><span class="price">260,00₺</span></div>
+      <div class="item"><span class="name">Karışık (Sucuk, Salam, Sosis, Kaşar, Kıyma, Mantar)</span><span class="price">280,00₺</span></div>
+    </div>
+  </section>
+
+  <!-- Lahmacun Çeşitleri -->
+  <section class="cat reveal">
+    <h2><i class="fa-solid fa-bread-slice"></i> Lahmacun Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Lahmacun</span><span class="price">120,00₺</span></div>
+      <div class="item"><span class="name">Lahmacun (Kıymalı, Kaşarlı)</span><span class="price">140,00₺</span></div>
+      <div class="item"><span class="name">Lahmacun (Kıymalı, Kaşarlı, Mantarlı)</span><span class="price">150,00₺</span></div>
+    </div>
+  </section>
+
+  <!-- Kebaplar -->
+  <section class="cat reveal">
+    <h2><i class="fa-solid fa-fire-burner"></i> Kebaplar <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Adana Kebap</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Urfa Kebap</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Izgara Köfte</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Tavuk Izgara</span><span class="price">250,00₺</span></div>
+    </div>
+  </section>
+
+  <!-- Kiremitte Çeşitleri -->
+  <section class="cat reveal">
+    <h2><i class="fa-solid fa-bowl-food"></i> Kiremitte Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kiremitte Tavuk</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Tavuk Kaşarlı</span><span class="price">270,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Tavuk Kaşarlı Mantarlı</span><span class="price">280,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte</span><span class="price">230,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte Kaşarlı</span><span class="price">270,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte Kaşarlı Mantarlı</span><span class="price">280,00₺</span></div>
+    </div>
+  </section>
+
+  <!-- İçecekler -->
+  <section class="cat reveal">
+    <h2><i class="fa-solid fa-mug-saucer"></i> İçecekler <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kola</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Light - Zero</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Fanta</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Sprite</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">1 lt Kola</span><span class="price">100,00₺</span></div>
+      <div class="item"><span class="name">Şalgam Suyu</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Büyük Ayran</span><span class="price">35,00₺</span></div>
+      <div class="item"><span class="name">Soda</span><span class="price">30,00₺</span></div>
+      <div class="item"><span class="name">Su</span><span class="price">15,00₺</span></div>
+    </div>
+  </section>
+
+  <!-- Bilgi kartları -->
+  <h3 class="section-title">Bilgiler</h3>
+  <div class="divider"></div>
+
+  <div class="grid reveal">
+    <div class="card">
+      <h4 style="margin:0 0 8px;color:var(--gold)">Çalışma Saatleri</h4>
+      <div class="item" style="border:none;padding:8px 0">
+        <div><strong>Pazartesi – Pazar (çarşamba günleri kapalıyız)</strong></div>
+        <div class="muted">12:00 – 23:00</div>
+      </div>
+      <div class="divider"></div>
+      <p class="muted" style="margin:8px 0 0">
+        İyi ürünler hazırlamak ve yemekleri sıcak getirmek için çalışıyoruz.
+      </p>
     </div>
 
-    <!-- Pide Çeşitleri -->
-    <div class="menu-category">
-        <h2><i class="fa-solid fa-pizza-slice"></i> Pideler</h2>
-        <div class="menu-content">
-            <div class="menu-item"><span>Kıymalı</span><span>175₺</span></div>
-            <div class="menu-item"><span>Kıymalı Yumurtalı</span><span>175₺</span></div>
-            <div class="menu-item"><span>Kıymalı Kaşarlı</span><span>200₺</span></div>
-            <div class="menu-item"><span>Kaşarlı</span><span>175₺</span></div>
-            <div class="menu-item"><span>Kaşarlı Yumurtalı</span><span>175₺</span></div>
-            <div class="menu-item"><span>Kaşarlı Sucuklu</span><span>200₺</span></div>
-            <div class="menu-item"><span>Kaşarlı Sucuklu Yumurtalı</span><span>200₺</span></div>
-            <div class="menu-item"><span>Karışık Pide</span><span>225₺</span></div>
-        </div>
+    <div class="card">
+      <h4 style="margin:0 0 8px;color:var(--gold)">İletişim</h4>
+      <p style="margin:6px 0"><i class="fa-solid fa-phone"></i> <a href="tel:+902324424555">+90 (0232) 442 45 55</a></p>
+      <p style="margin:6px 0"><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/905517112064" target="_blank" rel="noopener">WhatsApp Sipariş Hattı</a></p>
+      <p style="margin:6px 0"><i class="fa-solid fa-location-dot"></i> Menderes, Erdem Cd. No:125 Buca/İzmir</p>
+      <p class="muted" style="margin:10px 0 0"><i class="fa-solid fa-circle-info"></i> 200₺ altı siparişlerde adrese gönderim yapılmıyor.</p>
     </div>
+  </div>
 
-    <!-- Kiremitte Ürünler -->
-    <div class="menu-category">
-        <h2><i class="fa-solid fa-bowl-food"></i> Kiremitte Ürünler</h2>
-        <div class="menu-content">
-            <div class="menu-item"><span>Kiremitte Köfte</span><span>200₺</span></div>
-            <div class="menu-item"><span>Kiremitte Kaşarlı Köfte</span><span>225₺</span></div>
-            <div class="menu-item"><span>Kiremitte Tavuk</span><span>175₺</span></div>
-            <div class="menu-item"><span>Kiremitte Kaşarlı Tavuk</span><span>200₺</span></div>
-        </div>
-    </div>
+  <!-- Harita -->
+  <div class="card reveal" style="margin-top:14px;padding:10px;overflow:hidden">
+    <iframe
+      title="Buca Çıtır Pide Konum"
+      style="width:100%;height:320px;border:0;border-radius:10px"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed">
+    </iframe>
+  </div>
 
-    <!-- Izgara Ürünler -->
-    <div class="menu-category">
-        <h2><i class="fa-solid fa-fire-burner"></i> Izgara Ürünler</h2>
-        <div class="menu-content">
-            <div class="menu-item"><span>Köfte Porsiyon</span><span>200₺</span></div>
-            <div class="menu-item"><span>Adana Porsiyon</span><span>200₺</span></div>
-            <div class="menu-item"><span>Urfa Porsiyon</span><span>200₺</span></div>
-            <div class="menu-item"><span>Tavuk Şiş</span><span>175₺</span></div>
-        </div>
-    </div>
+  <!-- Alt metin -->
+  <footer class="reveal">
+    <p class="note">
+      En iyi malzemelerle hazırlanmış, sıcak ve taze ürünler sunar; müşterilerimize hızlı ve güler yüzlü hizmet veririz.
+    </p>
+  </footer>
+</main>
 
-    <!-- Dürümler -->
-    <div class="menu-category">
-        <h2><i class="fa-solid fa-burrito"></i> Dürümler</h2>
-        <div class="menu-content">
-            <div class="menu-item"><span>Adana Dürüm</span><span>150₺</span></div>
-            <div class="menu-item"><span>Urfa Dürüm</span><span>150₺</span></div>
-            <div class="menu-item"><span>Köfte Dürüm</span><span>150₺</span></div>
-            <div class="menu-item"><span>Tavuk Dürüm</span><span>125₺</span></div>
-        </div>
-    </div>
-
-    <!-- İçecekler -->
-    <div class="menu-category">
-        <h2><i class="fa-solid fa-mug-saucer"></i> İçecekler</h2>
-        <div class="menu-content">
-            <div class="menu-item"><span>Kola (330ml)</span><span>50₺</span></div>
-            <div class="menu-item"><span>Fanta (330ml)</span><span>50₺</span></div>
-            <div class="menu-item"><span>Sprite (330ml)</span><span>50₺</span></div>
-            <div class="menu-item"><span>Ayran</span><span>35₺</span></div>
-            <div class="menu-item"><span>Şalgam</span><span>40₺</span></div>
-            <div class="menu-item"><span>Su</span><span>15₺</span></div>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>Amacımız: En iyi malzemelerle hazırlanmış, sıcak ve taze ürünler sunmak. Müşterilerimize hızlı ve güler yüzlü hizmet vermek.</p>
-    <p>Adres: Menderes, Erdem Cd. No:125 Buca/İzmir</p>
-</footer>
+<!-- Sticky Bottom Action Dock -->
+<nav class="dock" aria-label="Hızlı İşlemler">
+  <div class="dock-inner">
+    <a class="dock-btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Ara</a>
+    <a class="dock-btn" href="https://wa.me/905517112064" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+    <a class="dock-btn" href="#orderHub"><i class="fa-solid fa-bag-shopping"></i> Sipariş</a>
+  </div>
+</nav>
 
 <script>
-    document.querySelectorAll('.menu-category h2').forEach(header => {
-        header.addEventListener('click', () => {
-            header.parentElement.classList.toggle('active');
-        });
-    });
+  // Aç/Kapa Kategoriler
+  document.querySelectorAll('.cat h2').forEach(h=>{
+    h.addEventListener('click',()=> h.parentElement.classList.toggle('open'));
+  });
 
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.classList.add('shrink');
-        } else {
-            header.classList.remove('shrink');
-        }
+  // Header küçültme
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll',()=>{
+    if (window.scrollY>50) header.classList.add('shrink');
+    else header.classList.remove('shrink');
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
     });
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const id = a.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+  });
 </script>
 
+<!-- Structured Data (LocalBusiness/Restaurant) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Buca Çıtır Pide",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Menderes, Erdem Cd. No:125",
+    "addressLocality":"Buca",
+    "addressRegion":"İzmir",
+    "addressCountry":"TR"
+  },
+  "telephone":"+90-232-442-4555",
+  "servesCuisine":["Türk","Pide","Kebap","Lahmacun"],
+  "priceRange":"₺₺",
+  "sameAs":[
+    "https://wa.me/905517112064",
+    "https://yemek.go.link/2hf3u",
+    "https://getir.com/yemek/restoran/buca-citir-pide-buca-menderes-mah-buca-izmir/",
+    "https://tgoyemek.com/restoranlar/230624"
+  ],
+  "openingHours":["Mo-Su 10:00-23:00"]
+}
+</script>
 </body>
-</html>
+    </html>
