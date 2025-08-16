@@ -158,6 +158,21 @@
     <a class="btn secondary" href="https://tgoyemek.com/restoranlar/230624" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Trendyol</a>
   </div>
 
+  <style>
+.price {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: #b8860b; /* koyu sarı */
+  animation: priceGlow 2s infinite alternate;
+}
+
+@keyframes priceGlow {
+  0%   { text-shadow: 0 0 0.5px #ffd700, 0 0 1px #ffec8b; }
+  50%  { text-shadow: 0 0 1px #ffd700, 0 0 2px #ffec8b; }
+  100% { text-shadow: 0 0 0.5px #ffd700, 0 0 1px #ffec8b; }
+}
+  </style>
+
   <!-- MENU -->
   <h3 class="section-title">Menü</h3>
   <div class="divider"></div>
