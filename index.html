@@ -25,8 +25,8 @@
     --line:rgba(212,175,55,.3);
   }
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif}
-  a{color:inherit}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;scroll-behavior:smooth;}
+  a{color:inherit;text-decoration:none}
 
   /* Header (sticky, shrink on scroll) */
   header{
@@ -56,10 +56,13 @@
     background:linear-gradient(135deg,var(--gold),var(--gold-2));
     color:#111;font-weight:700;text-decoration:none;
     box-shadow:0 6px 16px rgba(0,0,0,.5);
-    transition:transform .18s ease,filter .18s ease;
+    transition:transform .18s ease,filter .18s ease, box-shadow .2s ease;
     border:1px solid rgba(255,255,255,.08)
   }
-  .btn:hover{transform:translateY(-2px)}
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px rgba(212,175,55,.5);
+  }
   .btn.secondary{
     background:linear-gradient(135deg,#1e1e1e,#262626);
     color:var(--text);border:1px solid var(--line)
@@ -69,7 +72,8 @@
 
   /* Category cards */
   .cat{background:var(--surface);border-radius:14px;overflow:hidden;margin:16px 0;
-       border:1px solid rgba(255,255,255,.04);box-shadow:0 10px 28px rgba(0,0,0,.5)}
+       border:1px solid rgba(255,255,255,.04);box-shadow:0 10px 28px rgba(0,0,0,.5);transition:transform .2s ease}
+  .cat:hover{transform:translateY(-2px);}
   .cat h2{
     margin:0;display:flex;align-items:center;gap:10px;
     padding:16px 16px;cursor:pointer;
@@ -85,10 +89,13 @@
 
   /* Items */
   .item{display:flex;align-items:center;justify-content:space-between;
-        padding:12px 16px;border-bottom:1px dashed var(--line);font-size:1rem}
+        padding:12px 16px;border-bottom:1px dashed var(--line);font-size:1rem;transition:transform .2s ease, background .2s ease}
   .item:last-child{border-bottom:none}
   .item .name{display:flex;align-items:center;gap:8px}
-  .price{font-variant-numeric:tabular-nums}
+  .item .desc{font-size:.85rem;color:var(--muted);margin-left:20px}
+  .item .price{font-variant-numeric:tabular-nums;transition:all .3s ease;}
+  .item:hover{transform:translateX(4px);background:rgba(212,175,55,.05);}
+  .item:hover .price{color:red;text-shadow:0 0 6px var(--gold);}
 
   /* Section titles */
   .section-title{
@@ -104,7 +111,8 @@
   @media(min-width:720px){.grid{grid-template-columns:1.1fr .9fr}}
 
   .card{background:var(--surface);border:1px solid rgba(255,255,255,.05);
-        border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+        border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:transform .2s ease}
+  .card:hover{transform:translateY(-2px)}
 
   /* Footer */
   footer{margin-top:24px;background:var(--surface-2);border-top:1px solid var(--line);padding:16px}
@@ -114,7 +122,7 @@
   .dock{
     position:fixed;left:0;right:0;bottom:10px;z-index:1100;
     display:flex;gap:10px;justify-content:center;
-    pointer-events:none; /* so only buttons are clickable */
+    pointer-events:none;
   }
   .dock .dock-inner{
     display:flex;background:linear-gradient(135deg,#161616,#202020);
@@ -132,12 +140,21 @@
   .dock .dock-btn:hover{background:#2a2a2a;transform:translateY(-1px)}
   @media(min-width:880px){.dock{bottom:18px}}
 
-  /* Subtle reveal on scroll */
+  /* Reveal on scroll */
   .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
   .reveal.show{opacity:1;transform:none}
 
   /* Small print */
   small, .muted{color:var(--muted)}
+
+  /* Back to top button */
+  #topBtn {
+    position:fixed;bottom:80px;right:20px;padding:12px 14px;
+    font-size:1.2rem;background:var(--gold);color:#111;border:none;border-radius:50%;
+    cursor:pointer;display:none;box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .2s ease;
+    z-index:1200;
+  }
+  #topBtn:hover{transform:scale(1.1)}
 </style>
 </head>
 <body>
@@ -149,16 +166,7 @@
 
 <main>
 
-  <!-- Quick actions -->
-  <div class="order-hub reveal" id="orderHub">
-    <a class="btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Tek Tıkla Ara</a>
-    <a class="btn" href="https://wa.me/905517112064" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Sipariş</a>
-    <a class="btn secondary" href="https://yemek.go.link/2hf3u" target="_blank" rel="noopener"><i class="fa-solid fa-bowl-food"></i> Yemeksepeti</a>
-    <a class="btn secondary" href="https://getir.com/yemek/restoran/buca-citir-pide-buca-menderes-mah-buca-izmir/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i> Getir</a>
-    <a class="btn secondary" href="https://tgoyemek.com/restoranlar/230624" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Trendyol</a>
-  </div>
-
-  <style>
+<style>
 .price {
   font-variant-numeric: tabular-nums;
   font-weight: 700;
@@ -171,7 +179,17 @@
   50%  { text-shadow: 0 0 1px #ffd700, 0 0 2px #ffec8b; }
   100% { text-shadow: 0 0 0.5px #ffd700, 0 0 1px #ffec8b; }
 }
-  </style>
+</style>
+
+  <!-- Quick actions -->
+  <div class="order-hub reveal" id="orderHub">
+    <a class="btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Tek Tıkla Ara</a>
+    <a class="btn" href="https://wa.me/905517112064" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp Sipariş</a>
+    <a class="btn secondary" href="https://yemek.go.link/2hf3u" target="_blank" rel="noopener"><i class="fa-solid fa-bowl-food"></i> Yemeksepeti</a>
+    <a class="btn secondary" href="https://getir.com/yemek/restoran/buca-citir-pide-buca-menderes-mah-buca-izmir/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i> Getir</a>
+    <a class="btn secondary" href="https://tgoyemek.com/restoranlar/230624" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Trendyol</a>
+  </div>
+
 
   <!-- MENU -->
   <h3 class="section-title">Menü</h3>
@@ -297,10 +315,6 @@
         <div><strong>Pazartesi – Pazar (çarşamba günleri kapalıyız)</strong></div>
         <div class="muted">12:00 – 23:00</div>
       </div>
-      <div class="divider"></div>
-      <p class="muted" style="margin:8px 0 0">
-        İyi ürünler hazırlamak ve yemekleri sıcak getirmek için çalışıyoruz.
-      </p>
     </div>
 
     <div class="card">
@@ -398,6 +412,6 @@
 </script>
 </body>
     </html>
-<footer style="text-align:center; font-size:0.8em; color:#777; padding:10px 0;">
+    <footer style="text-align:center; font-size:0.8em; color:#777; padding:10px 0;">
   © 2025 Ferit Tahir Asil tarafından hazırlanmıştır
 </footer>
