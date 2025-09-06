@@ -23,12 +23,14 @@
     --gold:#d4af37;
     --gold-2:#b8860b;
     --line:rgba(212,175,55,.3);
+    --accent:#18c37e;
+    --danger:#ff5d5d;
   }
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;scroll-behavior:smooth;}
   a{color:inherit;text-decoration:none}
 
-  /* Header (sticky, shrink on scroll) */
+  /* Header */
   header{
     position:sticky;top:0;z-index:1000;
     background:linear-gradient(135deg,#171717,#202020);
@@ -59,28 +61,15 @@
     transition:transform .18s ease,filter .18s ease, box-shadow .2s ease;
     border:1px solid rgba(255,255,255,.08)
   }
-  .btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 24px rgba(212,175,55,.5);
-  }
-  .btn.secondary{
-    background:linear-gradient(135deg,#1e1e1e,#262626);
-    color:var(--text);border:1px solid var(--line)
-  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,175,55,.5);}
+  .btn.secondary{background:linear-gradient(135deg,#1e1e1e,#262626);color:var(--text);border:1px solid var(--line)}
 
   main{padding:18px;max-width:1100px;margin:0 auto}
 
   /* Category cards */
-  .cat{background:var(--surface);border-radius:14px;overflow:hidden;margin:16px 0;
-       border:1px solid rgba(255,255,255,.04);box-shadow:0 10px 28px rgba(0,0,0,.5);transition:transform .2s ease}
+  .cat{background:var(--surface);border-radius:14px;overflow:hidden;margin:16px 0;border:1px solid rgba(255,255,255,.04);box-shadow:0 10px 28px rgba(0,0,0,.5);transition:transform .2s ease}
   .cat:hover{transform:translateY(-2px);}
-  .cat h2{
-    margin:0;display:flex;align-items:center;gap:10px;
-    padding:16px 16px;cursor:pointer;
-    background:var(--surface-2);
-    border-left:6px solid var(--gold);
-    transition:background .25s ease,transform .15s ease
-  }
+  .cat h2{margin:0;display:flex;align-items:center;gap:10px;padding:16px 16px;cursor:pointer;background:var(--surface-2);border-left:6px solid var(--gold);transition:background .25s ease,transform .15s ease}
   .cat h2 .chev{margin-left:auto;transition:transform .25s ease}
   .cat h2:hover{background:#232323;transform:translateX(2px)}
   .cat.open h2 .chev{transform:rotate(90deg)}
@@ -88,73 +77,77 @@
   .cat.open .content{max-height:2400px;opacity:1;padding:8px 0}
 
   /* Items */
-  .item{display:flex;align-items:center;justify-content:space-between;
-        padding:12px 16px;border-bottom:1px dashed var(--line);font-size:1rem;transition:transform .2s ease, background .2s ease}
+  .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px dashed var(--line);font-size:1rem;transition:transform .2s ease, background .2s ease}
   .item:last-child{border-bottom:none}
-  .item .name{display:flex;align-items:center;gap:8px}
+  .item .name{display:flex;align-items:center;gap:8px;min-width:0}
   .item .desc{font-size:.85rem;color:var(--muted);margin-left:20px}
   .item .price{font-variant-numeric:tabular-nums;transition:all .3s ease;}
   .item:hover{transform:translateX(4px);background:rgba(212,175,55,.05);}
   .item:hover .price{color:red;text-shadow:0 0 6px var(--gold);}
 
-  /* Section titles */
-  .section-title{
-    margin:26px 0 10px;font-weight:800;letter-spacing:.3px;color:var(--gold)
-  }
-  .divider{
-    height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);
-    margin:8px 0 14px
-  }
+  /* Right box (price + button) */
+  .right-box{display:flex;align-items:center;gap:10px;flex-shrink:0}
 
-  /* Info grid (hours + about) */
+  /* Add to cart button */
+  .add-btn{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:#1f1f1f;color:#fff;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:transform .15s ease, background .2s ease;}
+  .add-btn:hover{transform:translateY(-1px);background:#262626}
+  .add-btn i{color:var(--accent)}
+
+  /* Section titles */
+  .section-title{margin:26px 0 10px;font-weight:800;letter-spacing:.3px;color:var(--gold)}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:8px 0 14px}
+
+  /* Info grid */
   .grid{display:grid;gap:14px}
   @media(min-width:720px){.grid{grid-template-columns:1.1fr .9fr}}
-
-  .card{background:var(--surface);border:1px solid rgba(255,255,255,.05);
-        border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:transform .2s ease}
+  .card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:transform .2s ease}
   .card:hover{transform:translateY(-2px)}
 
   /* Footer */
   footer{margin-top:24px;background:var(--surface-2);border-top:1px solid var(--line);padding:16px}
   .note{color:var(--muted);font-size:.95rem;text-align:center}
 
-  /* Sticky Bottom Bar (mobile-first) */
-  .dock{
-    position:fixed;left:0;right:0;bottom:10px;z-index:1100;
-    display:flex;gap:10px;justify-content:center;
-    pointer-events:none;
-  }
-  .dock .dock-inner{
-    display:flex;background:linear-gradient(135deg,#161616,#202020);
-    border:1px solid rgba(255,255,255,.06);
-    box-shadow:0 18px 40px rgba(0,0,0,.6), inset 0 0 0 1px rgba(0,0,0,.4);
-    border-radius:16px;overflow:hidden;pointer-events:auto
-  }
-  .dock .dock-btn{
-    display:flex;align-items:center;gap:8px;padding:12px 14px;
-    color:var(--text);text-decoration:none;font-weight:700;
-    border-right:1px solid rgba(255,255,255,.06);
-    transition:background .2s ease,transform .15s ease
-  }
+  /* Dock */
+  .dock{position:fixed;left:0;right:0;bottom:10px;z-index:1100;display:flex;gap:10px;justify-content:center;pointer-events:none;}
+  .dock .dock-inner{display:flex;background:linear-gradient(135deg,#161616,#202020);border:1px solid rgba(255,255,255,.06);box-shadow:0 18px 40px rgba(0,0,0,.6), inset 0 0 0 1px rgba(0,0,0,.4);border-radius:16px;overflow:hidden;pointer-events:auto}
+  .dock .dock-btn{display:flex;align-items:center;gap:8px;padding:12px 14px;color:var(--text);text-decoration:none;font-weight:700;border-right:1px solid rgba(255,255,255,.06);transition:background .2s ease,transform .15s ease}
   .dock .dock-btn:last-child{border-right:none}
   .dock .dock-btn:hover{background:#2a2a2a;transform:translateY(-1px)}
   @media(min-width:880px){.dock{bottom:18px}}
 
-  /* Reveal on scroll */
+  /* Reveal */
   .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
   .reveal.show{opacity:1;transform:none}
 
-  /* Small print */
-  small, .muted{color:var(--muted)}
-
-  /* Back to top button */
-  #topBtn {
-    position:fixed;bottom:80px;right:20px;padding:12px 14px;
-    font-size:1.2rem;background:var(--gold);color:#111;border:none;border-radius:50%;
-    cursor:pointer;display:none;box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .2s ease;
-    z-index:1200;
-  }
+  /* Back to top */
+  #topBtn {position:fixed;bottom:80px;right:20px;padding:12px 14px;font-size:1.2rem;background:var(--gold);color:#111;border:none;border-radius:50%;cursor:pointer;display:none;box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .2s ease;z-index:1200;}
   #topBtn:hover{transform:scale(1.1)}
+
+  /* CART PANEL */
+  .cart-panel{position:fixed;right:14px;bottom:74px;width:min(540px,92vw);background:linear-gradient(180deg,#151515,#101010);border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.65);overflow:hidden;display:none;z-index:1200;}
+  .cart-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#1d1d1d;border-bottom:1px solid rgba(255,255,255,.06)}
+  .cart-header h4{margin:0;font-size:1.05rem;color:var(--gold)}
+  .cart-body{max-height:58vh;overflow:auto}
+  .cart-empty{padding:18px;text-align:center;color:var(--muted)}
+  .cart-item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px dashed var(--line)}
+  .qty{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:4px 8px}
+  .qty button{background:none;border:none;color:#fff;font-weight:900;cursor:pointer;font-size:1rem;width:22px;height:22px;line-height:22px}
+  .remove{color:var(--danger);cursor:pointer}
+  .totals{padding:12px 14px;background:#121212;border-top:1px solid rgba(255,255,255,.06)}
+  .totals .row{display:flex;justify-content:space-between;margin:6px 0}
+  .form{padding:12px 14px;border-top:1px solid rgba(255,255,255,.06);display:grid;gap:8px}
+  .form input,.form textarea{width:100%;background:#0f0f0f;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;color:#fff;font-size:.95rem}
+  .form textarea{min-height:70px;resize:vertical}
+  .pay{display:flex;gap:14px;align-items:center;margin-top:4px;color:#ddd;font-size:.95rem}
+  .order-btn{margin:10px 14px 14px 14px;width:calc(100% - 28px);padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(135deg,#25D366,#19a956);color:#0a0a0a;font-weight:900;cursor:pointer}
+  .close-x{background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer}
+  .muted-mini{color:#aaa;font-size:.85rem}
+
+  /* price glow from original */
+  .price{font-variant-numeric:tabular-nums;font-weight:700;color:#b8860b;animation:priceGlow 2s infinite alternate;}
+  @keyframes priceGlow{0%{text-shadow:0 0 .5px #ffd700,0 0 1px #ffec8b;}50%{text-shadow:0 0 1px #ffd700,0 0 2px #ffec8b;}100%{text-shadow:0 0 .5px #ffd700,0 0 1px #ffec8b;}}
+  .strike{color:#999;text-decoration:line-through}
+  .disc{color:#18c37e;font-weight:800}
 </style>
 </head>
 <body>
@@ -166,21 +159,6 @@
 
 <main>
 
-<style>
-.price {
-  font-variant-numeric: tabular-nums;
-  font-weight: 700;
-  color: #b8860b; /* koyu sarı */
-  animation: priceGlow 2s infinite alternate;
-}
-
-@keyframes priceGlow {
-  0%   { text-shadow: 0 0 0.5px #ffd700, 0 0 1px #ffec8b; }
-  50%  { text-shadow: 0 0 1px #ffd700, 0 0 2px #ffec8b; }
-  100% { text-shadow: 0 0 0.5px #ffd700, 0 0 1px #ffec8b; }
-}
-</style>
-
   <!-- Quick actions -->
   <div class="order-hub reveal" id="orderHub">
     <a class="btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Tek Tıkla Ara</a>
@@ -190,8 +168,6 @@
     <a class="btn secondary" href="https://tgoyemek.com/restoranlar/230624" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Trendyol</a>
   </div>
 
-
-  <!-- MENU -->
   <h3 class="section-title">Menü</h3>
   <div class="divider"></div>
 
@@ -233,7 +209,7 @@
     </div>
   </section>
   
-<!-- Dürümler  -->
+  <!-- Dürümler -->
   <section class="cat reveal">
     <h2>🌯 Dürümler <i class="fa-solid fa-chevron-right chev"></i></h2>
     <div class="content">
@@ -243,7 +219,7 @@
       <div class="item"><span class="name">Tavuk Izgara Dürüm</span><span class="price">150,00₺</span></div>   
       <div class="item"><span class="name">Lahmacun Dürüm</span><span class="price">125,00₺</span></div>
     </div>
-      </section>
+  </section>
   
   <!-- Kiremitte Çeşitleri -->
   <section class="cat reveal">
@@ -259,32 +235,26 @@
   </section>
 
   <!-- Kampanyalı Menüler -->
-<section class="cat reveal">
-  <h2>🎉 Kampanyalı Menüler <i class="fa-solid fa-chevron-right chev"></i></h2>
-  <div class="content">
-    <div class="item">
-      <span class="name">2'li Lahmacun Menü</span>
-      <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">
-        224,00₺ <del style="color:gray; margin-left:5px;">280,00₺</del>
-      </span>
-      <div class="desc">2 Adet Lahmacun + Salata + Haydari + Çiğ Köfte</div>
+  <section class="cat reveal">
+    <h2>🎉 Kampanyalı Menüler <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item">
+        <span class="name">2'li Lahmacun Menü</span>
+        <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">224,00₺ <del style="color:gray; margin-left:5px;">280,00₺</del></span>
+        <div class="desc">2 Adet Lahmacun + Salata + Haydari + Çiğ Köfte</div>
+      </div>
+      <div class="item">
+        <span class="name">2'li Kıymalı Kaşarlı Pide Menü</span>
+        <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">360,00₺ <del style="color:gray; margin-left:5px;">450,00₺</del></span>
+        <div class="desc">2 Adet Kıymalı Kaşarlı Pide + Mevsim Salata + Haydari + Çiğ Köfte</div>
+      </div>
+      <div class="item">
+        <span class="name">2'li Kıymalı Pide Menü</span>
+        <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">320,00₺ <del style="color:gray; margin-left:5px;">400,00₺</del></span>
+        <div class="desc">2 Adet Kıymalı Pide + Salata + Haydari + Çiğ Köfte</div>
+      </div>
     </div>
-    <div class="item">
-      <span class="name">2'li Kıymalı Kaşarlı Pide Menü</span>
-      <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">
-        360,00₺ <del style="color:gray; margin-left:5px;">450,00₺</del>
-      </span>
-      <div class="desc">2 Adet Kıymalı Kaşarlı Pide + Mevsim Salata + Haydari + Çiğ Köfte</div>
-    </div>
-    <div class="item">
-      <span class="name">2'li Kıymalı Pide Menü</span>
-      <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">
-        320,00₺ <del style="color:gray; margin-left:5px;">400,00₺</del>
-      </span>
-      <div class="desc">2 Adet Kıymalı Pide + Salata + Haydari + Çiğ Köfte</div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- İçecekler -->
   <section class="cat reveal">
@@ -304,7 +274,6 @@
     </div>
   </section>
 
-  <!-- Bilgi kartları -->
   <h3 class="section-title">Bilgiler</h3>
   <div class="divider"></div>
 
@@ -326,35 +295,57 @@
     </div>
   </div>
 
-  <!-- Harita -->
   <div class="card reveal" style="margin-top:14px;padding:10px;overflow:hidden">
-    <iframe
-      title="Buca Çıtır Pide Konum"
-      style="width:100%;height:320px;border:0;border-radius:10px"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed">
-    </iframe>
+    <iframe title="Buca Çıtır Pide Konum" style="width:100%;height:320px;border:0;border-radius:10px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed"></iframe>
   </div>
 
-  <!-- Alt metin -->
   <footer class="reveal">
-    <p class="note">
-      En iyi malzemelerle hazırlanmış, sıcak ve taze ürünler sunar; müşterilerimize hızlı ve güler yüzlü hizmet veririz.
-    </p>
+    <p class="note">En iyi malzemelerle hazırlanmış, sıcak ve taze ürünler sunar; müşterilerimize hızlı ve güler yüzlü hizmet veririz.</p>
   </footer>
 </main>
 
-<!-- Sticky Bottom Action Dock -->
+<!-- Dock -->
 <nav class="dock" aria-label="Hızlı İşlemler">
   <div class="dock-inner">
     <a class="dock-btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Ara</a>
     <a class="dock-btn" href="https://wa.me/905517112064" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
     <a class="dock-btn" href="#orderHub"><i class="fa-solid fa-bag-shopping"></i> Sipariş</a>
+    <a class="dock-btn" href="javascript:void(0)" id="openCart"><i class="fa-solid fa-basket-shopping"></i> <span id="cartBadge">Sepet (0) — 0,00₺</span></a>
   </div>
 </nav>
 
+<!-- CART PANEL -->
+<div class="cart-panel" id="cartPanel" aria-live="polite">
+  <div class="cart-header">
+    <h4>🧺 Sepetiniz</h4>
+    <button class="close-x" id="closeCart" title="Kapat"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-body" id="cartItems"></div>
+  <div class="totals">
+    <div class="row"><span>Ara Toplam</span><strong id="subTotal">0,00₺</strong></div>
+    <div class="row"><span>WhatsApp İndirimi (%10)</span><strong id="discount">-0,00₺</strong></div>
+    <div class="row" style="font-weight:900;color:var(--gold)"><span>Ödenecek</span><strong id="grandTotal">0,00₺</strong></div>
+    <div class="row muted-mini"><span>Not:</span><span>WhatsApp siparişlerine %10 indirim uygulanır.</span></div>
+  </div>
+  <div class="form">
+    <input id="custName" placeholder="Ad Soyad" autocomplete="name"/>
+    <textarea id="custAddress" placeholder="Adres (Mahalle/Cadde, No, Kat, Daire)"></textarea>
+    <textarea id="custNote" placeholder="Sipariş notu (isteğe bağlı)"></textarea>
+    <div class="pay">
+      <span>Ödeme:</span>
+      <label><input type="radio" name="pay" value="Nakit" checked> Nakit</label>
+      <label><input type="radio" name="pay" value="Kart"> Kart</label>
+    </div>
+  </div>
+  <button class="order-btn" id="sendWhatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp’tan Gönder</button>
+</div>
+
 <script>
+  // ======= CONFIG =======
+  const WHATSAPP_TO = "905517112064"; // WhatsApp hedef numara (başında 90 ile)
+  const CURRENCY = "₺";
+  const DISCOUNT_RATE = 0.10; // %10
+
   // Aç/Kapa Kategoriler
   document.querySelectorAll('.cat h2').forEach(h=>{
     h.addEventListener('click',()=> h.parentElement.classList.toggle('open'));
@@ -375,7 +366,7 @@
   },{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // Smooth scroll for internal links
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',e=>{
       const id = a.getAttribute('href').slice(1);
@@ -383,6 +374,192 @@
       if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
     });
   });
+
+  // ======= MINI CART SYSTEM =======
+  const openCartBtn = document.getElementById('openCart');
+  const closeCartBtn = document.getElementById('closeCart');
+  const cartPanel = document.getElementById('cartPanel');
+  const cartItemsEl = document.getElementById('cartItems');
+  const subTotalEl = document.getElementById('subTotal');
+  const discountEl = document.getElementById('discount');
+  const grandTotalEl = document.getElementById('grandTotal');
+  const cartBadge = document.getElementById('cartBadge');
+
+  const nameEl = document.getElementById('custName');
+  const addrEl = document.getElementById('custAddress');
+  const noteEl = document.getElementById('custNote');
+  const sendBtn = document.getElementById('sendWhatsapp');
+
+  // State
+  let cart = [];
+
+  // LocalStorage Load/Save
+  const LS_KEY = "buca-citir-cart";
+  function loadCart(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      cart = raw ? JSON.parse(raw) : [];
+    }catch(e){ cart = []; }
+    renderCart();
+  }
+  function saveCart(){ localStorage.setItem(LS_KEY, JSON.stringify(cart)); }
+
+  // Utilities
+  function parsePrice(text){
+    // ilk geçen "NNN,NN" formatlı sayı
+    const m = String(text).match(/(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
+    if(!m) return 0;
+    const cleaned = m[0].replace(/\./g,'').replace(',','.');
+    return parseFloat(cleaned);
+  }
+  function formatTL(n){
+    try{
+      return n.toLocaleString('tr-TR', {minimumFractionDigits:2, maximumFractionDigits:2}) + CURRENCY;
+    }catch(e){
+      return (Math.round(n*100)/100).toFixed(2).replace('.',',') + CURRENCY;
+    }
+  }
+
+  function addToCart(name, price){
+    const idx = cart.findIndex(i=>i.name===name && i.price===price);
+    if(idx>-1){ cart[idx].qty += 1; }
+    else { cart.push({name, price, qty:1}); }
+    saveCart();
+    renderCart();
+    try{ if(window.navigator.vibrate) navigator.vibrate(10); }catch(e){}
+  }
+
+  function cartTotals(){
+    const subTotal = cart.reduce((s,i)=> s + i.price*i.qty, 0);
+    const discount = subTotal * DISCOUNT_RATE;
+    const grand = Math.max(0, subTotal - discount);
+    const count = cart.reduce((s,i)=> s + i.qty, 0);
+    return {subTotal, discount, grand, count};
+  }
+
+  function renderCart(){
+    if(!cart.length){
+      cartItemsEl.innerHTML = '<div class="cart-empty">Sepetiniz boş. Menülerden ürün ekleyin.</div>';
+    }else{
+      cartItemsEl.innerHTML = cart.map((i,idx)=>{
+        const unitDisc = i.price * (1 - DISCOUNT_RATE);
+        return `
+          <div class="cart-item">
+            <div>
+              <strong>${i.name}</strong>
+              <div class="muted-mini">
+                <span class="strike">${formatTL(i.price)}</span>
+                &nbsp;→&nbsp;
+                <span class="disc">${formatTL(unitDisc)}</span> / adet
+              </div>
+            </div>
+            <div class="qty" aria-label="Adet">
+              <button aria-label="Azalt" onclick="decItem(${idx})">−</button>
+              <span><strong>${i.qty}</strong></span>
+              <button aria-label="Arttır" onclick="incItem(${idx})">＋</button>
+            </div>
+            <div>
+              <strong>${formatTL(unitDisc*i.qty)}</strong>
+              <div class="remove" title="Kaldır" onclick="removeItem(${idx})"><i class="fa-solid fa-trash-can"></i></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    const {subTotal, discount, grand, count} = cartTotals();
+    subTotalEl.textContent = formatTL(subTotal);
+    discountEl.textContent = `-${formatTL(discount).replace(CURRENCY,'')}${CURRENCY}`;
+    grandTotalEl.textContent = formatTL(grand);
+    cartBadge.textContent = `Sepet (${count}) — ${formatTL(grand).replace(CURRENCY,'')} ${CURRENCY}`;
+  }
+  window.incItem = (i)=>{ cart[i].qty++; saveCart(); renderCart(); }
+  window.decItem = (i)=>{ cart[i].qty = Math.max(1, cart[i].qty-1); saveCart(); renderCart(); }
+  window.removeItem = (i)=>{ cart.splice(i,1); saveCart(); renderCart(); }
+
+  function toggleCart(show){ cartPanel.style.display = show ? 'block' : 'none'; }
+  openCartBtn.addEventListener('click',()=> toggleCart(true));
+  closeCartBtn.addEventListener('click',()=> toggleCart(false));
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggleCart(false); });
+
+  // WhatsApp compose
+  function selectedPayment(){
+    const el = document.querySelector('input[name="pay"]:checked');
+    return el ? el.value : 'Nakit';
+    }
+  function buildMessage(){
+    const {subTotal, discount, grand} = cartTotals();
+    const lines = [];
+    lines.push("Buca Çıtır Pide — Online Sipariş");
+    lines.push("================================");
+    if(cart.length){
+      lines.push("Ürünler:");
+      cart.forEach(i=>{
+        const unitDisc = i.price*(1-DISCOUNT_RATE);
+        const line = `• ${i.name} x ${i.qty} = ${formatTL(i.price*i.qty)} → ${formatTL(unitDisc*i.qty)}`;
+        lines.push(line);
+      });
+      lines.push("--------------------------------");
+      lines.push(`Ara Toplam: ${formatTL(subTotal)}`);
+      lines.push(`WhatsApp İndirimi (%10): -${formatTL(discount)}`);
+      lines.push(`Ödenecek: ${formatTL(grand)}`);
+      lines.push("(WhatsApp ile verilen siparişlerde %10 indirim uygulanmıştır.)");
+    }else{
+      lines.push("(Sepet boş)");
+    }
+    lines.push("");
+    lines.push(`Ad Soyad: ${nameEl.value || "-"}`);
+    lines.push(`Adres: ${addrEl.value || "-"}`);
+    if(noteEl.value.trim()){ lines.push(`Not: ${noteEl.value.trim()}`); }
+    lines.push(`Ödeme Yöntemi: ${selectedPayment()}`);
+    return lines.join("\n");
+  }
+
+  function sendToWhatsapp(){
+    if(!cart.length){ alert("Sepetiniz boş. Lütfen ürün ekleyin."); return; }
+    if(!nameEl.value.trim() || !addrEl.value.trim()){
+      alert("Lütfen ad soyad ve adres bilgilerini doldurun."); return;
+    }
+    const text = buildMessage();
+    const url = `https://wa.me/${WHATSAPP_TO}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+  }
+  sendBtn.addEventListener('click', sendToWhatsapp);
+
+  // “Sepete Ekle” butonlarını ürün satırlarına ekleme (ismi korur!)
+  function enhanceMenu(){
+    const items = document.querySelectorAll('section.cat .content .item');
+    items.forEach(it=>{
+      const nameSpan = it.querySelector('.name');
+      const priceSpan = it.querySelector('.price');
+      if(!nameSpan || !priceSpan) return;
+      if(it.querySelector('.add-btn')) return; // zaten ekliyse geç
+
+      const priceText = priceSpan.textContent.trim();
+      const price = parsePrice(priceText);
+
+      // sağ kutu: (fiyat + buton)
+      const right = document.createElement('div');
+      right.className = 'right-box';
+
+      // fiyatı sağ kutuya taşı
+      right.appendChild(priceSpan);
+
+      const btn = document.createElement('button');
+      btn.className = 'add-btn';
+      btn.type = 'button';
+      btn.innerHTML = `<i class="fa-solid fa-circle-plus"></i> Sepete Ekle`;
+      btn.addEventListener('click', ()=> addToCart(nameSpan.textContent.trim(), price));
+      right.appendChild(btn);
+
+      // satırın sonuna ekle (isim solda kalır)
+      it.appendChild(right);
+    });
+  }
+
+  // İlk yükleme
+  enhanceMenu();
+  loadCart();
+
 </script>
 
 <!-- Structured Data (LocalBusiness/Restaurant) -->
@@ -410,8 +587,9 @@
   "openingHours":["Mo-Su 10:00-23:00"]
 }
 </script>
-</body>
-    </html>
-    <footer style="text-align:center; font-size:0.8em; color:#777; padding:10px 0;">
+
+<footer style="text-align:center; font-size:0.8em; color:#777; padding:10px 0;">
   © 2025 Ferit Tahir Asil tarafından hazırlanmıştır
 </footer>
+</body>
+</html>
