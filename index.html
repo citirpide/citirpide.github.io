@@ -7,218 +7,160 @@
 
 <!-- SEO -->
 <meta name="description" content="Buca Çıtır Pide: Pide, lahmacun, kebap, ızgara. WhatsApp sipariş %10 indirim. Menderes, Erdem Cd. No:125 Buca/İzmir." />
-<meta name="theme-color" content="#0b0d12" />
+<meta name="theme-color" content="#0c1016" />
 <link rel="canonical" href="https://example.com/" />
 
-<!-- Icons & Fonts -->
+<!-- Icons -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-<!-- Twemoji (emoji yedeği; iOS/Android/masaüstü tutarlılığı için) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js" defer></script>
 
 <style>
-  /* ===== Premium Palette ===== */
+  /* ===== Light, fast, premium palette (sade efektler) ===== */
   :root{
-    --bg:#0b0d12;
-    --bg-grad: radial-gradient(1200px 800px at 10% -10%, #121622 0%, transparent 55%),
-               radial-gradient(1000px 600px at 110% 0%, #0f1421 0%, transparent 50%),
-               #0b0d12;
-    --surface:#11141b;
-    --surface-2:#0e1219;
-    --surface-3:#151a24;
-    --text:#f2f5f8;
-    --muted:#b6bfcc;
-    --gold:#e8d39a;
+    --bg:#0c1016;
+    --surface:#0f141b;
+    --surface-2:#0b1016;
+    --text:#eef2f6;
+    --muted:#b5bfcc;
+    --gold:#e9d897;
     --gold-2:#c9a86b;
-    --line:rgba(232,211,154,.32);
-    --accent:#42d3a5;
-    --accent-2:#2dbb8e;
+    --line:rgba(233,216,151,.28);
+    --accent:#37c993;
     --danger:#ff6b6b;
-    --overlay:rgba(8,10,14,.6);
-    --glow-gold: 0 0 0.5px rgba(232,211,154,.6), 0 0 8px rgba(232,211,154,.25);
+    --overlay:rgba(6,8,12,.6);
   }
 
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg-grad);color:var(--text);
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;scroll-behavior:smooth;}
+  html,body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,'Noto Sans',sans-serif;
+    scroll-behavior:smooth;
+  }
   a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
   body.lock-scroll{overflow:hidden;touch-action:none;}
 
-  /* ===== Header ===== */
+  /* ===== Header (sade) ===== */
   header{
     position:sticky;top:0;z-index:1000;
-    background:linear-gradient(135deg,#0f131c,#0c1018);
+    background:var(--surface-2);
     color:var(--gold);
-    padding:26px 16px;text-align:center;font-weight:700;letter-spacing:.3px;
-    box-shadow:0 8px 24px rgba(0,0,0,.45), inset 0 -1px 0 rgba(255,255,255,.04);
-    transition:padding .3s ease,font-size .3s ease,background .3s ease,opacity .3s ease,backdrop-filter .3s ease;
-    backdrop-filter:saturate(150%) blur(2px);
+    padding:18px 16px;
+    text-align:center;font-weight:800;letter-spacing:.2px;
+    border-bottom:1px solid rgba(255,255,255,.06);
   }
-  header.shrink{padding:12px 16px;font-size:.95rem;background:linear-gradient(135deg,#0c1018,#0a0e15);opacity:.98;backdrop-filter:saturate(170%) blur(6px);}
-  header .title{font-size:1.85rem;text-shadow:var(--glow-gold)}
+  header .title{font-size:1.75rem}
   header .subtitle{color:var(--muted);font-size:.95rem;margin-top:4px}
 
-  @supports not ((backdrop-filter: blur(6px)) or (-webkit-backdrop-filter: blur(6px))){
-    header{ backdrop-filter:none; }
-  }
+  main{padding:16px;max-width:1100px;margin:0 auto}
 
-  /* ===== Top order buttons ===== */
-  .order-hub{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:18px}
+  /* ===== Top buttons (sade, hafif) ===== */
+  .order-hub{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:12px}
   .btn{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:12px 16px;border-radius:14px;
-    background:linear-gradient(135deg,var(--gold),var(--gold-2));
-    color:#111;font-weight:800;text-decoration:none;
-    box-shadow:0 10px 28px rgba(0,0,0,.55);
-    transition:transform .18s ease, box-shadow .2s ease, filter .18s ease, letter-spacing .2s ease;
-    border:1px solid rgba(255,255,255,.08)
+    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;
+    background:#151b23;color:#fff;font-weight:800;border:1px solid rgba(255,255,255,.08)
   }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(201,168,107,.45);letter-spacing:.2px}
-  .btn.secondary{
-    background:linear-gradient(135deg,#151a24,#11161f);
-    color:var(--text);border:1px solid var(--line);
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 8px 20px rgba(0,0,0,.45)
-  }
-  .btn.secondary:hover{filter:brightness(1.08);box-shadow:0 14px 30px rgba(21,26,36,.5)}
-
-  main{padding:18px;max-width:1100px;margin:0 auto}
+  .btn.secondary{background:#121820;color:var(--text);border:1px solid var(--line)}
 
   /* ===== Category cards ===== */
   .cat{
-    background:linear-gradient(180deg, rgba(21,26,36,.85), rgba(12,16,24,.9));
-    border-radius:16px;overflow:hidden;margin:16px 0;
-    border:1px solid rgba(255,255,255,.06);
-    box-shadow:0 14px 36px rgba(0,0,0,.55);
-    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    background:var(--surface);border-radius:14px;margin:14px 0;
+    border:1px solid rgba(255,255,255,.08);
+    /* Boyama maliyetini düşürür */
+    contain:content;
   }
-  .cat:hover{transform:translateY(-2px);box-shadow:0 20px 46px rgba(0,0,0,.6);border-color:rgba(232,211,154,.22)}
   .cat h2{
-    margin:0;display:flex;align-items:center;gap:10px;
-    padding:16px 16px;cursor:pointer;
-    background:linear-gradient(180deg,#0f141d,#0b1017);
+    margin:0;display:flex;align-items:center;gap:10px;padding:14px 14px;cursor:pointer;
+    background:var(--surface-2);
     border-left:6px solid var(--gold);
-    transition:background .25s ease,transform .15s ease, border-color .2s ease;
-    box-shadow:inset 0 -1px 0 rgba(255,255,255,.04);
   }
-  .cat h2 .chev{margin-left:auto;transition:transform .25s ease}
-  .cat h2:hover{background:#111827;transform:translateX(2px)}
-  .cat.open h2 .chev{transform:rotate(90deg)}
-  .cat .content{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .45s ease,padding .45s ease}
-  .cat.open .content{max-height:2400px;opacity:1;padding:8px 0}
+  .cat h2 .chev{margin-left:auto}
+  .cat .content{
+    max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease,padding .3s ease;
+    /* Görünmeyen bölümleri tarayıcı atlayabilir: büyük kazanç */
+    content-visibility:auto; contain-intrinsic-size:1px 400px;
+  }
+  .cat.open .content{max-height:2400px;opacity:1;padding:6px 0}
 
   /* ===== Items ===== */
-  .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px dashed var(--line);font-size:1rem;transition:transform .2s ease, background .2s ease, border-color .2s ease}
+  .item{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:10px 14px;border-bottom:1px dashed var(--line);font-size:1rem;
+  }
   .item:last-child{border-bottom:none}
   .item .name{display:flex;align-items:center;gap:8px;min-width:0}
-  .item .price{font-variant-numeric:tabular-nums;transition:all .3s ease;color:var(--gold-2);font-weight:800}
-  .item:hover{transform:translateX(4px);background:rgba(232,211,154,.06);border-color:rgba(232,211,154,.28)}
-  .item:hover .price{color:#f1e2b6;text-shadow:0 0 10px rgba(232,211,154,.3)}
+  .item .price{font-variant-numeric:tabular-nums;color:var(--gold-2);font-weight:900}
 
-  /* Right box (price + button) */
   .right-box{display:flex;align-items:center;gap:10px;flex-shrink:0}
 
-  /* ===== Add to cart button ===== */
   .add-btn{
-    padding:8px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.09);
-    background:linear-gradient(135deg,#1a2230,#141b26);color:#fff;font-weight:800;cursor:pointer;
-    display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
-    transition:transform .15s ease, background .2s ease, box-shadow .2s ease;
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 10px 22px rgba(0,0,0,.45)
+    padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);
+    background:#161c25;color:#fff;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
   }
-  .add-btn:hover{transform:translateY(-1px);background:linear-gradient(135deg,#1e2838,#172131);box-shadow:0 14px 28px rgba(0,0,0,.5)}
   .add-btn i{color:var(--accent)}
 
   /* ===== Section titles ===== */
-  .section-title{margin:28px 0 10px;font-weight:900;letter-spacing:.4px;color:var(--gold);text-shadow:var(--glow-gold)}
-  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:8px 0 14px}
+  .section-title{margin:20px 0 8px;font-weight:900;letter-spacing:.3px;color:var(--gold)}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:6px 0 12px}
 
-  /* ===== Info grid ===== */
-  .grid{display:grid;gap:14px}
+  /* ===== Cards simple ===== */
+  .grid{display:grid;gap:12px}
   @media(min-width:720px){.grid{grid-template-columns:1.1fr .9fr}}
-  .card{
-    background:linear-gradient(180deg,rgba(21,26,36,.78),rgba(12,16,24,.88));
-    border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;
-    box-shadow:0 12px 30px rgba(0,0,0,.5);transition:transform .2s ease, box-shadow .2s ease;
-  }
-  .card:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(0,0,0,.55)}
+  .card{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px}
 
   /* ===== Footer ===== */
-  footer{margin-top:24px;background:linear-gradient(180deg,#0f141d,#0c1119);border-top:1px solid var(--line);padding:16px}
+  footer{margin-top:20px;background:var(--surface-2);border-top:1px solid rgba(255,255,255,.08);padding:14px}
   .note{color:var(--muted);font-size:.95rem;text-align:center}
 
   /* ===== Dock ===== */
   .dock{position:fixed;left:0;right:0;bottom:12px;z-index:1000;display:flex;gap:10px;justify-content:center;pointer-events:none;}
   .dock .dock-inner{
-    display:flex;background:linear-gradient(135deg,rgba(17,22,32,.88),rgba(14,19,28,.9));
-    border:1px solid rgba(255,255,255,.06);
-    box-shadow:0 24px 56px rgba(0,0,0,.6), inset 0 0 0 1px rgba(0,0,0,.4);
-    border-radius:16px;overflow:hidden;pointer-events:auto;
+    display:flex;background:#101620;border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;overflow:hidden;pointer-events:auto
   }
-  .dock .dock-btn{display:flex;align-items:center;gap:8px;padding:12px 14px;color:var(--text);text-decoration:none;font-weight:800;border-right:1px solid rgba(255,255,255,.06);transition:background .2s ease,transform .15s ease}
+  .dock .dock-btn{display:flex;align-items:center;gap:8px;padding:10px 12px;color:var(--text);font-weight:800;border-right:1px solid rgba(255,255,255,.08)}
   .dock .dock-btn:last-child{border-right:none}
-  .dock .dock-btn:hover{background:#172131;transform:translateY(-1px)}
-  @media(min-width:880px){.dock{bottom:18px}}
-
-  /* ===== Reveal ===== */
-  .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
-  .reveal.show{opacity:1;transform:none}
 
   /* ===== Cart Overlay/Sheet ===== */
   .cart-overlay[hidden]{display:none;}
-  .cart-overlay{position:fixed; inset:0; background:var(--overlay); display:flex; align-items:flex-end; justify-content:center; z-index:1200; overscroll-behavior:contain;}
+  .cart-overlay{position:fixed; inset:0; background:var(--overlay); display:flex; align-items:flex-end; justify-content:center; z-index:1200;}
   .cart-sheet{
     width:min(720px,100vw); height:min(92dvh, 820px); max-height:92dvh;
-    background:linear-gradient(180deg,#0f141d,#0b1017);
-    border:1px solid rgba(255,255,255,.08); border-radius:16px 16px 0 0;
-    box-shadow:0 32px 70px rgba(0,0,0,.65); overflow:hidden; display:flex; flex-direction:column; touch-action:pan-y;
+    background:var(--surface-2);
+    border:1px solid rgba(255,255,255,.08); border-radius:16px 16px 0 0; overflow:hidden; display:flex; flex-direction:column;
   }
   @supports not (height: 1dvh){ .cart-sheet{ height:92vh; max-height:92vh; } }
   @media (min-width:900px){ .cart-overlay{align-items:center;} .cart-sheet{border-radius:16px; height:72vh; max-height:72vh;} }
-  .drag-handle{width:40px;height:4px;border-radius:999px;background:#2a3344;margin:8px auto 6px auto;}
-  .cart-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#0f141d;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
-  .cart-header h4{margin:0;font-size:1.05rem;color:var(--gold);text-shadow:var(--glow-gold)}
-  .close-x{background:none;border:none;color:#cfd6e2;font-size:1.15rem;cursor:pointer}
+  .cart-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#0f141b;border-bottom:1px solid rgba(255,255,255,.08)}
+  .cart-header h4{margin:0;font-size:1.05rem;color:var(--gold)}
+  .close-x{background:none;border:none;color:#e7ecf2;font-size:1.15rem;cursor:pointer}
 
-  .cart-body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;overscroll-behavior:contain;}
-  .cart-empty{padding:18px;text-align:center;color:var(--muted)}
+  .cart-body{
+    flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;
+  }
+  .cart-empty{padding:16px;text-align:center;color:var(--muted)}
   .cart-item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px dashed var(--line)}
-  .qty{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:4px 8px;background:linear-gradient(180deg,#111827,#0d1420)}
-  .qty button{background:none;border:none;color:#e8edf5;font-weight:900;cursor:pointer;font-size:1rem;width:22px;height:22px;line-height:22px}
+  .qty{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:4px 8px;background:#121823}
+  .qty button{background:none;border:none;color:#f0f4f8;font-weight:900;cursor:pointer;font-size:1rem;width:22px;height:22px;line-height:22px}
   .remove{color:var(--danger);cursor:pointer}
 
-  .totals{padding:12px 14px;background:#0e131c;border-top:1px solid rgba(255,255,255,.06)}
+  .totals{padding:12px 14px;background:#0f141b;border-top:1px solid rgba(255,255,255,.08)}
   .totals .row{display:flex;justify-content:space-between;margin:6px 0}
-  .form{padding:12px 14px;border-top:1px solid rgba(255,255,255,.06);display:grid;gap:8px}
-  .form input,.form textarea{width:100%;background:#0b0f16;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;color:#f2f5f8;font-size:.95rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.02)}
+  .form{padding:12px 14px;border-top:1px solid rgba(255,255,255,.08);display:grid;gap:8px}
+  .form input,.form textarea{width:100%;background:#0b1016;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;color:#eef2f6;font-size:.95rem}
   .form textarea{min-height:70px;resize:vertical}
   .pay{display:flex;gap:14px;align-items:center;margin-top:4px;color:#d7dde8;font-size:.95rem}
   .order-btn{
-    margin:10px 14px 14px 14px;width:calc(100% - 28px);padding:12px 14px;border-radius:14px;
-    border:1px solid rgba(255,255,255,.08);
-    background:linear-gradient(135deg,#25D366,#1fb35a);
-    color:#0a0a0a;font-weight:900;cursor:pointer;box-shadow:0 12px 28px rgba(31,179,90,.35);
-    transition:transform .15s ease, box-shadow .2s ease;
+    margin:10px 14px 14px 14px;width:calc(100% - 28px);padding:12px 14px;border-radius:12px;
+    border:1px solid rgba(255,255,255,.08); background:#25D366; color:#0a0a0a; font-weight:900; cursor:pointer;
   }
-  .order-btn:hover{transform:translateY(-1px);box-shadow:0 16px 36px rgba(31,179,90,.38)}
 
-  /* ===== Price & Discount ===== */
-  .price{font-variant-numeric:tabular-nums;font-weight:800;color:var(--gold-2);animation:priceGlow 4.5s ease-in-out infinite alternate;} /* yavaşlatıldı */
-  @keyframes priceGlow{
-    0%{ text-shadow: 0 0 .5px rgba(232,211,154,.7), 0 0 6px rgba(232,211,154,.2); }
-    50%{ text-shadow: 0 0 1px rgba(232,211,154,.9), 0 0 10px rgba(232,211,154,.28); }
-    100%{ text-shadow: 0 0 .5px rgba(232,211,154,.7), 0 0 6px rgba(232,211,154,.2); }
-  }
-  .strike{color:#97a2b3;text-decoration:line-through}
+  .strike{color:#96a3b4;text-decoration:line-through}
   .disc{color:var(--accent);font-weight:900}
 
-  /* Twemoji images */
-  img.emoji{ height:1em; width:1em; margin:0 .05em; vertical-align:-0.1em; }
-
-  /* ===== Performans modu (otomatik devreye girer) ===== */
-  body.perf *{ text-shadow:none !important; }
-  body.perf .cat, body.perf .card, body.perf .dock .dock-inner{ box-shadow:none !important; }
-  body.perf header{ backdrop-filter:none !important; }
-  body.perf .price{ animation:none !important; }
-  body.perf .item:hover{ transform:none !important; background:rgba(232,211,154,.04) !important; }
+  /* Hareket azaltma tercihi varsa tüm geçişleri kapat */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important}
+  }
 </style>
 </head>
 <body>
@@ -231,9 +173,8 @@
 <main>
 
   <!-- Quick actions -->
-  <div class="order-hub reveal" id="orderHub">
+  <div class="order-hub" id="orderHub">
     <a class="btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Tek Tıkla Ara</a>
-    <!-- Üst WhatsApp butonu istenmediği için yok -->
     <a class="btn secondary" href="https://yemek.go.link/2hf3u" target="_blank" rel="noopener"><i class="fa-solid fa-bowl-food"></i> Yemeksepeti</a>
     <a class="btn secondary" href="https://getir.com/yemek/restoran/buca-citir-pide-buca-izmir/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i> Getir</a>
     <a class="btn secondary" href="https://tgoyemek.com/restoranlar/230624" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Trendyol</a>
@@ -244,7 +185,7 @@
   <div class="divider"></div>
 
   <!-- Pide Çeşitleri -->
-  <section class="cat reveal open">
+  <section class="cat open">
     <h2><i class="fa-solid fa-pizza-slice"></i> Pide Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
     <div class="content">
       <div class="item"><span class="name">Kıymalı Sade</span><span class="price">175,00₺</span></div>
@@ -261,7 +202,7 @@
   </section>
   
   <!-- Lahmacun Çeşitleri -->
-  <section class="cat reveal">
+  <section class="cat">
     <h2><i class="fa-solid fa-bread-slice"></i> Lahmacun Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
     <div class="content">
       <div class="item"><span class="name">Lahmacun</span><span class="price">125,00₺</span></div>
@@ -271,7 +212,7 @@
   </section>
 
   <!-- Kebaplar -->
-  <section class="cat reveal">
+  <section class="cat">
     <h2><i class="fa-solid fa-fire-burner"></i> Kebaplar <i class="fa-solid fa-chevron-right chev"></i></h2>
     <div class="content">
       <div class="item"><span class="name">Adana Kebap</span><span class="price">250,00₺</span></div>
@@ -282,7 +223,7 @@
   </section>
   
   <!-- Dürümler -->
-  <section class="cat reveal">
+  <section class="cat">
     <h2>🌯 Dürümler <i class="fa-solid fa-chevron-right chev"></i></h2>
     <div class="content">
       <div class="item"><span class="name">Adana Dürüm</span><span class="price">150,00₺</span></div>
@@ -294,7 +235,7 @@
   </section>
   
   <!-- Kiremitte Çeşitleri -->
-  <section class="cat reveal">
+  <section class="cat">
     <h2><i class="fa-solid fa-bowl-food"></i> Kiremitte Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
     <div class="content">
       <div class="item"><span class="name">Kiremitte Tavuk</span><span class="price">250,00₺</span></div>
@@ -307,26 +248,29 @@
   </section>
 
   <!-- Kampanyalı Menüler -->
-  <section class="cat reveal">
+  <section class="cat">
     <h2>🎉 Kampanyalı Menüler <i class="fa-solid fa-chevron-right chev"></i></h2>
     <div class="content">
       <div class="item">
         <span class="name">2'li Lahmacun Menü</span>
-        <span class="price" style="background-color:rgba(232,211,154,.12); color:#ffd1d1; padding:2px 8px; border-radius:8px; border:1px solid rgba(255,255,255,.08)">224,00₺ <del style="color:#9aa6bb; margin-left:6px;">280,00₺</del></span>
+        <span class="price">224,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">280,00₺</del></span>
+        <div class="desc" style="color:#c8d0dc">2 Adet Lahmacun + Salata + Haydari + Çiğ Köfte</div>
       </div>
       <div class="item">
         <span class="name">2'li Kıymalı Kaşarlı Pide Menü</span>
-        <span class="price" style="background-color:rgba(232,211,154,.12); color:#ffd1d1; padding:2px 8px; border-radius:8px; border:1px solid rgba(255,255,255,.08)">360,00₺ <del style="color:#9aa6bb; margin-left:6px;">450,00₺</del></span>
+        <span class="price">360,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">450,00₺</del></span>
+        <div class="desc" style="color:#c8d0dc">2 Adet Kıymalı Kaşarlı Pide + Mevsim Salata + Haydari + Çiğ Köfte</div>
       </div>
       <div class="item">
         <span class="name">2'li Kıymalı Pide Menü</span>
-        <span class="price" style="background-color:rgba(232,211,154,.12); color:#ffd1d1; padding:2px 8px; border-radius:8px; border:1px solid rgba(255,255,255,.08)">320,00₺ <del style="color:#9aa6bb; margin-left:6px;">400,00₺</del></span>
+        <span class="price">320,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">400,00₺</del></span>
+        <div class="desc" style="color:#c8d0dc">2 Adet Kıymalı Pide + Salata + Haydari + Çiğ Köfte</div>
       </div>
     </div>
   </section>
 
-  <!-- İçecekler (EKLENDİ) -->
-  <section class="cat reveal">
+  <!-- İçecekler -->
+  <section class="cat">
     <h2><i class="fa-solid fa-mug-saucer"></i> İçecekler <i class="fa-solid fa-chevron-right chev"></i></h2>
     <div class="content">
       <div class="item"><span class="name">Kola</span><span class="price">50,00₺</span></div>
@@ -347,9 +291,9 @@
   <h3 class="section-title">Bilgiler</h3>
   <div class="divider"></div>
 
-  <div class="grid reveal">
+  <div class="grid">
     <div class="card">
-      <h4 style="margin:0 0 8px;color:var(--gold);text-shadow:var(--glow-gold)">Çalışma Saatleri</h4>
+      <h4 style="margin:0 0 8px;color:var(--gold)">Çalışma Saatleri</h4>
       <div class="item" style="border:none;padding:8px 0">
         <div><strong>Pazartesi – Pazar (çarşamba günleri kapalıyız)</strong></div>
         <div class="muted">12:00 – 23:00</div>
@@ -357,22 +301,22 @@
     </div>
 
     <div class="card">
-      <h4 style="margin:0 0 8px;color:var(--gold);text-shadow:var(--glow-gold)">İletişim</h4>
+      <h4 style="margin:0 0 8px;color:var(--gold)">İletişim</h4>
       <p style="margin:6px 0"><i class="fa-solid fa-phone"></i> <a href="tel:+902324424555">+90 (0232) 442 45 55</a></p>
       <p style="margin:6px 0"><i class="fa-solid fa-location-dot"></i> Menderes, Erdem Cd. No:125 Buca/İzmir</p>
       <p class="muted" style="margin:10px 0 0"><i class="fa-solid fa-circle-info"></i> 200₺ altı siparişlerde adrese gönderim yapılmıyor.</p>
     </div>
   </div>
 
-  <!-- Harita: butonla gecikmeli yüklenir -->
-  <div class="card reveal" style="margin-top:14px;padding:10px;overflow:hidden">
+  <!-- Harita: tıklayınca yükle -->
+  <div class="card" style="margin-top:14px;padding:10px;overflow:hidden">
     <button id="showMap" class="add-btn" style="width:100%;justify-content:center">
       <i class="fa-solid fa-map-location-dot"></i> Haritayı Göster
     </button>
     <div id="mapHolder" style="margin-top:10px"></div>
   </div>
 
-  <footer class="reveal">
+  <footer>
     <p class="note">En iyi malzemelerle hazırlanmış, sıcak ve taze ürünler sunar; müşterilerimize hızlı ve güler yüzlü hizmet veririz.</p>
   </footer>
 </main>
@@ -388,7 +332,6 @@
 <!-- CART OVERLAY/SHEET -->
 <div class="cart-overlay" id="cartOverlay" hidden>
   <div class="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle" id="cartSheet" onclick="event.stopPropagation()">
-    <div class="drag-handle"></div>
     <div class="cart-header">
       <h4 id="cartTitle">🧾 Sepetiniz</h4>
       <button class="close-x" id="closeCart" title="Kapat"><i class="fa-solid fa-xmark"></i></button>
@@ -420,36 +363,18 @@
   const CURRENCY = "₺";
   const DISCOUNT_RATE = 0.10;
 
-  /* ===== Twemoji: tek sefer parse ===== */
-  function applyTwemoji(root){
-    if(!window.twemoji) return;
-    window.twemoji.parse(root || document.body, {
-      base: "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/",
-      folder: "svg",
-      ext: ".svg",
-      className: "emoji"
-    });
+  /* ===== Basit yardımcılar ===== */
+  function parsePrice(text){
+    const m = String(text).match(/(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
+    if(!m) return 0;
+    return parseFloat(m[0].replace(/\./g,'').replace(',','.'));
+  }
+  function formatTL(n){
+    try{ return n.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+CURRENCY; }
+    catch(e){ return (Math.round(n*100)/100).toFixed(2).replace('.',',')+CURRENCY; }
   }
 
-  /* ===== Performans modu: düşük cihazlarda otomatik ===== */
-  (function enablePerfMode(){
-    const lowCPU = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
-    const lowMem = navigator.deviceMemory && navigator.deviceMemory <= 4;
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (lowCPU || lowMem || prefersReduced){
-      document.body.classList.add('perf');
-    }
-  })();
-
-  /* ===== UI fx ===== */
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll',()=>{ if (window.scrollY>50) header.classList.add('shrink'); else header.classList.remove('shrink'); });
-
-  const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} }); },{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  document.querySelectorAll('.cat h2').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
-
-  /* ===== CART STATE ===== */
+  /* ===== Sepet state ===== */
   const openCartBtn = document.getElementById('openCart');
   const closeCartBtn = document.getElementById('closeCart');
   const cartOverlay = document.getElementById('cartOverlay');
@@ -466,16 +391,6 @@
 
   let cart = [];
   const LS_KEY = "buca-citir-cart";
-
-  function parsePrice(text){
-    const m = String(text).match(/(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
-    if(!m) return 0;
-    return parseFloat(m[0].replace(/\./g,'').replace(',','.'));
-  }
-  function formatTL(n){
-    try{ return n.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+CURRENCY; }
-    catch(e){ return (Math.round(n*100)/100).toFixed(2).replace('.',',')+CURRENCY; }
-  }
 
   function loadCart(){
     try{ cart = JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch(e){ cart = []; }
@@ -524,7 +439,6 @@
     discountEl.textContent = '-' + formatTL(disc);
     grandTotalEl.textContent = formatTL(grand);
     cartBadge.textContent = `Sepet (${count}) — ${formatTL(grand)}`;
-    // Twemoji'yi sık sık çağırmıyoruz (performans için)
   }
 
   function saveAndRender(){ saveCart(); renderCart(); }
@@ -534,9 +448,9 @@
 
   function openCart(){ cartOverlay.hidden=false; document.body.classList.add('lock-scroll'); }
   function closeCart(){ cartOverlay.hidden=true; document.body.classList.remove('lock-scroll'); }
-  openCartBtn.addEventListener('click',e=>{ e.preventDefault(); openCart(); });
-  closeCartBtn.addEventListener('click',closeCart);
-  cartOverlay.addEventListener('click',closeCart);
+  openCartBtn.addEventListener('click', (e)=>{ e.preventDefault(); openCart(); }, {passive:true});
+  closeCartBtn.addEventListener('click', closeCart, {passive:true});
+  cartOverlay.addEventListener('click', closeCart, {passive:true});
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeCart(); });
 
   function selectedPayment(){
@@ -589,8 +503,7 @@
     const url = `https://wa.me/${WHATSAPP_TO}?text=${encodeURIComponent(buildMessage())}`;
     window.open(url, "_blank");
   }
-
-  sendBtn.addEventListener('click', sendToWhatsapp);
+  document.getElementById('sendWhatsapp').addEventListener('click', sendToWhatsapp, {passive:true});
 
   /* ===== Sepete Ekle & Menü Butonları ===== */
   function addToCart(name, price){
@@ -619,14 +532,19 @@
       btn.className = 'add-btn';
       btn.type = 'button';
       btn.innerHTML = `<i class="fa-solid fa-circle-plus"></i> Sepete Ekle`;
-      btn.addEventListener('click', ()=> addToCart(name, price));
+      btn.addEventListener('click', ()=> addToCart(name, price), {passive:true});
       right.appendChild(btn);
 
       row.appendChild(right);
     });
   }
 
-  /* ===== Harita: gecikmeli yükle ===== */
+  /* ===== Kategori aç/kapa (hafif) ===== */
+  document.querySelectorAll('.cat h2').forEach(h=>{
+    h.addEventListener('click',()=> h.parentElement.classList.toggle('open'), {passive:true});
+  });
+
+  /* ===== Harita: tıklayınca yükle ===== */
   function setupLazyMap(){
     const btn = document.getElementById('showMap');
     const holder = document.getElementById('mapHolder');
@@ -635,16 +553,15 @@
       holder.innerHTML = '<iframe title="Buca Çıtır Pide Konum" style="width:100%;height:320px;border:0;border-radius:12px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed"></iframe>';
       holder.dataset.loaded = '1';
       this.style.display='none';
-    });
+    }, {passive:true});
   }
 
   /* ===== Init ===== */
   window.addEventListener('DOMContentLoaded', ()=>{
-    applyTwemoji(document.body);    // sadece bir kere
     enhanceMenu();
     loadCart();
     setupLazyMap();
-  });
+  }, {passive:true});
 </script>
 
 <!-- Structured Data -->
