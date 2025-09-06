@@ -14,7 +14,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
 
 <style>
-  /* ===== Light, fast, premium palette ===== */
+  /* ===== Light, fast, premium palette (sade efektler) ===== */
   :root{
     --bg:#0c1016;
     --surface:#0f141b;
@@ -27,7 +27,6 @@
     --accent:#37c993;
     --danger:#ff6b6b;
     --overlay:rgba(6,8,12,.6);
-    --panel:#0e131a;
   }
 
   *{box-sizing:border-box}
@@ -40,7 +39,7 @@
   img{max-width:100%;display:block}
   body.lock-scroll{overflow:hidden;touch-action:none;}
 
-  /* ===== Header ===== */
+  /* ===== Header (sade) ===== */
   header{
     position:sticky;top:0;z-index:1000;
     background:var(--surface-2);
@@ -54,7 +53,7 @@
 
   main{padding:16px;max-width:1100px;margin:0 auto}
 
-  /* ===== Top buttons ===== */
+  /* ===== Top buttons (sade, hafif) ===== */
   .order-hub{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:12px}
   .btn{
     display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;
@@ -66,6 +65,7 @@
   .cat{
     background:var(--surface);border-radius:14px;margin:14px 0;
     border:1px solid rgba(255,255,255,.08);
+    /* Boyama maliyetini düşürür */
     contain:content;
   }
   .cat h2{
@@ -76,6 +76,7 @@
   .cat h2 .chev{margin-left:auto}
   .cat .content{
     max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease,padding .3s ease;
+    /* Görünmeyen bölümleri tarayıcı atlayabilir: büyük kazanç */
     content-visibility:auto; contain-intrinsic-size:1px 400px;
   }
   .cat.open .content{max-height:2400px;opacity:1;padding:6px 0}
@@ -101,7 +102,7 @@
   .section-title{margin:20px 0 8px;font-weight:900;letter-spacing:.3px;color:var(--gold)}
   .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:6px 0 12px}
 
-  /* ===== Cards ===== */
+  /* ===== Cards simple ===== */
   .grid{display:grid;gap:12px}
   @media(min-width:720px){.grid{grid-template-columns:1.1fr .9fr}}
   .card{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px}
@@ -133,7 +134,9 @@
   .cart-header h4{margin:0;font-size:1.05rem;color:var(--gold)}
   .close-x{background:none;border:none;color:#e7ecf2;font-size:1.15rem;cursor:pointer}
 
-  .cart-body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+  .cart-body{
+    flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;
+  }
   .cart-empty{padding:16px;text-align:center;color:var(--muted)}
   .cart-item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px dashed var(--line)}
   .qty{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:4px 8px;background:#121823}
@@ -154,28 +157,10 @@
   .strike{color:#96a3b4;text-decoration:line-through}
   .disc{color:var(--accent);font-weight:900}
 
-  /* ===== Admin Modal ===== */
-  .admin-overlay[hidden]{display:none;}
-  .admin-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,.65);
-    display:flex; align-items:center; justify-content:center; z-index:1400;
+  /* Hareket azaltma tercihi varsa tüm geçişleri kapat */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important}
   }
-  .admin-panel{
-    width:min(960px,96vw); max-height:92vh; overflow:auto;
-    background:var(--panel); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:16px;
-  }
-  .admin-panel h3{margin:0 0 10px; color:var(--gold)}
-  .admin-row{display:grid; grid-template-columns:1fr 120px 80px; gap:8px; align-items:center; margin-bottom:8px}
-  .admin-row input{width:100%; background:#0b1016; border:1px solid rgba(255,255,255,.12); border-radius:8px; padding:8px 10px; color:#fff}
-  .admin-actions{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0}
-  .a-btn{background:#16202c; color:#fff; border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:8px 10px; cursor:pointer; font-weight:800}
-  .a-btn.danger{background:#2a1618; border-color:#632a2f; color:#ffb3b3}
-  .admin-cat{border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px; margin:10px 0; background:#0d131b}
-  .admin-cat h4{margin:0 0 8px}
-  .admin-cat .mini-actions{display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 10px}
-  .admin-footer{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:10px}
-  .admin-note{color:#b9c3d1; font-size:.9rem}
-  .admin-close{background:none; border:none; color:#fff; font-size:1.1rem; cursor:pointer}
 </style>
 </head>
 <body>
@@ -199,115 +184,105 @@
   <h3 class="section-title">Menü</h3>
   <div class="divider"></div>
 
-  <!-- Dinamik menü burada üretilecek -->
-  <div id="menuRoot">
-    <!-- ===== Statik başlangıç: localStorage yoksa bu içerik kullanılır ===== -->
+  <!-- Pide Çeşitleri -->
+  <section class="cat open">
+    <h2><i class="fa-solid fa-pizza-slice"></i> Pide Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kıymalı Sade</span><span class="price">175,00₺</span></div>
+      <div class="item"><span class="name">Kıymalı Yumurtalı</span><span class="price">175,00₺</span></div>
+      <div class="item"><span class="name">Kıymalı Kaşarlı</span><span class="price">200,00₺</span></div>
+      <div class="item"><span class="name">Kaşarlı Sade</span><span class="price">180,00₺</span></div>
+      <div class="item"><span class="name">Kaşarlı Yumurtalı</span><span class="price">180,00₺</span></div>
+      <div class="item"><span class="name">Vejetaryen (Kaşar, Domates, Yeşil Biber, Mantar)</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Sade</span><span class="price">200,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Kaşarlı</span><span class="price">225,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Kaşarlı Mantarlı</span><span class="price">235,00₺</span></div>
+      <div class="item"><span class="name">Tahinli Pide</span><span class="price">200,00₺</span></div>
+    </div>
+  </section>
+  
+  <!-- Lahmacun Çeşitleri -->
+  <section class="cat">
+    <h2><i class="fa-solid fa-bread-slice"></i> Lahmacun Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Lahmacun</span><span class="price">125,00₺</span></div>
+      <div class="item"><span class="name">Lahmacun (Kıymalı, Kaşarlı)</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Lahmacun (Kıymalı, Kaşarlı, Mantarlı)</span><span class="price">160,00₺</span></div>
+    </div>
+  </section>
 
-    <!-- Pide Çeşitleri -->
-    <section class="cat open">
-      <h2><i class="fa-solid fa-pizza-slice"></i> Pide Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
-      <div class="content">
-        <div class="item"><span class="name">Kıymalı Sade</span><span class="price">175,00₺</span></div>
-        <div class="item"><span class="name">Kıymalı Yumurtalı</span><span class="price">175,00₺</span></div>
-        <div class="item"><span class="name">Kıymalı Kaşarlı</span><span class="price">200,00₺</span></div>
-        <div class="item"><span class="name">Kaşarlı Sade</span><span class="price">180,00₺</span></div>
-        <div class="item"><span class="name">Kaşarlı Yumurtalı</span><span class="price">180,00₺</span></div>
-        <div class="item"><span class="name">Vejetaryen (Kaşar, Domates, Yeşil Biber, Mantar)</span><span class="price">150,00₺</span></div>
-        <div class="item"><span class="name">Kuşbaşılı Sade</span><span class="price">200,00₺</span></div>
-        <div class="item"><span class="name">Kuşbaşılı Kaşarlı</span><span class="price">225,00₺</span></div>
-        <div class="item"><span class="name">Kuşbaşılı Kaşarlı Mantarlı</span><span class="price">235,00₺</span></div>
-        <div class="item"><span class="name">Tahinli Pide</span><span class="price">200,00₺</span></div>
-      </div>
-    </section>
-    
-    <!-- Lahmacun Çeşitleri -->
-    <section class="cat">
-      <h2><i class="fa-solid fa-bread-slice"></i> Lahmacun Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
-      <div class="content">
-        <div class="item"><span class="name">Lahmacun</span><span class="price">125,00₺</span></div>
-        <div class="item"><span class="name">Lahmacun (Kıymalı, Kaşarlı)</span><span class="price">150,00₺</span></div>
-        <div class="item"><span class="name">Lahmacun (Kıymalı, Kaşarlı, Mantarlı)</span><span class="price">160,00₺</span></div>
-      </div>
-    </section>
+  <!-- Kebaplar -->
+  <section class="cat">
+    <h2><i class="fa-solid fa-fire-burner"></i> Kebaplar <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Adana Kebap</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Urfa Kebap</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Izgara Köfte</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Tavuk Izgara</span><span class="price">250,00₺</span></div>
+    </div>
+  </section>
+  
+  <!-- Dürümler -->
+  <section class="cat">
+    <h2>🌯 Dürümler <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Adana Dürüm</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Urfa Dürüm</span><span class="price">150,00₺</span></div>  
+      <div class="item"><span class="name">Izgara Köfte Dürüm</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Tavuk Izgara Dürüm</span><span class="price">150,00₺</span></div>   
+      <div class="item"><span class="name">Lahmacun Dürüm</span><span class="price">125,00₺</span></div>
+    </div>
+  </section>
+  
+  <!-- Kiremitte Çeşitleri -->
+  <section class="cat">
+    <h2><i class="fa-solid fa-bowl-food"></i> Kiremitte Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kiremitte Tavuk</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Tavuk Kaşarlı</span><span class="price">270,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Tavuk Kaşarlı Mantarlı</span><span class="price">280,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte Kaşarlı</span><span class="price">270,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte Kaşarlı Mantarlı</span><span class="price">280,00₺</span></div>
+    </div>
+  </section>
 
-    <!-- Kebaplar -->
-    <section class="cat">
-      <h2><i class="fa-solid fa-fire-burner"></i> Kebaplar <i class="fa-solid fa-chevron-right chev"></i></h2>
-      <div class="content">
-        <div class="item"><span class="name">Adana Kebap</span><span class="price">250,00₺</span></div>
-        <div class="item"><span class="name">Urfa Kebap</span><span class="price">250,00₺</span></div>
-        <div class="item"><span class="name">Izgara Köfte</span><span class="price">250,00₺</span></div>
-        <div class="item"><span class="name">Tavuk Izgara</span><span class="price">250,00₺</span></div>
+  <!-- Kampanyalı Menüler -->
+  <section class="cat">
+    <h2>🎉 Kampanyalı Menüler <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item">
+        <span class="name">2'li Lahmacun Menü</span>
+        <span class="price">224,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">280,00₺</del></span>
       </div>
-    </section>
-    
-    <!-- Dürümler -->
-    <section class="cat">
-      <h2>🌯 Dürümler <i class="fa-solid fa-chevron-right chev"></i></h2>
-      <div class="content">
-        <div class="item"><span class="name">Adana Dürüm</span><span class="price">150,00₺</span></div>
-        <div class="item"><span class="name">Urfa Dürüm</span><span class="price">150,00₺</span></div>  
-        <div class="item"><span class="name">Izgara Köfte Dürüm</span><span class="price">150,00₺</span></div>
-        <div class="item"><span class="name">Tavuk Izgara Dürüm</span><span class="price">150,00₺</span></div>   
-        <div class="item"><span class="name">Lahmacun Dürüm</span><span class="price">125,00₺</span></div>
+      <div class="item">
+        <span class="name">2'li Kıymalı Kaşarlı Pide Menü</span>
+        <span class="price">360,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">450,00₺</del></span>
       </div>
-    </section>
-    
-    <!-- Kiremitte Çeşitleri -->
-    <section class="cat">
-      <h2><i class="fa-solid fa-bowl-food"></i> Kiremitte Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
-      <div class="content">
-        <div class="item"><span class="name">Kiremitte Tavuk</span><span class="price">250,00₺</span></div>
-        <div class="item"><span class="name">Kiremitte Tavuk Kaşarlı</span><span class="price">270,00₺</span></div>
-        <div class="item"><span class="name">Kiremitte Tavuk Kaşarlı Mantarlı</span><span class="price">280,00₺</span></div>
-        <div class="item"><span class="name">Kiremitte Köfte</span><span class="price">250,00₺</span></div>
-        <div class="item"><span class="name">Kiremitte Köfte Kaşarlı</span><span class="price">270,00₺</span></div>
-        <div class="item"><span class="name">Kiremitte Köfte Kaşarlı Mantarlı</span><span class="price">280,00₺</span></div>
+      <div class="item">
+        <span class="name">2'li Kıymalı Pide Menü</span>
+        <span class="price">320,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">400,00₺</del></span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Kampanyalı Menüler -->
-    <section class="cat">
-      <h2>🎉 Kampanyalı Menüler <i class="fa-solid fa-chevron-right chev"></i></h2>
-      <div class="content">
-        <div class="item">
-          <span class="name">2'li Lahmacun Menü</span>
-          <span class="price">224,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">280,00₺</del></span>
-          <div class="desc" style="color:#c8d0dc">2 Adet Lahmacun + Salata + Haydari + Çiğ Köfte</div>
-        </div>
-        <div class="item">
-          <span class="name">2'li Kıymalı Kaşarlı Pide Menü</span>
-          <span class="price">360,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">450,00₺</del></span>
-          <div class="desc" style="color:#c8d0dc">2 Adet Kıymalı Kaşarlı Pide + Mevsim Salata + Haydari + Çiğ Köfte</div>
-        </div>
-        <div class="item">
-          <span class="name">2'li Kıymalı Pide Menü</span>
-          <span class="price">320,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">400,00₺</del></span>
-          <div class="desc" style="color:#c8d0dc">2 Adet Kıymalı Pide + Salata + Haydari + Çiğ Köfte</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- İçecekler -->
-    <section class="cat">
-      <h2><i class="fa-solid fa-mug-saucer"></i> İçecekler <i class="fa-solid fa-chevron-right chev"></i></h2>
-      <div class="content">
-        <div class="item"><span class="name">Kola</span><span class="price">50,00₺</span></div>
-        <div class="item"><span class="name">Light - Zero</span><span class="price">50,00₺</span></div>
-        <div class="item"><span class="name">Fanta</span><span class="price">50,00₺</span></div>
-        <div class="item"><span class="name">Sprite</span><span class="price">50,00₺</span></div>
-        <div class="item"><span class="name">Niğde Gazozu</span><span class="price">40,00₺</span></div>
-        <div class="item"><span class="name">1 lt Kola</span><span class="price">80,00₺</span></div>
-        <div class="item"><span class="name">Şalgam Suyu</span><span class="price">50,00₺</span></div>
-        <div class="item"><span class="name">Büyük Ayran</span><span class="price">35,00₺</span></div>
-        <div class="item"><span class="name">Küçük Ayran</span><span class="price">25,00₺</span></div>
-        <div class="item"><span class="name">Soda</span><span class="price">30,00₺</span></div>
-        <div class="item"><span class="name">Su</span><span class="price">15,00₺</span></div>
-      </div>
-    </section>
-
-    <!-- ===== Statik bitiş ===== -->
-  </div>
+  <!-- İçecekler -->
+  <section class="cat">
+    <h2><i class="fa-solid fa-mug-saucer"></i> İçecekler <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kola</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Light - Zero</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Fanta</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Sprite</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Niğde Gazozu</span><span class="price">40,00₺</span></div>
+      <div class="item"><span class="name">1 lt Kola</span><span class="price">80,00₺</span></div>
+      <div class="item"><span class="name">Şalgam Suyu</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Büyük Ayran</span><span class="price">35,00₺</span></div>
+      <div class="item"><span class="name">Küçük Ayran</span><span class="price">25,00₺</span></div>
+      <div class="item"><span class="name">Soda</span><span class="price">30,00₺</span></div>
+      <div class="item"><span class="name">Su</span><span class="price">15,00₺</span></div>
+    </div>
+  </section>
 
   <!-- Bilgiler -->
   <h3 class="section-title">Bilgiler</h3>
@@ -379,39 +354,14 @@
   </div>
 </div>
 
-<!-- ADMIN OVERLAY -->
-<div class="admin-overlay" id="adminOverlay" hidden>
-  <div class="admin-panel" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-      <h3 id="adminTitle">🔧 Yönetici Paneli</h3>
-      <button class="admin-close" id="closeAdmin" title="Kapat"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="admin-actions">
-      <button class="a-btn" id="addCategory"><i class="fa-solid fa-folder-plus"></i> Kategori Ekle</button>
-      <button class="a-btn" id="exportMenu"><i class="fa-solid fa-file-export"></i> Dışa Aktar (JSON)</button>
-      <label class="a-btn" for="importFile" style="cursor:pointer"><i class="fa-solid fa-file-import"></i> İçe Aktar (JSON)</label>
-      <input type="file" id="importFile" accept="application/json" style="display:none">
-      <button class="a-btn danger" id="resetMenu"><i class="fa-solid fa-rotate-left"></i> Varsayılanı Yükle</button>
-    </div>
-    <div id="adminContent"></div>
-    <div class="admin-footer">
-      <span class="admin-note">Değişiklikler kaydedildiğinde menü yeniden çizilir ve tarayıcıda saklanır.</span>
-      <div style="display:flex; gap:8px">
-        <button class="a-btn" id="saveAdmin"><i class="fa-solid fa-floppy-disk"></i> Kaydet</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
   /* ===== CONFIG ===== */
   const WHATSAPP_TO = "905517112064";
   const CURRENCY = "₺";
   const DISCOUNT_RATE = 0.10;
 
-  /* ===== Helpers ===== */
+  /* ===== Basit yardımcılar ===== */
   function parsePrice(text){
-    // "1.234,50₺" -> 1234.50
     const m = String(text).match(/(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
     if(!m) return 0;
     return parseFloat(m[0].replace(/\./g,'').replace(',','.'));
@@ -421,7 +371,7 @@
     catch(e){ return (Math.round(n*100)/100).toFixed(2).replace('.',',')+CURRENCY; }
   }
 
-  /* ===== CART STATE ===== */
+  /* ===== Sepet state ===== */
   const openCartBtn = document.getElementById('openCart');
   const closeCartBtn = document.getElementById('closeCart');
   const cartOverlay = document.getElementById('cartOverlay');
@@ -437,14 +387,13 @@
   const sendBtn = document.getElementById('sendWhatsapp');
 
   let cart = [];
-  const LS_CART = "buca-citir-cart";
-  const LS_MENU = "buca-citir-menu-v1";
+  const LS_KEY = "buca-citir-cart";
 
   function loadCart(){
-    try{ cart = JSON.parse(localStorage.getItem(LS_CART)) || []; } catch(e){ cart = []; }
+    try{ cart = JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch(e){ cart = []; }
     renderCart();
   }
-  function saveCart(){ localStorage.setItem(LS_CART, JSON.stringify(cart)); }
+  function saveCart(){ localStorage.setItem(LS_KEY, JSON.stringify(cart)); }
 
   function cartTotals(){
     const sub = cart.reduce((s,i)=> s + i.price*i.qty, 0);
@@ -553,7 +502,7 @@
   }
   document.getElementById('sendWhatsapp').addEventListener('click', sendToWhatsapp, {passive:true});
 
-  /* ===== Add to cart ===== */
+  /* ===== Sepete Ekle & Menü Butonları ===== */
   function addToCart(name, price){
     const idx = cart.findIndex(i=>i.name===name && i.price===price);
     if(idx>-1) cart[idx].qty += 1;
@@ -563,7 +512,7 @@
   }
 
   function enhanceMenu(){
-    document.querySelectorAll('#menuRoot section.cat .content .item').forEach((row)=>{
+    document.querySelectorAll('section.cat .content .item').forEach((row)=>{
       const nameEl = row.querySelector('.name');
       const priceEl = row.querySelector('.price');
       if(!nameEl || !priceEl) return;
@@ -585,273 +534,17 @@
 
       row.appendChild(right);
     });
-
-    // Kategori aç/kapa
-    document.querySelectorAll('#menuRoot .cat h2').forEach(h=>{
-      if(!h.dataset.bound){
-        h.addEventListener('click',()=> h.parentElement.classList.toggle('open'), {passive:true});
-        h.dataset.bound = '1';
-      }
-    });
   }
 
-  /* ===== MENU DATA: read, render, persist ===== */
-  function readMenuFromDOM(){
-    const root = document.getElementById('menuRoot');
-    const sections = Array.from(root.querySelectorAll(':scope > section.cat'));
-    const data = sections.map(sec=>{
-      const title = sec.querySelector('h2')?.childNodes[1]?.textContent?.trim() || sec.querySelector('h2')?.textContent?.replace(/\s*<.*$/,'').trim();
-      const items = Array.from(sec.querySelectorAll('.content .item')).map(row=>{
-        const name = row.querySelector('.name')?.textContent?.trim() || '';
-        const price = parsePrice(row.querySelector('.price')?.textContent?.trim() || '0,00');
-        return { name, price };
-      }).filter(i=>i.name);
-      return { title, items };
-    });
-    return data.filter(c=>c.title && c.items.length);
-  }
-
-  function renderMenuFromData(menuData){
-    const root = document.getElementById('menuRoot');
-    root.innerHTML = menuData.map((cat,idx)=>{
-      const itemsHTML = cat.items.map(it=>`
-        <div class="item">
-          <span class="name">${it.name}</span>
-          <span class="price">${formatTL(it.price)}</span>
-        </div>
-      `).join('');
-      return `
-        <section class="cat ${idx===0?'open':''}">
-          <h2>${iconForCategory(cat.title)} ${cat.title} <i class="fa-solid fa-chevron-right chev"></i></h2>
-          <div class="content">${itemsHTML}</div>
-        </section>
-      `;
-    }).join('');
-    enhanceMenu();
-  }
-
-  function iconForCategory(title){
-    const t = (title||'').toLowerCase();
-    if(t.includes('pide')) return '<i class="fa-solid fa-pizza-slice"></i>';
-    if(t.includes('lahmacun')) return '<i class="fa-solid fa-bread-slice"></i>';
-    if(t.includes('kebap') || t.includes('ızgara')) return '<i class="fa-solid fa-fire-burner"></i>';
-    if(t.includes('kiremit')) return '<i class="fa-solid fa-bowl-food"></i>';
-    if(t.includes('içecek')) return '<i class="fa-solid fa-mug-saucer"></i>';
-    if(t.includes('dürüm')) return '🌯';
-    if(t.includes('kampanya')) return '🎉';
-    return '🍽️';
-  }
-
-  function loadMenu(){
-    const raw = localStorage.getItem(LS_MENU);
-    if(raw){
-      try{
-        const data = JSON.parse(raw);
-        if(Array.isArray(data) && data.length){
-          renderMenuFromData(data);
-          return;
-        }
-      }catch(e){}
-    }
-    // LocalStorage yoksa: mevcut statik DOM'u enhance et
-    enhanceMenu();
-  }
-
-  /* ===== ADMIN PANEL ===== */
-  const adminOverlay = document.getElementById('adminOverlay');
-  const adminContent = document.getElementById('adminContent');
-  const closeAdminBtn = document.getElementById('closeAdmin');
-
-  function openAdmin(){
-    const data = getMenuData();
-    buildAdminUI(data);
-    adminOverlay.hidden = false;
-    document.body.classList.add('lock-scroll');
-  }
-  function closeAdmin(){
-    adminOverlay.hidden = true;
-    document.body.classList.remove('lock-scroll');
-  }
-
-  closeAdminBtn.addEventListener('click', closeAdmin, {passive:true});
-  adminOverlay.addEventListener('click', (e)=>{ if(e.target===adminOverlay) closeAdmin(); }, {passive:true});
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !adminOverlay.hidden) closeAdmin(); });
-
-  // Alt+P kısayolu ve şifre
-  document.addEventListener('keydown', (e)=>{
-    if(e.altKey && e.key.toLowerCase()==='p'){
-      e.preventDefault();
-      const pass = prompt('Yönetici şifresini girin:');
-      if(pass === 'feritefe213'){ openAdmin(); }
-      else if(pass!==null){ alert('Hatalı şifre'); }
-    }
+  /* ===== Kategori aç/kapa (hafif) ===== */
+  document.querySelectorAll('.cat h2').forEach(h=>{
+    h.addEventListener('click',()=> h.parentElement.classList.toggle('open'), {passive:true});
   });
-
-  function getMenuData(){
-    const raw = localStorage.getItem(LS_MENU);
-    if(raw){
-      try{ const data = JSON.parse(raw); if(Array.isArray(data)&&data.length) return data; }catch(e){}
-    }
-    return readMenuFromDOM();
-  }
-
-  function buildAdminUI(menu){
-    adminContent.innerHTML = '';
-    menu.forEach((cat, ci)=>{
-      const wrap = document.createElement('div');
-      wrap.className = 'admin-cat';
-      wrap.innerHTML = `
-        <h4>${iconForCategory(cat.title)} ${cat.title}</h4>
-        <div class="mini-actions">
-          <button class="a-btn" data-act="addItem" data-ci="${ci}"><i class="fa-solid fa-plus"></i> Ürün Ekle</button>
-          <button class="a-btn danger" data-act="delCat" data-ci="${ci}"><i class="fa-solid fa-trash"></i> Kategoriyi Sil</button>
-          <button class="a-btn" data-act="renameCat" data-ci="${ci}"><i class="fa-solid fa-pen"></i> Adını Değiştir</button>
-        </div>
-        <div class="cat-items" data-ci="${ci}"></div>
-      `;
-      adminContent.appendChild(wrap);
-
-      const itemsBox = wrap.querySelector('.cat-items');
-      cat.items.forEach((it, ii)=>{
-        const row = document.createElement('div');
-        row.className = 'admin-row';
-        row.dataset.ci = ci;
-        row.dataset.ii = ii;
-        row.innerHTML = `
-          <input type="text" placeholder="Ürün adı" value="${it.name}">
-          <input type="text" placeholder="Fiyat (ör: 150,00)" value="${formatTL(it.price).replace(CURRENCY,'')}">
-          <button class="a-btn danger" data-act="delItem">Sil</button>
-        `;
-        itemsBox.appendChild(row);
-      });
-    });
-
-    // Kategori & ürün butonları
-    adminContent.querySelectorAll('[data-act="addItem"]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const ci = +btn.dataset.ci;
-        const box = adminContent.querySelector(`.cat-items[data-ci="${ci}"]`);
-        const row = document.createElement('div');
-        row.className = 'admin-row';
-        row.dataset.ci = ci;
-        row.dataset.ii = box.children.length;
-        row.innerHTML = `
-          <input type="text" placeholder="Ürün adı" value="">
-          <input type="text" placeholder="Fiyat (ör: 150,00)" value="">
-          <button class="a-btn danger" data-act="delItem">Sil</button>
-        `;
-        box.appendChild(row);
-      }, {passive:true});
-    });
-
-    adminContent.querySelectorAll('[data-act="delCat"]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        if(confirm('Bu kategoriyi silmek istiyor musunuz?')){
-          const ci = +btn.dataset.ci;
-          menu.splice(ci,1);
-          buildAdminUI(menu);
-        }
-      }, {passive:true});
-    });
-
-    adminContent.querySelectorAll('[data-act="renameCat"]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const ci = +btn.dataset.ci;
-        const nv = prompt('Yeni kategori adı:', menu[ci].title);
-        if(nv && nv.trim()){ menu[ci].title = nv.trim(); buildAdminUI(menu); }
-      }, {passive:true});
-    });
-
-    adminContent.addEventListener('click',(e)=>{
-      const t = e.target.closest('[data-act="delItem"]');
-      if(t){
-        const row = t.closest('.admin-row');
-        row.parentElement.removeChild(row);
-      }
-    });
-
-    // Üst butonlar
-    document.getElementById('addCategory').onclick = ()=>{
-      const name = prompt('Kategori adı:');
-      if(name && name.trim()){
-        menu.push({title:name.trim(), items:[]});
-        buildAdminUI(menu);
-      }
-    };
-    document.getElementById('exportMenu').onclick = ()=>{
-      const data = collectAdminData(menu);
-      const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'menu.json'; a.click();
-      URL.revokeObjectURL(url);
-    };
-    document.getElementById('importFile').onchange = (ev)=>{
-      const file = ev.target.files[0];
-      if(!file) return;
-      const reader = new FileReader();
-      reader.onload = ()=>{
-        try{
-          const imp = JSON.parse(reader.result);
-          if(Array.isArray(imp) && imp.length){
-            buildAdminUI(imp);
-            alert('JSON menü yüklendi. Kaydet’e basarak uygulayın.');
-          }else alert('Geçersiz JSON formatı.');
-        }catch(err){ alert('JSON okunamadı.'); }
-      };
-      reader.readAsText(file);
-    };
-    document.getElementById('resetMenu').onclick = ()=>{
-      if(confirm('Varsayılan (sayfadaki) menüye dönülsün mü? Tüm yerel değişiklikler silinir.')){
-        localStorage.removeItem(LS_MENU);
-        closeAdmin();
-        renderDefaultOrStored();
-      }
-    };
-
-    document.getElementById('saveAdmin').onclick = ()=>{
-      const data = collectAdminData(menu);
-      if(!data.length){ alert('En az bir kategori ve ürün olmalı.'); return; }
-      localStorage.setItem(LS_MENU, JSON.stringify(data));
-      closeAdmin();
-      renderMenuFromData(data);
-      alert('Menü kaydedildi.');
-    };
-  }
-
-  function collectAdminData(currentMenu){
-    // adminContent içindeki form elemanlarını okuyarak final data üret
-    const cats = Array.from(adminContent.querySelectorAll('.admin-cat'));
-    const data = [];
-    cats.forEach((catBox)=>{
-      let title = catBox.querySelector('h4')?.textContent || '';
-      // h4 içinde ikon olabilir, baştaki emoji/ikonları temizleyelim:
-      title = title.replace(/^(\s*[\uD800-\uDBFF][\uDC00-\uDFFF]|\s*[^a-zA-ZğüşöçıİĞÜŞÖÇ0-9]*\s*)*/,'').trim();
-      // rename yapılmış olabilir; buildAdminUI menüden alıyor — güvenli olan:
-      const idx = Array.from(adminContent.children).indexOf(catBox);
-      if(currentMenu[idx]) title = currentMenu[idx].title;
-
-      const items = [];
-      catBox.querySelectorAll('.admin-row').forEach(row=>{
-        const name = row.querySelector('input[type="text"]:nth-child(1)')?.value?.trim();
-        let priceStr = row.querySelector('input[type="text"]:nth-child(2)')?.value?.trim() || '';
-        if(!name) return;
-        // "150,00" veya "150" kabul edelim
-        priceStr = priceStr.replace(/\s/g,'').replace('₺','');
-        if(priceStr.includes(',')) priceStr = priceStr.replace('.','').replace(',','.');
-        const price = parseFloat(priceStr) || 0;
-        items.push({name, price});
-      });
-      if(title && items.length) data.push({title, items});
-    });
-    return data;
-  }
 
   /* ===== Harita: tıklayınca yükle ===== */
   function setupLazyMap(){
     const btn = document.getElementById('showMap');
     const holder = document.getElementById('mapHolder');
-    if(!btn) return;
     btn.addEventListener('click', function(){
       if(holder.dataset.loaded) return;
       holder.innerHTML = '<iframe title="Buca Çıtır Pide Konum" style="width:100%;height:320px;border:0;border-radius:12px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed"></iframe>';
@@ -860,13 +553,9 @@
     }, {passive:true});
   }
 
-  function renderDefaultOrStored(){
-    loadMenu(); // stored varsa onu render eder, yoksa statik DOM'u enhance eder
-  }
-
   /* ===== Init ===== */
   window.addEventListener('DOMContentLoaded', ()=>{
-    renderDefaultOrStored();
+    enhanceMenu();
     loadCart();
     setupLazyMap();
   }, {passive:true});
