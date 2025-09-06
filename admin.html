@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yönetici Paneli | Buca Çıtır Pide</title>
+<meta name="theme-color" content="#0c1016" />
+<style>
+  :root{
+    --bg:#0c1016; --surface:#0f141b; --surface-2:#121923; --text:#eef2f6; --muted:#b5bfcc;
+    --gold:#e9d897; --line:rgba(233,216,151,.28); --accent:#37c993; --danger:#ff6b6b;
+  }
+  *{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,'Noto Sans',sans-serif}
+  header{padding:14px 16px;background:var(--surface-2);border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+  header h1{margin:0;font-size:1.1rem;color:var(--gold)}
+  main{max-width:1100px;margin:0 auto;padding:16px}
+  .card{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-bottom:14px}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  input,select,textarea{background:#0b1016;border:1px solid rgba(255,255,255,.12);color:var(--text);border-radius:10px;padding:10px 12px}
+  button{background:#1a2230;border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;font-weight:700}
+  button.primary{background:var(--accent);color:#0a0a0a;border:none}
+  button.danger{background:var(--danger);border:none}
+  table{width:100%;border-collapse:collapse}
+  th,td{border-bottom:1px dashed rgba(255,255,255,.1);padding:8px}
+  th{color:var(--gold);text-align:left}
+  .muted{color:var(--muted)}
+  .flex{display:flex;gap:8px;align-items:center}
+  .right{margin-left:auto}
+  .grid{display:grid;gap:10px}
+  @media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+  /* Login */
+  .login-wrap{max-width:420px;margin:12vh auto;padding:16px}
+  .login-card{background:var(--surface);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🔐 Yönetici Paneli</h1>
+  <div class="muted">Değişiklikler bu tarayıcıya kaydedilir.</div>
+</header>
+
+<main id="app" hidden>
+  <div class="card">
+    <div class="flex">
+      <strong>Menü Yönetimi</strong>
+      <span class="right muted" id="status">Hazır</span>
+    </div>
+    <div class="row" style="margin-top:8px">
+      <input id="newCatName" placeholder="Yeni kategori adı (örn: Pide Çeşitleri)" style="flex:2 1 240px">
+      <button id="addCat">Kategori Ekle</button>
+      <button id="exportBtn">Dışa Aktar (JSON)</button>
+      <label class="flex" style="gap:6px">
+        <input type="file" id="importFile" accept="application/json" style="background:transparent;border:none;padding:0">
+        <span>İçe Aktar</span>
+      </label>
+      <button class="danger" id="resetDefaults">Varsayılanlara Dön</button>
+    </div>
+  </div>
+
+  <div id="cats"></div>
+
+  <div class="card">
+    <div class="flex">
+      <span class="muted">Ana sayfa: <code>index.html</code> bu veriyi <strong>localStorage</strong>’dan okur.</span>
+      <a class="right" href="index.html" target="_blank"><button>Siteyi Aç</button></a>
+    </div>
+  </div>
+</main>
+
+<!-- Login -->
+<div id="login" class="login-wrap">
+  <div class="login-card">
+    <h2 style="margin-top:0;color:var(--gold)">Yönetici Girişi</h2>
+    <p class="muted" style="margin-top:-6px">Lütfen şifreyi girin.</p>
+    <div class="grid">
+      <input id="pwd" type="password" placeholder="Şifre">
+      <button id="loginBtn" class="primary">Giriş Yap</button>
+    </div>
+    <p id="loginErr" class="muted" style="color:#ffb3b3;margin-top:8px;display:none">Hatalı şifre.</p>
+  </div>
+</div>
+
+<script>
+/* === Paylaşılan anahtar === */
+const LS_MENU_KEY = "bucaMenuDataV1";
+const ADMIN_OK_KEY = "bucaAdminOK";
+
+/* === Varsayılan menü (index.html ile senkron) === */
+const DEFAULT_MENU = {
+  categories: [
+    { name:"Pide Çeşitleri", items:[
+      {name:"Kıymalı Sade", price:175.00},
+      {name:"Kıymalı Yumurtalı", price:175.00},
+      {name:"Kıymalı Kaşarlı", price:200.00},
+      {name:"Kaşarlı Sade", price:180.00},
+      {name:"Kaşarlı Yumurtalı", price:180.00},
+      {name:"Vejetaryen (Kaşar, Domates, Yeşil Biber, Mantar)", price:150.00},
+      {name:"Kuşbaşılı Sade", price:200.00},
+      {name:"Kuşbaşılı Kaşarlı", price:225.00},
+      {name:"Kuşbaşılı Kaşarlı Mantarlı", price:235.00},
+      {name:"Tahinli Pide", price:200.00}
+    ]},
+    { name:"Lahmacun Çeşitleri", items:[
+      {name:"Lahmacun", price:125.00},
+      {name:"Lahmacun (Kıymalı, Kaşarlı)", price:150.00},
+      {name:"Lahmacun (Kıymalı, Kaşarlı, Mantarlı)", price:160.00}
+    ]},
+    { name:"Kebaplar", items:[
+      {name:"Adana Kebap", price:250.00},
+      {name:"Urfa Kebap", price:250.00},
+      {name:"Izgara Köfte", price:250.00},
+      {name:"Tavuk Izgara", price:250.00}
+    ]},
+    { name:"Dürümler", items:[
+      {name:"Adana Dürüm", price:150.00},
+      {name:"Urfa Dürüm", price:150.00},
+      {name:"Izgara Köfte Dürüm", price:150.00},
+      {name:"Tavuk Izgara Dürüm", price:150.00},
+      {name:"Lahmacun Dürüm", price:125.00}
+    ]},
+    { name:"İçecekler", items:[
+      {name:"Kola", price:50.00},
+      {name:"Light - Zero", price:50.00},
+      {name:"Fanta", price:50.00},
+      {name:"Sprite", price:50.00},
+      {name:"Niğde Gazozu", price:40.00},
+      {name:"1 lt Kola", price:80.00},
+      {name:"Şalgam Suyu", price:50.00},
+      {name:"Büyük Ayran", price:35.00},
+      {name:"Küçük Ayran", price:25.00},
+      {name:"Soda", price:30.00},
+      {name:"Su", price:15.00}
+    ]}
+  ]
+};
+
+/* === Auth === */
+const PASS = "yiğitesmer213";
+const loginWrap = document.getElementById('login');
+const app = document.getElementById('app');
+const loginErr = document.getElementById('loginErr');
+
+function checkAuth(){
+  if (sessionStorage.getItem(ADMIN_OK_KEY)==="1"){
+    loginWrap.hidden = true; app.hidden = false;
+  }
+}
+document.getElementById('loginBtn').addEventListener('click', ()=>{
+  const val = document.getElementById('pwd').value;
+  if(val===PASS){
+    sessionStorage.setItem(ADMIN_OK_KEY,"1");
+    loginWrap.hidden = true; app.hidden = false;
+  }else{
+    loginErr.style.display='block';
+  }
+});
+checkAuth();
+
+/* === State === */
+let data = loadMenu();
+const catsEl = document.getElementById('cats');
+const statusEl = document.getElementById('status');
+
+function loadMenu(){
+  try{
+    const raw = localStorage.getItem(LS_MENU_KEY);
+    if(!raw){ localStorage.setItem(LS_MENU_KEY, JSON.stringify(DEFAULT_MENU)); return structuredClone(DEFAULT_MENU); }
+    return JSON.parse(raw);
+  }catch(e){
+    console.warn(e); return structuredClone(DEFAULT_MENU);
+  }
+}
+function saveMenu(){
+  localStorage.setItem(LS_MENU_KEY, JSON.stringify(data));
+  status("Kaydedildi ✓");
+}
+function status(msg){ statusEl.textContent = msg; setTimeout(()=> statusEl.textContent="Hazır", 1200); }
+
+/* === UI RENDER === */
+function render(){
+  catsEl.innerHTML = "";
+  data.categories.forEach((cat, ci)=>{
+    const card = document.createElement('div');
+    card.className = "card";
+    card.innerHTML = `
+      <div class="flex" style="gap:8px;align-items:center;margin-bottom:8px">
+        <input value="${cat.name}" data-ci="${ci}" class="cat-name" style="flex:1 1 240px">
+        <button data-ci="${ci}" class="add-item">Ürün Ekle</button>
+        <button data-ci="${ci}" class="del-cat danger">Kategoriyi Sil</button>
+      </div>
+      <div style="overflow:auto">
+        <table>
+          <thead><tr><th style="width:55%">Ürün Adı</th><th style="width:20%">Fiyat (TL)</th><th>İşlem</th></tr></thead>
+          <tbody>${cat.items.map((it, ii)=>`
+            <tr>
+              <td><input value="${it.name}" data-ci="${ci}" data-ii="${ii}" class="it-name" style="width:100%"></td>
+              <td><input type="number" step="0.01" min="0" value="${it.price.toFixed(2)}" data-ci="${ci}" data-ii="${ii}" class="it-price" style="width:120px"></td>
+              <td>
+                <div class="flex">
+                  <button class="move-up" data-ci="${ci}" data-ii="${ii}">Yukarı</button>
+                  <button class="move-down" data-ci="${ci}" data-ii="${ii}">Aşağı</button>
+                  <button class="del-item danger" data-ci="${ci}" data-ii="${ii}">Sil</button>
+                </div>
+              </td>
+            </tr>
+          `).join('')}</tbody>
+        </table>
+      </div>
+    `;
+    catsEl.appendChild(card);
+  });
+}
+render();
+
+/* === Handlers === */
+document.getElementById('addCat').addEventListener('click', ()=>{
+  const n = document.getElementById('newCatName').value.trim();
+  if(!n) return;
+  data.categories.push({name:n, items:[]});
+  document.getElementById('newCatName').value="";
+  saveMenu(); render();
+});
+
+catsEl.addEventListener('input', (e)=>{
+  const t = e.target;
+  if(t.classList.contains('cat-name')){
+    data.categories[+t.dataset.ci].name = t.value;
+    saveMenu();
+  }
+  if(t.classList.contains('it-name')){
+    data.categories[+t.dataset.ci].items[+t.dataset.ii].name = t.value;
+    saveMenu();
+  }
+  if(t.classList.contains('it-price')){
+    data.categories[+t.dataset.ci].items[+t.dataset.ii].price = parseFloat(t.value)||0;
+    saveMenu();
+  }
+});
+
+catsEl.addEventListener('click', (e)=>{
+  const t = e.target;
+  if(t.classList.contains('add-item')){
+    const ci = +t.dataset.ci;
+    data.categories[ci].items.push({name:"Yeni Ürün", price:0});
+    saveMenu(); render();
+  }
+  if(t.classList.contains('del-cat')){
+    const ci = +t.dataset.ci;
+    if(confirm("Kategori silinsin mi?")){
+      data.categories.splice(ci,1); saveMenu(); render();
+    }
+  }
+  if(t.classList.contains('del-item')){
+    const {ci,ii} = t.dataset;
+    data.categories[+ci].items.splice(+ii,1); saveMenu(); render();
+  }
+  if(t.classList.contains('move-up')){
+    const {ci,ii} = t.dataset;
+    const arr = data.categories[+ci].items;
+    const i = +ii;
+    if(i>0){ [arr[i-1], arr[i]] = [arr[i], arr[i-1]]; saveMenu(); render(); }
+  }
+  if(t.classList.contains('move-down')){
+    const {ci,ii} = t.dataset;
+    const arr = data.categories[+ci].items;
+    const i = +ii;
+    if(i<arr.length-1){ [arr[i+1], arr[i]] = [arr[i], arr[i+1]]; saveMenu(); render(); }
+  }
+});
+
+/* === Export / Import / Reset === */
+document.getElementById('exportBtn').addEventListener('click', ()=>{
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'menu-data.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+document.getElementById('importFile').addEventListener('change', (e)=>{
+  const f = e.target.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    try{
+      const obj = JSON.parse(reader.result);
+      if(!obj || !Array.isArray(obj.categories)) throw new Error("Geçersiz JSON");
+      data = obj; saveMenu(); render();
+    }catch(err){ alert("İçe aktarılamadı: "+err.message); }
+  };
+  reader.readAsText(f);
+});
+
+document.getElementById('resetDefaults').addEventListener('click', ()=>{
+  if(confirm("Varsayılan menüye dönülsün mü? Bu işlem mevcut veriyi siler.")){
+    data = structuredClone(DEFAULT_MENU);
+    saveMenu(); render();
+  }
+});
+</script>
+</body>
+</html>
