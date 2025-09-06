@@ -6,189 +6,219 @@
 <title>Buca Çıtır Pide | Pide, Kebap, Lahmacun, Izgara – Buca/İzmir</title>
 
 <!-- SEO -->
-<meta name="description" content="Buca Çıtır Pide: Pide, lahmacun, kebap, ızgara ve çorbalar. Sıcak teslimat, tek tıkla ara. Menderes, Erdem Cd. No:125 Buca/İzmir." />
-<meta name="theme-color" content="#0f0f0f" />
+<meta name="description" content="Buca Çıtır Pide: Pide, lahmacun, kebap, ızgara. WhatsApp sipariş %10 indirim. Menderes, Erdem Cd. No:125 Buca/İzmir." />
+<meta name="theme-color" content="#0b0d12" />
 <link rel="canonical" href="https://example.com/" />
 
 <!-- Icons & Fonts -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+<!-- Twemoji (emoji yedeği; iOS/Android/masaüstü tutarlılığı için) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js" defer></script>
 
 <style>
+  /* ===== Premium Palette ===== */
   :root{
-    --bg:#0f0f0f;
-    --surface:#121212;
-    --surface-2:#1a1a1a;
-    --text:#f5f5f5;
-    --muted:#cfcfcf;
-    --gold:#d4af37;
-    --gold-2:#b8860b;
-    --line:rgba(212,175,55,.3);
-    --accent:#18c37e;
-    --danger:#ff5d5d;
+    --bg:#0b0d12;
+    --bg-grad: radial-gradient(1200px 800px at 10% -10%, #121622 0%, transparent 55%),
+               radial-gradient(1000px 600px at 110% 0%, #0f1421 0%, transparent 50%),
+               #0b0d12;
+    --surface:#11141b;
+    --surface-2:#0e1219;
+    --surface-3:#151a24;
+    --text:#f2f5f8;
+    --muted:#b6bfcc;
+    --gold:#e8d39a;
+    --gold-2:#c9a86b;
+    --line:rgba(232,211,154,.32);
+    --accent:#42d3a5;
+    --accent-2:#2dbb8e;
+    --danger:#ff6b6b;
+    --overlay:rgba(8,10,14,.6);
+    --glow-gold: 0 0 0.5px rgba(232,211,154,.6), 0 0 8px rgba(232,211,154,.25);
   }
+
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;scroll-behavior:smooth;}
+  html,body{margin:0;background:var(--bg-grad);color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif;scroll-behavior:smooth;}
   a{color:inherit;text-decoration:none}
   body.lock-scroll{overflow:hidden;touch-action:none;}
 
-  /* Header */
+  /* ===== Header ===== */
   header{
     position:sticky;top:0;z-index:1000;
-    background:linear-gradient(135deg,#171717,#202020);
+    background:linear-gradient(135deg,#0f131c,#0c1018);
     color:var(--gold);
-    padding:26px 16px;
-    text-align:center;
-    font-weight:700;letter-spacing:.3px;
-    box-shadow:0 6px 18px rgba(0,0,0,.45);
+    padding:26px 16px;text-align:center;font-weight:700;letter-spacing:.3px;
+    box-shadow:0 8px 24px rgba(0,0,0,.45), inset 0 -1px 0 rgba(255,255,255,.04);
     transition:padding .3s ease,font-size .3s ease,background .3s ease,opacity .3s ease,backdrop-filter .3s ease;
-    backdrop-filter:saturate(140%) blur(0px);
+    backdrop-filter:saturate(150%) blur(2px);
   }
-  header.shrink{
-    padding:12px 16px;font-size:.95rem;
-    background:linear-gradient(135deg,#151515,#0f0f0f);
-    opacity:.98; backdrop-filter:saturate(180%) blur(6px);
-  }
-  header .title{font-size:1.75rem}
+  header.shrink{padding:12px 16px;font-size:.95rem;background:linear-gradient(135deg,#0c1018,#0a0e15);opacity:.98;backdrop-filter:saturate(170%) blur(6px);}
+  header .title{font-size:1.85rem;text-shadow:var(--glow-gold)}
   header .subtitle{color:var(--muted);font-size:.95rem;margin-top:4px}
 
-  /* Top order buttons */
-  .order-hub{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:18px}
+  @supports not ((backdrop-filter: blur(6px)) or (-webkit-backdrop-filter: blur(6px))){
+    header{ backdrop-filter:none; }
+  }
+
+  /* ===== Top order buttons ===== */
+  .order-hub{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:18px}
   .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:12px 16px;border-radius:12px;
+    display:inline-flex;align-items:center;gap:10px;
+    padding:12px 16px;border-radius:14px;
     background:linear-gradient(135deg,var(--gold),var(--gold-2));
-    color:#111;font-weight:700;text-decoration:none;
-    box-shadow:0 6px 16px rgba(0,0,0,.5);
-    transition:transform .18s ease,filter .18s ease, box-shadow .2s ease;
+    color:#111;font-weight:800;text-decoration:none;
+    box-shadow:0 10px 28px rgba(0,0,0,.55);
+    transition:transform .18s ease, box-shadow .2s ease, filter .18s ease, letter-spacing .2s ease;
     border:1px solid rgba(255,255,255,.08)
   }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,175,55,.5);}
-  .btn.secondary{background:linear-gradient(135deg,#1e1e1e,#262626);color:var(--text);border:1px solid var(--line)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(201,168,107,.45);letter-spacing:.2px}
+  .btn.secondary{
+    background:linear-gradient(135deg,#151a24,#11161f);
+    color:var(--text);border:1px solid var(--line);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 8px 20px rgba(0,0,0,.45)
+  }
+  .btn.secondary:hover{filter:brightness(1.08);box-shadow:0 14px 30px rgba(21,26,36,.5)}
 
   main{padding:18px;max-width:1100px;margin:0 auto}
 
-  /* Category cards */
-  .cat{background:var(--surface);border-radius:14px;overflow:hidden;margin:16px 0;border:1px solid rgba(255,255,255,.04);box-shadow:0 10px 28px rgba(0,0,0,.5);transition:transform .2s ease}
-  .cat:hover{transform:translateY(-2px);}
-  .cat h2{margin:0;display:flex;align-items:center;gap:10px;padding:16px 16px;cursor:pointer;background:var(--surface-2);border-left:6px solid var(--gold);transition:background .25s ease,transform .15s ease}
+  /* ===== Category cards ===== */
+  .cat{
+    background:linear-gradient(180deg, rgba(21,26,36,.85), rgba(12,16,24,.9));
+    border-radius:16px;overflow:hidden;margin:16px 0;
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 14px 36px rgba(0,0,0,.55);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .cat:hover{transform:translateY(-2px);box-shadow:0 20px 46px rgba(0,0,0,.6);border-color:rgba(232,211,154,.22)}
+  .cat h2{
+    margin:0;display:flex;align-items:center;gap:10px;
+    padding:16px 16px;cursor:pointer;
+    background:linear-gradient(180deg,#0f141d,#0b1017);
+    border-left:6px solid var(--gold);
+    transition:background .25s ease,transform .15s ease, border-color .2s ease;
+    box-shadow:inset 0 -1px 0 rgba(255,255,255,.04);
+  }
   .cat h2 .chev{margin-left:auto;transition:transform .25s ease}
-  .cat h2:hover{background:#232323;transform:translateX(2px)}
+  .cat h2:hover{background:#111827;transform:translateX(2px)}
   .cat.open h2 .chev{transform:rotate(90deg)}
   .cat .content{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .45s ease,padding .45s ease}
   .cat.open .content{max-height:2400px;opacity:1;padding:8px 0}
 
-  /* Items */
-  .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px dashed var(--line);font-size:1rem;transition:transform .2s ease, background .2s ease}
+  /* ===== Items ===== */
+  .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px dashed var(--line);font-size:1rem;transition:transform .2s ease, background .2s ease, border-color .2s ease}
   .item:last-child{border-bottom:none}
   .item .name{display:flex;align-items:center;gap:8px;min-width:0}
-  .item .price{font-variant-numeric:tabular-nums;transition:all .3s ease;}
-  .item:hover{transform:translateX(4px);background:rgba(212,175,55,.05);}
-  .item:hover .price{color:red;text-shadow:0 0 6px var(--gold);}
+  .item .price{font-variant-numeric:tabular-nums;transition:all .3s ease;color:var(--gold-2);font-weight:800}
+  .item:hover{transform:translateX(4px);background:rgba(232,211,154,.06);border-color:rgba(232,211,154,.28)}
+  .item:hover .price{color:#f1e2b6;text-shadow:0 0 10px rgba(232,211,154,.3)}
 
   /* Right box (price + button) */
   .right-box{display:flex;align-items:center;gap:10px;flex-shrink:0}
 
-  /* Add to cart button */
-  .add-btn{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:#1f1f1f;color:#fff;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:transform .15s ease, background .2s ease;}
-  .add-btn:hover{transform:translateY(-1px);background:#262626}
+  /* ===== Add to cart button ===== */
+  .add-btn{
+    padding:8px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.09);
+    background:linear-gradient(135deg,#1a2230,#141b26);color:#fff;font-weight:800;cursor:pointer;
+    display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+    transition:transform .15s ease, background .2s ease, box-shadow .2s ease;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 10px 22px rgba(0,0,0,.45)
+  }
+  .add-btn:hover{transform:translateY(-1px);background:linear-gradient(135deg,#1e2838,#172131);box-shadow:0 14px 28px rgba(0,0,0,.5)}
   .add-btn i{color:var(--accent)}
 
-  /* Section titles */
-  .section-title{margin:26px 0 10px;font-weight:800;letter-spacing:.3px;color:var(--gold)}
+  /* ===== Section titles ===== */
+  .section-title{margin:28px 0 10px;font-weight:900;letter-spacing:.4px;color:var(--gold);text-shadow:var(--glow-gold)}
   .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:8px 0 14px}
 
-  /* Info grid */
+  /* ===== Info grid ===== */
   .grid{display:grid;gap:14px}
   @media(min-width:720px){.grid{grid-template-columns:1.1fr .9fr}}
-  .card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.45);transition:transform .2s ease}
-  .card:hover{transform:translateY(-2px)}
+  .card{
+    background:linear-gradient(180deg,rgba(21,26,36,.78),rgba(12,16,24,.88));
+    border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;
+    box-shadow:0 12px 30px rgba(0,0,0,.5);transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(0,0,0,.55)}
 
-  /* Footer */
-  footer{margin-top:24px;background:var(--surface-2);border-top:1px solid var(--line);padding:16px}
+  /* ===== Footer ===== */
+  footer{margin-top:24px;background:linear-gradient(180deg,#0f141d,#0c1119);border-top:1px solid var(--line);padding:16px}
   .note{color:var(--muted);font-size:.95rem;text-align:center}
 
-  /* Dock */
-  .dock{position:fixed;left:0;right:0;bottom:10px;z-index:1000;display:flex;gap:10px;justify-content:center;pointer-events:none;}
-  .dock .dock-inner{display:flex;background:linear-gradient(135deg,#161616,#202020);border:1px solid rgba(255,255,255,.06);box-shadow:0 18px 40px rgba(0,0,0,.6), inset 0 0 0 1px rgba(0,0,0,.4);border-radius:16px;overflow:hidden;pointer-events:auto}
-  .dock .dock-btn{display:flex;align-items:center;gap:8px;padding:12px 14px;color:var(--text);text-decoration:none;font-weight:700;border-right:1px solid rgba(255,255,255,.06);transition:background .2s ease,transform .15s ease}
+  /* ===== Dock ===== */
+  .dock{position:fixed;left:0;right:0;bottom:12px;z-index:1000;display:flex;gap:10px;justify-content:center;pointer-events:none;}
+  .dock .dock-inner{
+    display:flex;background:linear-gradient(135deg,rgba(17,22,32,.88),rgba(14,19,28,.9));
+    border:1px solid rgba(255,255,255,.06);
+    box-shadow:0 24px 56px rgba(0,0,0,.6), inset 0 0 0 1px rgba(0,0,0,.4);
+    border-radius:16px;overflow:hidden;pointer-events:auto;
+  }
+  .dock .dock-btn{display:flex;align-items:center;gap:8px;padding:12px 14px;color:var(--text);text-decoration:none;font-weight:800;border-right:1px solid rgba(255,255,255,.06);transition:background .2s ease,transform .15s ease}
   .dock .dock-btn:last-child{border-right:none}
-  .dock .dock-btn:hover{background:#2a2a2a;transform:translateY(-1px)}
+  .dock .dock-btn:hover{background:#172131;transform:translateY(-1px)}
   @media(min-width:880px){.dock{bottom:18px}}
 
-  /* Reveal */
+  /* ===== Reveal ===== */
   .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
   .reveal.show{opacity:1;transform:none}
 
-  /* Back to top */
-  #topBtn {position:fixed;bottom:80px;right:20px;padding:12px 14px;font-size:1.2rem;background:var(--gold);color:#111;border:none;border-radius:50%;cursor:pointer;display:none;box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .2s ease;z-index:1200;}
-  #topBtn:hover{transform:scale(1.1)}
-
-  /* =================== CART OVERLAY/SHEET =================== */
+  /* ===== Cart Overlay/Sheet ===== */
   .cart-overlay[hidden]{display:none;}
-  .cart-overlay{
-    position:fixed; inset:0;
-    background:rgba(0,0,0,.55);
-    display:flex; align-items:flex-end; justify-content:center;
-    z-index:1200;
-    overscroll-behavior:contain;
-  }
+  .cart-overlay{position:fixed; inset:0; background:var(--overlay); display:flex; align-items:flex-end; justify-content:center; z-index:1200; overscroll-behavior:contain;}
   .cart-sheet{
-    width:min(720px,100vw);
-    height:min(92dvh, 820px); /* modern mobil uyumlu */
-    max-height:92dvh;
-    background:linear-gradient(180deg,#151515,#101010);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:16px 16px 0 0;
-    box-shadow:0 24px 60px rgba(0,0,0,.65);
-    overflow:hidden;
-    display:flex; flex-direction:column;
-    touch-action:pan-y;
+    width:min(720px,100vw); height:min(92dvh, 820px); max-height:92dvh;
+    background:linear-gradient(180deg,#0f141d,#0b1017);
+    border:1px solid rgba(255,255,255,.08); border-radius:16px 16px 0 0;
+    box-shadow:0 32px 70px rgba(0,0,0,.65); overflow:hidden; display:flex; flex-direction:column; touch-action:pan-y;
   }
-  @supports not (height: 1dvh){
-    .cart-sheet{ height:92vh; max-height:92vh; }
-  }
-  @media (min-width:900px){
-    .cart-overlay{align-items:center;} /* ortala */
-    .cart-sheet{border-radius:16px; height:70vh; max-height:70vh;}
-  }
-  .drag-handle{width:38px;height:4px;border-radius:999px;background:#3a3a3a;margin:8px auto 6px auto;}
-  .cart-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#1d1d1d;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
-  .cart-header h4{margin:0;font-size:1.05rem;color:var(--gold)}
-  .close-x{background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer}
+  @supports not (height: 1dvh){ .cart-sheet{ height:92vh; max-height:92vh; } }
+  @media (min-width:900px){ .cart-overlay{align-items:center;} .cart-sheet{border-radius:16px; height:72vh; max-height:72vh;} }
+  .drag-handle{width:40px;height:4px;border-radius:999px;background:#2a3344;margin:8px auto 6px auto;}
+  .cart-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#0f141d;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+  .cart-header h4{margin:0;font-size:1.05rem;color:var(--gold);text-shadow:var(--glow-gold)}
+  .close-x{background:none;border:none;color:#cfd6e2;font-size:1.15rem;cursor:pointer}
 
-  .cart-body{
-    flex:1;
-    overflow:auto;
-    -webkit-overflow-scrolling:touch;
-    padding-bottom:4px;
-    overscroll-behavior:contain;
-  }
+  .cart-body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;overscroll-behavior:contain;}
   .cart-empty{padding:18px;text-align:center;color:var(--muted)}
-  .cart-item{
-    display:grid;grid-template-columns:1fr auto auto;gap:10px;
-    align-items:center;padding:12px 14px;border-bottom:1px dashed var(--line)
-  }
-  .qty{
-    display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.1);
-    border-radius:10px;padding:4px 8px
-  }
-  .qty button{
-    background:none;border:none;color:#fff;font-weight:900;cursor:pointer;font-size:1rem;width:22px;height:22px;line-height:22px
-  }
+  .cart-item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px dashed var(--line)}
+  .qty{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:4px 8px;background:linear-gradient(180deg,#111827,#0d1420)}
+  .qty button{background:none;border:none;color:#e8edf5;font-weight:900;cursor:pointer;font-size:1rem;width:22px;height:22px;line-height:22px}
   .remove{color:var(--danger);cursor:pointer}
 
-  .totals{padding:12px 14px;background:#121212;border-top:1px solid rgba(255,255,255,.06)}
+  .totals{padding:12px 14px;background:#0e131c;border-top:1px solid rgba(255,255,255,.06)}
   .totals .row{display:flex;justify-content:space-between;margin:6px 0}
   .form{padding:12px 14px;border-top:1px solid rgba(255,255,255,.06);display:grid;gap:8px}
-  .form input,.form textarea{width:100%;background:#0f0f0f;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;color:#fff;font-size:.95rem}
+  .form input,.form textarea{width:100%;background:#0b0f16;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;color:#f2f5f8;font-size:.95rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.02)}
   .form textarea{min-height:70px;resize:vertical}
-  .pay{display:flex;gap:14px;align-items:center;margin-top:4px;color:#ddd;font-size:.95rem}
-  .order-btn{margin:10px 14px 14px 14px;width:calc(100% - 28px);padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(135deg,#25D366,#19a956);color:#0a0a0a;font-weight:900;cursor:pointer}
+  .pay{display:flex;gap:14px;align-items:center;margin-top:4px;color:#d7dde8;font-size:.95rem}
+  .order-btn{
+    margin:10px 14px 14px 14px;width:calc(100% - 28px);padding:12px 14px;border-radius:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(135deg,#25D366,#1fb35a);
+    color:#0a0a0a;font-weight:900;cursor:pointer;box-shadow:0 12px 28px rgba(31,179,90,.35);
+    transition:transform .15s ease, box-shadow .2s ease;
+  }
+  .order-btn:hover{transform:translateY(-1px);box-shadow:0 16px 36px rgba(31,179,90,.38)}
 
-  .price{font-variant-numeric:tabular-nums;font-weight:700;color:#b8860b;animation:priceGlow 2s infinite alternate;}
-  @keyframes priceGlow{0%{text-shadow:0 0 .5px #ffd700,0 0 1px #ffec8b;}50%{text-shadow:0 0 1px #ffd700,0 0 2px #ffec8b;}100%{text-shadow:0 0 .5px #ffd700,0 0 1px #ffec8b;}}
-  .strike{color:#999;text-decoration:line-through}
-  .disc{color:#18c37e;font-weight:800}
+  /* ===== Price & Discount ===== */
+  .price{font-variant-numeric:tabular-nums;font-weight:800;color:var(--gold-2);animation:priceGlow 4.5s ease-in-out infinite alternate;} /* yavaşlatıldı */
+  @keyframes priceGlow{
+    0%{ text-shadow: 0 0 .5px rgba(232,211,154,.7), 0 0 6px rgba(232,211,154,.2); }
+    50%{ text-shadow: 0 0 1px rgba(232,211,154,.9), 0 0 10px rgba(232,211,154,.28); }
+    100%{ text-shadow: 0 0 .5px rgba(232,211,154,.7), 0 0 6px rgba(232,211,154,.2); }
+  }
+  .strike{color:#97a2b3;text-decoration:line-through}
+  .disc{color:var(--accent);font-weight:900}
+
+  /* Twemoji images */
+  img.emoji{ height:1em; width:1em; margin:0 .05em; vertical-align:-0.1em; }
+
+  /* ===== Performans modu (otomatik devreye girer) ===== */
+  body.perf *{ text-shadow:none !important; }
+  body.perf .cat, body.perf .card, body.perf .dock .dock-inner{ box-shadow:none !important; }
+  body.perf header{ backdrop-filter:none !important; }
+  body.perf .price{ animation:none !important; }
+  body.perf .item:hover{ transform:none !important; background:rgba(232,211,154,.04) !important; }
 </style>
 </head>
 <body>
@@ -203,12 +233,13 @@
   <!-- Quick actions -->
   <div class="order-hub reveal" id="orderHub">
     <a class="btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Tek Tıkla Ara</a>
-    <!-- Üst WhatsApp kaldırıldı -->
+    <!-- Üst WhatsApp butonu istenmediği için yok -->
     <a class="btn secondary" href="https://yemek.go.link/2hf3u" target="_blank" rel="noopener"><i class="fa-solid fa-bowl-food"></i> Yemeksepeti</a>
     <a class="btn secondary" href="https://getir.com/yemek/restoran/buca-citir-pide-buca-izmir/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i> Getir</a>
     <a class="btn secondary" href="https://tgoyemek.com/restoranlar/230624" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Trendyol</a>
   </div>
 
+  <!-- MENU -->
   <h3 class="section-title">Menü</h3>
   <div class="divider"></div>
 
@@ -281,46 +312,29 @@
     <div class="content">
       <div class="item">
         <span class="name">2'li Lahmacun Menü</span>
-        <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">224,00₺ <del style="color:gray; margin-left:5px;">280,00₺</del></span>
-        <div class="desc">2 Adet Lahmacun + Salata + Haydari + Çiğ Köfte</div>
+        <span class="price" style="background-color:rgba(232,211,154,.12); color:#ffd1d1; padding:2px 8px; border-radius:8px; border:1px solid rgba(255,255,255,.08)">224,00₺ <del style="color:#9aa6bb; margin-left:6px;">280,00₺</del></span>
+        <div class="desc" style="color:#c8d0dc">2 Adet Lahmacun + Salata + Haydari + Çiğ Köfte</div>
       </div>
       <div class="item">
         <span class="name">2'li Kıymalı Kaşarlı Pide Menü</span>
-        <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">360,00₺ <del style="color:gray; margin-left:5px;">450,00₺</del></span>
-        <div class="desc">2 Adet Kıymalı Kaşarlı Pide + Mevsim Salata + Haydari + Çiğ Köfte</div>
+        <span class="price" style="background-color:rgba(232,211,154,.12); color:#ffd1d1; padding:2px 8px; border-radius:8px; border:1px solid rgba(255,255,255,.08)">360,00₺ <del style="color:#9aa6bb; margin-left:6px;">450,00₺</del></span>
+        <div class="desc" style="color:#c8d0dc">2 Adet Kıymalı Kaşarlı Pide + Mevsim Salata + Haydari + Çiğ Köfte</div>
       </div>
       <div class="item">
         <span class="name">2'li Kıymalı Pide Menü</span>
-        <span class="price" style="background-color:#ffe6e6; color:red; padding:2px 5px; border-radius:4px;">320,00₺ <del style="color:gray; margin-left:5px;">400,00₺</del></span>
-        <div class="desc">2 Adet Kıymalı Pide + Salata + Haydari + Çiğ Köfte</div>
+        <span class="price" style="background-color:rgba(232,211,154,.12); color:#ffd1d1; padding:2px 8px; border-radius:8px; border:1px solid rgba(255,255,255,.08)">320,00₺ <del style="color:#9aa6bb; margin-left:6px;">400,00₺</del></span>
+        <div class="desc" style="color:#c8d0dc">2 Adet Kıymalı Pide + Salata + Haydari + Çiğ Köfte</div>
       </div>
     </div>
   </section>
 
-  <!-- İçecekler -->
-  <section class="cat reveal">
-    <h2><i class="fa-solid fa-mug-saucer"></i> İçecekler <i class="fa-solid fa-chevron-right chev"></i></h2>
-    <div class="content">
-      <div class="item"><span class="name">Kola</span><span class="price">50,00₺</span></div>
-      <div class="item"><span class="name">Light - Zero</span><span class="price">50,00₺</span></div>
-      <div class="item"><span class="name">Fanta</span><span class="price">50,00₺</span></div>
-      <div class="item"><span class="name">Sprite</span><span class="price">50,00₺</span></div>
-      <div class="item"><span class="name">Niğde Gazozu</span><span class="price">40,00₺</span></div>
-      <div class="item"><span class="name">1 lt Kola</span><span class="price">80,00₺</span></div>
-      <div class="item"><span class="name">Şalgam Suyu</span><span class="price">50,00₺</span></div>
-      <div class="item"><span class="name">Büyük Ayran</span><span class="price">35,00₺</span></div>
-      <div class="item"><span class="name">Küçük Ayran</span><span class="price">25,00₺</span></div>
-      <div class="item"><span class="name">Soda</span><span class="price">30,00₺</span></div>
-      <div class="item"><span class="name">Su</span><span class="price">15,00₺</span></div>
-    </div>
-  </section>
-
+  <!-- Bilgiler -->
   <h3 class="section-title">Bilgiler</h3>
   <div class="divider"></div>
 
   <div class="grid reveal">
     <div class="card">
-      <h4 style="margin:0 0 8px;color:var(--gold)">Çalışma Saatleri</h4>
+      <h4 style="margin:0 0 8px;color:var(--gold);text-shadow:var(--glow-gold)">Çalışma Saatleri</h4>
       <div class="item" style="border:none;padding:8px 0">
         <div><strong>Pazartesi – Pazar (çarşamba günleri kapalıyız)</strong></div>
         <div class="muted">12:00 – 23:00</div>
@@ -328,15 +342,19 @@
     </div>
 
     <div class="card">
-      <h4 style="margin:0 0 8px;color:var(--gold)">İletişim</h4>
+      <h4 style="margin:0 0 8px;color:var(--gold);text-shadow:var(--glow-gold)">İletişim</h4>
       <p style="margin:6px 0"><i class="fa-solid fa-phone"></i> <a href="tel:+902324424555">+90 (0232) 442 45 55</a></p>
       <p style="margin:6px 0"><i class="fa-solid fa-location-dot"></i> Menderes, Erdem Cd. No:125 Buca/İzmir</p>
       <p class="muted" style="margin:10px 0 0"><i class="fa-solid fa-circle-info"></i> 200₺ altı siparişlerde adrese gönderim yapılmıyor.</p>
     </div>
   </div>
 
+  <!-- Harita: butonla gecikmeli yüklenir -->
   <div class="card reveal" style="margin-top:14px;padding:10px;overflow:hidden">
-    <iframe title="Buca Çıtır Pide Konum" style="width:100%;height:320px;border:0;border-radius:10px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed"></iframe>
+    <button id="showMap" class="add-btn" style="width:100%;justify-content:center">
+      <i class="fa-solid fa-map-location-dot"></i> Haritayı Göster
+    </button>
+    <div id="mapHolder" style="margin-top:10px"></div>
   </div>
 
   <footer class="reveal">
@@ -357,7 +375,7 @@
   <div class="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle" id="cartSheet" onclick="event.stopPropagation()">
     <div class="drag-handle"></div>
     <div class="cart-header">
-      <h4 id="cartTitle">🧺 Sepetiniz</h4>
+      <h4 id="cartTitle">🧾 Sepetiniz</h4>
       <button class="close-x" id="closeCart" title="Kapat"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="cart-body" id="cartItems"></div>
@@ -382,32 +400,41 @@
 </div>
 
 <script>
-  // ======= CONFIG =======
-  const WHATSAPP_TO = "905517112064"; // WhatsApp hedef numara
+  /* ===== CONFIG ===== */
+  const WHATSAPP_TO = "905517112064";
   const CURRENCY = "₺";
-  const DISCOUNT_RATE = 0.10; // %10
+  const DISCOUNT_RATE = 0.10;
 
-  // Aç/Kapa Kategoriler
-  document.querySelectorAll('.cat h2').forEach(h=>{
-    h.addEventListener('click',()=> h.parentElement.classList.toggle('open'));
-  });
-
-  // Header küçültme
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll',()=>{
-    if (window.scrollY>50) header.classList.add('shrink');
-    else header.classList.remove('shrink');
-  });
-
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+  /* ===== Twemoji: tek sefer parse ===== */
+  function applyTwemoji(root){
+    if(!window.twemoji) return;
+    window.twemoji.parse(root || document.body, {
+      base: "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/",
+      folder: "svg",
+      ext: ".svg",
+      className: "emoji"
     });
-  },{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }
 
-  // ======= CART =======
+  /* ===== Performans modu: düşük cihazlarda otomatik ===== */
+  (function enablePerfMode(){
+    const lowCPU = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+    const lowMem = navigator.deviceMemory && navigator.deviceMemory <= 4;
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (lowCPU || lowMem || prefersReduced){
+      document.body.classList.add('perf');
+    }
+  })();
+
+  /* ===== UI fx ===== */
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll',()=>{ if (window.scrollY>50) header.classList.add('shrink'); else header.classList.remove('shrink'); });
+
+  const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} }); },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  document.querySelectorAll('.cat h2').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+
+  /* ===== CART STATE ===== */
   const openCartBtn = document.getElementById('openCart');
   const closeCartBtn = document.getElementById('closeCart');
   const cartOverlay = document.getElementById('cartOverlay');
@@ -425,60 +452,43 @@
   let cart = [];
   const LS_KEY = "buca-citir-cart";
 
+  function parsePrice(text){
+    const m = String(text).match(/(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
+    if(!m) return 0;
+    return parseFloat(m[0].replace(/\./g,'').replace(',','.'));
+  }
+  function formatTL(n){
+    try{ return n.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+CURRENCY; }
+    catch(e){ return (Math.round(n*100)/100).toFixed(2).replace('.',',')+CURRENCY; }
+  }
+
   function loadCart(){
-    try{
-      const raw = localStorage.getItem(LS_KEY);
-      cart = raw ? JSON.parse(raw) : [];
-    }catch(e){ cart = []; }
+    try{ cart = JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch(e){ cart = []; }
     renderCart();
   }
   function saveCart(){ localStorage.setItem(LS_KEY, JSON.stringify(cart)); }
 
-  function parsePrice(text){
-    const m = String(text).match(/(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
-    if(!m) return 0;
-    const cleaned = m[0].replace(/\./g,'').replace(',','.');
-    return parseFloat(cleaned);
-  }
-  function formatTL(n){
-    try{
-      return n.toLocaleString('tr-TR', {minimumFractionDigits:2, maximumFractionDigits:2}) + CURRENCY;
-    }catch(e){
-      return (Math.round(n*100)/100).toFixed(2).replace('.',',') + CURRENCY;
-    }
-  }
-
-  function addToCart(name, price){
-    const idx = cart.findIndex(i=>i.name===name && i.price===price);
-    if(idx>-1){ cart[idx].qty += 1; }
-    else { cart.push({name, price, qty:1}); }
-    saveCart();
-    renderCart();
-    try{ if(window.navigator.vibrate) navigator.vibrate(10); }catch(e){}
-  }
-
   function cartTotals(){
-    const subTotal = cart.reduce((s,i)=> s + i.price*i.qty, 0);
-    const discount = subTotal * DISCOUNT_RATE;
-    const grand = Math.max(0, subTotal - discount);
+    const sub = cart.reduce((s,i)=> s + i.price*i.qty, 0);
+    const disc = sub*DISCOUNT_RATE;
+    const grand = Math.max(0, sub-disc);
     const count = cart.reduce((s,i)=> s + i.qty, 0);
-    return {subTotal, discount, grand, count};
+    return {sub, disc, grand, count};
   }
 
   function renderCart(){
-    if(!cart.length){
+    if(cart.length===0){
       cartItemsEl.innerHTML = '<div class="cart-empty">Sepetiniz boş. Menülerden ürün ekleyin.</div>';
     }else{
       cartItemsEl.innerHTML = cart.map((i,idx)=>{
-        const unitDisc = i.price * (1 - DISCOUNT_RATE);
+        const unitDisc = i.price*(1-DISCOUNT_RATE);
         return `
           <div class="cart-item">
             <div>
               <strong>${i.name}</strong>
               <div class="muted-mini">
                 <span class="strike">${formatTL(i.price)}</span>
-                &nbsp;→&nbsp;
-                <span class="disc">${formatTL(unitDisc)}</span> / adet
+                &nbsp;→&nbsp;<span class="disc">${formatTL(unitDisc)}</span> / adet
               </div>
             </div>
             <div class="qty" aria-label="Adet">
@@ -494,23 +504,24 @@
         `;
       }).join('');
     }
-    const {subTotal, discount, grand, count} = cartTotals();
-    subTotalEl.textContent = formatTL(subTotal);
-    discountEl.textContent = '-' + formatTL(discount);
+    const {sub, disc, grand, count} = cartTotals();
+    subTotalEl.textContent = formatTL(sub);
+    discountEl.textContent = '-' + formatTL(disc);
     grandTotalEl.textContent = formatTL(grand);
     cartBadge.textContent = `Sepet (${count}) — ${formatTL(grand)}`;
+    // Twemoji'yi sık sık çağırmıyoruz (performans için)
   }
-  window.incItem = (i)=>{ cart[i].qty++; saveCart(); renderCart(); }
-  window.decItem = (i)=>{ cart[i].qty = Math.max(1, cart[i].qty-1); saveCart(); renderCart(); }
-  window.removeItem = (i)=>{ cart.splice(i,1); saveCart(); renderCart(); }
 
-  function openCart(){ cartOverlay.hidden = false; document.body.classList.add('lock-scroll'); }
-  function closeCart(){ cartOverlay.hidden = true; document.body.classList.remove('lock-scroll'); }
-  openCartBtn.addEventListener('click', (e)=>{ e.preventDefault(); openCart(); });
-  closeCartBtn.addEventListener('click', closeCart);
-  // overlay karanlık alana tıkla → kapat
-  cartOverlay.addEventListener('click', closeCart);
-  // ESC kapatma
+  function saveAndRender(){ saveCart(); renderCart(); }
+  window.incItem = (i)=>{ cart[i].qty++; saveAndRender(); }
+  window.decItem = (i)=>{ cart[i].qty = Math.max(1, cart[i].qty-1); saveAndRender(); }
+  window.removeItem = (i)=>{ cart.splice(i,1); saveAndRender(); }
+
+  function openCart(){ cartOverlay.hidden=false; document.body.classList.add('lock-scroll'); }
+  function closeCart(){ cartOverlay.hidden=true; document.body.classList.remove('lock-scroll'); }
+  openCartBtn.addEventListener('click',e=>{ e.preventDefault(); openCart(); });
+  closeCartBtn.addEventListener('click',closeCart);
+  cartOverlay.addEventListener('click',closeCart);
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeCart(); });
 
   function selectedPayment(){
@@ -518,75 +529,107 @@
     return el ? el.value : 'Nakit';
   }
 
-  // WhatsApp compose
+  function iconForItem(name){
+    const n = name.toLowerCase();
+    if(n.includes('dürüm')) return '🌯';
+    if(n.includes('lahmacun') || n.includes('pide')) return '🫓';
+    if(n.includes('kebap') || n.includes('köfte') || n.includes('tavuk')) return '🍖';
+    if(n.includes('ayran') || n.includes('kola') || n.includes('fanta') || n.includes('sprite') || n.includes('soda') || n.includes('gazoz') || n.includes('su') || n.includes('şalgam')) return '🥤';
+    return '🍽️';
+  }
+
   function buildMessage(){
-    const {subTotal, discount, grand} = cartTotals();
+    const {sub, disc, grand} = cartTotals();
     const lines = [];
-    lines.push("Buca Çıtır Pide — Online Sipariş");
+    lines.push("🧾 Buca Çıtır Pide - Online Sipariş");
     lines.push("================================");
     if(cart.length){
-      lines.push("Ürünler:");
+      lines.push("🛒 Ürünler:");
       cart.forEach(i=>{
         const unitDisc = i.price*(1-DISCOUNT_RATE);
-        const line = `• ${i.name} x ${i.qty} = ${formatTL(i.price*i.qty)} → ${formatTL(unitDisc*i.qty)}`;
-        lines.push(line);
+        const icon = iconForItem(i.name);
+        lines.push(`• ${icon} ${i.name} x ${i.qty} = ${formatTL(i.price*i.qty)} → ${formatTL(unitDisc*i.qty)}`);
       });
       lines.push("--------------------------------");
-      lines.push(`Ara Toplam: ${formatTL(subTotal)}`);
-      lines.push(`WhatsApp İndirimi (%10): -${formatTL(discount)}`);
-      lines.push(`Ödenecek: ${formatTL(grand)}`);
-      lines.push("(WhatsApp ile verilen siparişlerde %10 indirim uygulanmıştır.)");
+      lines.push(`💵 Ara Toplam: ${formatTL(sub)}`);
+      lines.push(`🎁 WhatsApp İndirimi (%10): -${formatTL(disc)}`);
+      lines.push(`✅ Ödenecek: ${formatTL(grand)}`);
+      lines.push("ℹ️ WhatsApp ile verilen siparişlerde %10 indirim uygulanmıştır.");
     }else{
       lines.push("(Sepet boş)");
     }
     lines.push("");
-    lines.push(`Ad Soyad: ${nameEl.value || "-"}`);
-    lines.push(`Adres: ${addrEl.value || "-"}`);
-    if(noteEl.value.trim()){ lines.push(`Not: ${noteEl.value.trim()}`); }
-    lines.push(`Ödeme Yöntemi: ${selectedPayment()}`);
+    lines.push(`👤 Ad Soyad: ${nameEl.value || "-"}`);
+    lines.push(`📍 Adres: ${addrEl.value || "-"}`);
+    if(noteEl.value.trim()) lines.push(`✍️ Not: ${noteEl.value.trim()}`);
+    lines.push(`💳 Ödeme Yöntemi: ${selectedPayment()}`);
+    lines.push("");
+    lines.push("🚚 Mümkünse konum paylaşabilir misiniz?");
     return lines.join("\n");
   }
 
   function sendToWhatsapp(){
     if(!cart.length){ alert("Sepetiniz boş. Lütfen ürün ekleyin."); return; }
-    if(!nameEl.value.trim() || !addrEl.value.trim()){
-      alert("Lütfen ad soyad ve adres bilgilerini doldurun."); return;
-    }
-    const text = buildMessage();
-    const url = `https://wa.me/${WHATSAPP_TO}?text=${encodeURIComponent(text)}`;
+    if(!nameEl.value.trim() || !addrEl.value.trim()){ alert("Lütfen ad soyad ve adres bilgilerini doldurun."); return; }
+    const url = `https://wa.me/${WHATSAPP_TO}?text=${encodeURIComponent(buildMessage())}`;
     window.open(url, "_blank");
   }
+
   sendBtn.addEventListener('click', sendToWhatsapp);
 
-  // Menü satırlarına “Sepete Ekle” butonlarını yerleştir
-  function enhanceMenu(){
-    const items = document.querySelectorAll('section.cat .content .item');
-    items.forEach(it=>{
-      const nameSpan = it.querySelector('.name');
-      const priceSpan = it.querySelector('.price');
-      if(!nameSpan || !priceSpan) return;
-      if(it.querySelector('.add-btn')) return;
+  /* ===== Sepete Ekle & Menü Butonları ===== */
+  function addToCart(name, price){
+    const idx = cart.findIndex(i=>i.name===name && i.price===price);
+    if(idx>-1) cart[idx].qty += 1;
+    else cart.push({name, price, qty:1});
+    try{ if(navigator.vibrate) navigator.vibrate(10); }catch(e){}
+    saveAndRender();
+  }
 
-      const priceText = priceSpan.textContent.trim();
-      const price = parsePrice(priceText);
+  function enhanceMenu(){
+    document.querySelectorAll('section.cat .content .item').forEach((row)=>{
+      const nameEl = row.querySelector('.name');
+      const priceEl = row.querySelector('.price');
+      if(!nameEl || !priceEl) return;
+      if(row.querySelector('.add-btn')) return;
+
+      const name = nameEl.textContent.trim();
+      const price = parsePrice(priceEl.textContent.trim());
 
       const right = document.createElement('div');
       right.className = 'right-box';
-      right.appendChild(priceSpan);
+      right.appendChild(priceEl);
 
       const btn = document.createElement('button');
       btn.className = 'add-btn';
       btn.type = 'button';
       btn.innerHTML = `<i class="fa-solid fa-circle-plus"></i> Sepete Ekle`;
-      btn.addEventListener('click', ()=> addToCart(nameSpan.textContent.trim(), price));
+      btn.addEventListener('click', ()=> addToCart(name, price));
       right.appendChild(btn);
 
-      it.appendChild(right);
+      row.appendChild(right);
     });
   }
 
-  enhanceMenu();
-  loadCart();
+  /* ===== Harita: gecikmeli yükle ===== */
+  function setupLazyMap(){
+    const btn = document.getElementById('showMap');
+    const holder = document.getElementById('mapHolder');
+    btn.addEventListener('click', function(){
+      if(holder.dataset.loaded) return;
+      holder.innerHTML = '<iframe title="Buca Çıtır Pide Konum" style="width:100%;height:320px;border:0;border-radius:12px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed"></iframe>';
+      holder.dataset.loaded = '1';
+      this.style.display='none';
+    });
+  }
+
+  /* ===== Init ===== */
+  window.addEventListener('DOMContentLoaded', ()=>{
+    applyTwemoji(document.body);    // sadece bir kere
+    enhanceMenu();
+    loadCart();
+    setupLazyMap();
+  });
 </script>
 
 <!-- Structured Data -->
@@ -602,7 +645,7 @@
 }
 </script>
 
-<footer style="text-align:center; font-size:0.8em; color:#777; padding:10px 0;">
+<footer style="text-align:center; font-size:0.8em; color:#9aa6bb; padding:10px 0;">
   © 2025 Ferit Tahir Asil tarafından hazırlanmıştır
 </footer>
 </body>
