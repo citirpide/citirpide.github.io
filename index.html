@@ -4,95 +4,299 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Buca Çıtır Pide | Pide, Kebap, Lahmacun, Izgara – Buca/İzmir</title>
-<meta name="description" content="Buca Çıtır Pide: WhatsApp'tan %10 indirimli sipariş verin. Pide, lahmacun, kebap, dürüm ve içecekler." />
+
+<!-- SEO -->
+<meta name="description" content="Buca Çıtır Pide: Pide, lahmacun, kebap, ızgara. WhatsApp sipariş %10 indirim. Menderes, Erdem Cd. No:125 Buca/İzmir." />
 <meta name="theme-color" content="#0c1016" />
+<link rel="canonical" href="https://example.com/" />
+
+<!-- Icons -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+
 <style>
-  :root{--bg:#0c1016;--surface:#0f141b;--surface-2:#0b1016;--text:#eef2f6;--muted:#b5bfcc;--gold:#e9d897;--gold-2:#c9a86b;--line:rgba(233,216,151,.28);--accent:#37c993;--danger:#ff6b6b;--overlay:rgba(6,8,12,.6)}
+  /* ===== Light, fast, premium palette (sade efektler) ===== */
+  :root{
+    --bg:#0c1016;
+    --surface:#0f141b;
+    --surface-2:#0b1016;
+    --text:#eef2f6;
+    --muted:#b5bfcc;
+    --gold:#e9d897;
+    --gold-2:#c9a86b;
+    --line:rgba(233,216,151,.28);
+    --accent:#37c993;
+    --danger:#ff6b6b;
+    --overlay:rgba(6,8,12,.6);
+  }
+
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,'Noto Sans',sans-serif}
+  html,body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,'Noto Sans',sans-serif;
+    scroll-behavior:smooth;
+  }
   a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
   body.lock-scroll{overflow:hidden;touch-action:none;}
-  header{position:sticky;top:0;z-index:1000;background:var(--surface-2);color:var(--gold);padding:18px 16px;text-align:center;font-weight:800;border-bottom:1px solid rgba(255,255,255,.08)}
+
+  /* ===== Header (sade) ===== */
+  header{
+    position:sticky;top:0;z-index:1000;
+    background:var(--surface-2);
+    color:var(--gold);
+    padding:18px 16px;
+    text-align:center;font-weight:800;letter-spacing:.2px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
   header .title{font-size:1.75rem}
   header .subtitle{color:var(--muted);font-size:.95rem;margin-top:4px}
+
   main{padding:16px;max-width:1100px;margin:0 auto}
+
+  /* ===== Top buttons (sade, hafif) ===== */
   .order-hub{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:12px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#151b23;color:#fff;font-weight:800;border:1px solid rgba(255,255,255,.08)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;
+    background:#151b23;color:#fff;font-weight:800;border:1px solid rgba(255,255,255,.08)
+  }
   .btn.secondary{background:#121820;color:var(--text);border:1px solid var(--line)}
+
+  /* ===== Category cards ===== */
+  .cat{
+    background:var(--surface);border-radius:14px;margin:14px 0;
+    border:1px solid rgba(255,255,255,.08);
+    /* Boyama maliyetini düşürür */
+    contain:content;
+  }
+  .cat h2{
+    margin:0;display:flex;align-items:center;gap:10px;padding:14px 14px;cursor:pointer;
+    background:var(--surface-2);
+    border-left:6px solid var(--gold);
+  }
+  .cat h2 .chev{margin-left:auto}
+  .cat .content{
+    max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease,padding .3s ease;
+    /* Görünmeyen bölümleri tarayıcı atlayabilir: büyük kazanç */
+    content-visibility:auto; contain-intrinsic-size:1px 400px;
+  }
+  .cat.open .content{max-height:2400px;opacity:1;padding:6px 0}
+
+  /* ===== Items ===== */
+  .item{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:10px 14px;border-bottom:1px dashed var(--line);font-size:1rem;
+  }
+  .item:last-child{border-bottom:none}
+  .item .name{display:flex;align-items:center;gap:8px;min-width:0}
+  .item .price{font-variant-numeric:tabular-nums;color:var(--gold-2);font-weight:900}
+
+  .right-box{display:flex;align-items:center;gap:10px;flex-shrink:0}
+
+  .add-btn{
+    padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);
+    background:#161c25;color:#fff;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+  }
+  .add-btn i{color:var(--accent)}
+
+  /* ===== Section titles ===== */
   .section-title{margin:20px 0 8px;font-weight:900;letter-spacing:.3px;color:var(--gold)}
   .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:6px 0 12px}
-  .cat{background:var(--surface);border-radius:14px;margin:14px 0;border:1px solid rgba(255,255,255,.08);contain:content}
-  .cat h2{margin:0;display:flex;align-items:center;gap:10px;padding:14px 14px;cursor:pointer;background:var(--surface-2);border-left:6px solid var(--gold)}
-  .cat h2 .chev{margin-left:auto}
-  .cat .content{max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .3s ease,padding .3s ease;content-visibility:auto;contain-intrinsic-size:1px 400px}
-  .cat.open .content{max-height:2400px;opacity:1;padding:6px 0}
-  .item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--line)}
-  .item:last-child{border-bottom:none}
-  .name{display:flex;align-items:center;gap:8px;min-width:0}
-  .price{font-variant-numeric:tabular-nums;color:var(--gold-2);font-weight:900}
-  .right-box{display:flex;align-items:center;gap:10px;flex-shrink:0}
-  .add-btn{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:#161c25;color:#fff;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-  .add-btn i{color:var(--accent)}
+
+  /* ===== Cards simple ===== */
   .grid{display:grid;gap:12px}
   @media(min-width:720px){.grid{grid-template-columns:1.1fr .9fr}}
   .card{background:var(--surface);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px}
+
+  /* ===== Footer ===== */
   footer{margin-top:20px;background:var(--surface-2);border-top:1px solid rgba(255,255,255,.08);padding:14px}
   .note{color:var(--muted);font-size:.95rem;text-align:center}
+
+  /* ===== Dock ===== */
   .dock{position:fixed;left:0;right:0;bottom:12px;z-index:1000;display:flex;gap:10px;justify-content:center;pointer-events:none;}
-  .dock .dock-inner{display:flex;background:#101620;border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;pointer-events:auto}
+  .dock .dock-inner{
+    display:flex;background:#101620;border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;overflow:hidden;pointer-events:auto
+  }
   .dock .dock-btn{display:flex;align-items:center;gap:8px;padding:10px 12px;color:var(--text);font-weight:800;border-right:1px solid rgba(255,255,255,.08)}
   .dock .dock-btn:last-child{border-right:none}
+
+  /* ===== Cart Overlay/Sheet ===== */
   .cart-overlay[hidden]{display:none;}
   .cart-overlay{position:fixed; inset:0; background:var(--overlay); display:flex; align-items:flex-end; justify-content:center; z-index:1200;}
-  .cart-sheet{width:min(720px,100vw); height:min(92dvh, 820px); max-height:92dvh;background:var(--surface-2);border:1px solid rgba(255,255,255,.08); border-radius:16px 16px 0 0; overflow:hidden; display:flex; flex-direction:column;}
+  .cart-sheet{
+    width:min(720px,100vw); height:min(92dvh, 820px); max-height:92dvh;
+    background:var(--surface-2);
+    border:1px solid rgba(255,255,255,.08); border-radius:16px 16px 0 0; overflow:hidden; display:flex; flex-direction:column;
+  }
   @supports not (height: 1dvh){ .cart-sheet{ height:92vh; max-height:92vh; } }
   @media (min-width:900px){ .cart-overlay{align-items:center;} .cart-sheet{border-radius:16px; height:72vh; max-height:72vh;} }
   .cart-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#0f141b;border-bottom:1px solid rgba(255,255,255,.08)}
   .cart-header h4{margin:0;font-size:1.05rem;color:var(--gold)}
   .close-x{background:none;border:none;color:#e7ecf2;font-size:1.15rem;cursor:pointer}
-  .cart-body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+
+  .cart-body{
+    flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;
+  }
   .cart-empty{padding:16px;text-align:center;color:var(--muted)}
   .cart-item{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px dashed var(--line)}
   .qty{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:4px 8px;background:#121823}
   .qty button{background:none;border:none;color:#f0f4f8;font-weight:900;cursor:pointer;font-size:1rem;width:22px;height:22px;line-height:22px}
   .remove{color:var(--danger);cursor:pointer}
+
   .totals{padding:12px 14px;background:#0f141b;border-top:1px solid rgba(255,255,255,.08)}
   .totals .row{display:flex;justify-content:space-between;margin:6px 0}
   .form{padding:12px 14px;border-top:1px solid rgba(255,255,255,.08);display:grid;gap:8px}
   .form input,.form textarea{width:100%;background:#0b1016;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;color:#eef2f6;font-size:.95rem}
   .form textarea{min-height:70px;resize:vertical}
   .pay{display:flex;gap:14px;align-items:center;margin-top:4px;color:#d7dde8;font-size:.95rem}
-  .order-btn{margin:10px 14px 14px 14px;width:calc(100% - 28px);padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08); background:#25D366; color:#0a0a0a; font-weight:900; cursor:pointer;}
+  .order-btn{
+    margin:10px 14px 14px 14px;width:calc(100% - 28px);padding:12px 14px;border-radius:12px;
+    border:1px solid rgba(255,255,255,.08); background:#25D366; color:#0a0a0a; font-weight:900; cursor:pointer;
+  }
+
   .strike{color:#96a3b4;text-decoration:line-through}
   .disc{color:var(--accent);font-weight:900}
+
+  /* Hareket azaltma tercihi varsa tüm geçişleri kapat */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important}
+  }
 </style>
 </head>
 <body>
-<header>
+
+<header id="siteHeader">
   <div class="title">🍽️ Buca Çıtır Pide</div>
-  <div class="subtitle">WhatsApp siparişlerine %10 indirim • Buca / İzmir</div>
+  <div class="subtitle">Sıcak – Taze – Hızlı Teslimat • Buca / İzmir</div>
 </header>
 
 <main>
-  <div class="order-hub">
+
+  <!-- Quick actions -->
+  <div class="order-hub" id="orderHub">
     <a class="btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Tek Tıkla Ara</a>
     <a class="btn secondary" href="https://yemek.go.link/2hf3u" target="_blank" rel="noopener"><i class="fa-solid fa-bowl-food"></i> Yemeksepeti</a>
     <a class="btn secondary" href="https://getir.com/yemek/restoran/buca-citir-pide-buca-izmir/" target="_blank" rel="noopener"><i class="fa-solid fa-bolt"></i> Getir</a>
     <a class="btn secondary" href="https://tgoyemek.com/restoranlar/230624" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Trendyol</a>
   </div>
 
+  <!-- MENU -->
   <h3 class="section-title">Menü</h3>
   <div class="divider"></div>
-  <div id="menuRoot">Menü yükleniyor…</div>
 
+  <!-- Pide Çeşitleri -->
+  <section class="cat open">
+    <h2><i class="fa-solid fa-pizza-slice"></i> Pide Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kıymalı Sade</span><span class="price">175,00₺</span></div>
+      <div class="item"><span class="name">Kıymalı Yumurtalı</span><span class="price">175,00₺</span></div>
+      <div class="item"><span class="name">Kıymalı Kaşarlı</span><span class="price">200,00₺</span></div>
+      <div class="item"><span class="name">Kaşarlı Sade</span><span class="price">180,00₺</span></div>
+      <div class="item"><span class="name">Kaşarlı Yumurtalı</span><span class="price">180,00₺</span></div>
+      <div class="item"><span class="name">Vejetaryen (Kaşar, Domates, Yeşil Biber, Mantar)</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Sade</span><span class="price">200,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Kaşarlı</span><span class="price">225,00₺</span></div>
+      <div class="item"><span class="name">Kuşbaşılı Kaşarlı Mantarlı</span><span class="price">235,00₺</span></div>
+      <div class="item"><span class="name">Tahinli Pide</span><span class="price">200,00₺</span></div>
+    </div>
+  </section>
+  
+  <!-- Lahmacun Çeşitleri -->
+  <section class="cat">
+    <h2><i class="fa-solid fa-bread-slice"></i> Lahmacun Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Lahmacun</span><span class="price">125,00₺</span></div>
+      <div class="item"><span class="name">Lahmacun (Kıymalı, Kaşarlı)</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Lahmacun (Kıymalı, Kaşarlı, Mantarlı)</span><span class="price">160,00₺</span></div>
+    </div>
+  </section>
+
+  <!-- Kebaplar -->
+  <section class="cat">
+    <h2><i class="fa-solid fa-fire-burner"></i> Kebaplar <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Adana Kebap</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Urfa Kebap</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Izgara Köfte</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Tavuk Izgara</span><span class="price">250,00₺</span></div>
+    </div>
+  </section>
+  
+  <!-- Dürümler -->
+  <section class="cat">
+    <h2>🌯 Dürümler <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Adana Dürüm</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Urfa Dürüm</span><span class="price">150,00₺</span></div>  
+      <div class="item"><span class="name">Izgara Köfte Dürüm</span><span class="price">150,00₺</span></div>
+      <div class="item"><span class="name">Tavuk Izgara Dürüm</span><span class="price">150,00₺</span></div>   
+      <div class="item"><span class="name">Lahmacun Dürüm</span><span class="price">125,00₺</span></div>
+    </div>
+  </section>
+  
+  <!-- Kiremitte Çeşitleri -->
+  <section class="cat">
+    <h2><i class="fa-solid fa-bowl-food"></i> Kiremitte Çeşitleri <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kiremitte Tavuk</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Tavuk Kaşarlı</span><span class="price">270,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Tavuk Kaşarlı Mantarlı</span><span class="price">280,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte</span><span class="price">250,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte Kaşarlı</span><span class="price">270,00₺</span></div>
+      <div class="item"><span class="name">Kiremitte Köfte Kaşarlı Mantarlı</span><span class="price">280,00₺</span></div>
+    </div>
+  </section>
+
+  <!-- Kampanyalı Menüler -->
+  <section class="cat">
+    <h2>🎉 Kampanyalı Menüler <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item">
+        <span class="name">2'li Lahmacun Menü</span>
+        <span class="price">224,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">280,00₺</del></span>
+      </div>
+      <div class="item">
+        <span class="name">2'li Kıymalı Kaşarlı Pide Menü</span>
+        <span class="price">360,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">450,00₺</del></span>
+      </div>
+      <div class="item">
+        <span class="name">2'li Kıymalı Pide Menü</span>
+        <span class="price">320,00₺ <del class="muted" style="margin-left:6px;color:#9aa6bb">400,00₺</del></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- İçecekler -->
+  <section class="cat">
+    <h2><i class="fa-solid fa-mug-saucer"></i> İçecekler <i class="fa-solid fa-chevron-right chev"></i></h2>
+    <div class="content">
+      <div class="item"><span class="name">Kola</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Light - Zero</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Fanta</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Sprite</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Niğde Gazozu</span><span class="price">40,00₺</span></div>
+      <div class="item"><span class="name">1 lt Kola</span><span class="price">80,00₺</span></div>
+      <div class="item"><span class="name">Şalgam Suyu</span><span class="price">50,00₺</span></div>
+      <div class="item"><span class="name">Büyük Ayran</span><span class="price">35,00₺</span></div>
+      <div class="item"><span class="name">Küçük Ayran</span><span class="price">25,00₺</span></div>
+      <div class="item"><span class="name">Soda</span><span class="price">30,00₺</span></div>
+      <div class="item"><span class="name">Su</span><span class="price">15,00₺</span></div>
+    </div>
+  </section>
+
+  <!-- Bilgiler -->
   <h3 class="section-title">Bilgiler</h3>
   <div class="divider"></div>
+
   <div class="grid">
     <div class="card">
       <h4 style="margin:0 0 8px;color:var(--gold)">Çalışma Saatleri</h4>
-      <div class="item" style="border:none;padding:8px 0"><div><strong>Pazartesi – Pazar (çarşamba günleri kapalıyız)</strong></div><div class="muted">12:00 – 23:00</div></div>
+      <div class="item" style="border:none;padding:8px 0">
+        <div><strong>Pazartesi – Pazar (çarşamba günleri kapalıyız)</strong></div>
+        <div class="muted">12:00 – 23:00</div>
+      </div>
     </div>
+
     <div class="card">
       <h4 style="margin:0 0 8px;color:var(--gold)">İletişim</h4>
       <p style="margin:6px 0"><i class="fa-solid fa-phone"></i> <a href="tel:+902324424555">+90 (0232) 442 45 55</a></p>
@@ -101,8 +305,11 @@
     </div>
   </div>
 
+  <!-- Harita: tıklayınca yükle -->
   <div class="card" style="margin-top:14px;padding:10px;overflow:hidden">
-    <button id="showMap" class="add-btn" style="width:100%;justify-content:center"><i class="fa-solid fa-map-location-dot"></i> Haritayı Göster</button>
+    <button id="showMap" class="add-btn" style="width:100%;justify-content:center">
+      <i class="fa-solid fa-map-location-dot"></i> Haritayı Göster
+    </button>
     <div id="mapHolder" style="margin-top:10px"></div>
   </div>
 
@@ -111,6 +318,7 @@
   </footer>
 </main>
 
+<!-- Dock -->
 <nav class="dock" aria-label="Hızlı İşlemler">
   <div class="dock-inner">
     <a class="dock-btn" href="tel:+902324424555"><i class="fa-solid fa-phone"></i> Ara</a>
@@ -118,7 +326,7 @@
   </div>
 </nav>
 
-<!-- CART -->
+<!-- CART OVERLAY/SHEET -->
 <div class="cart-overlay" id="cartOverlay" hidden>
   <div class="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle" id="cartSheet" onclick="event.stopPropagation()">
     <div class="cart-header">
@@ -147,121 +355,227 @@
 </div>
 
 <script>
-/* === Menü: sunucudan çek === */
-async function fetchMenu(){
-  try{
-    const res = await fetch('menu.json?ts=' + Date.now(), {cache:'no-store'});
-    if(!res.ok) throw new Error('menu.json okunamadı');
-    return await res.json();
-  }catch(e){
-    console.error(e);
-    return {categories:[]};
+  /* ===== CONFIG ===== */
+  const WHATSAPP_TO = "905517112064";
+  const CURRENCY = "₺";
+  const DISCOUNT_RATE = 0.10;
+
+  /* ===== Basit yardımcılar ===== */
+  function parsePrice(text){
+    const m = String(text).match(/(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
+    if(!m) return 0;
+    return parseFloat(m[0].replace(/\./g,'').replace(',','.'));
   }
-}
-const menuRoot = document.getElementById('menuRoot');
-function trPrice(x){ return (+x||0).toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+'₺'; }
-function escapeHtml(s){ return String(s).replace(/[&<>"]/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m])); }
-function renderMenuData(data){
-  if(!data.categories || !data.categories.length){
-    menuRoot.textContent = "Menü bulunamadı. Lütfen daha sonra tekrar deneyin.";
-    return;
+  function formatTL(n){
+    try{ return n.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+CURRENCY; }
+    catch(e){ return (Math.round(n*100)/100).toFixed(2).replace('.',',')+CURRENCY; }
   }
-  menuRoot.innerHTML = data.categories.map((cat,i)=>`
-    <section class="cat ${i===0?'open':''}">
-      <h2>${escapeHtml(cat.name)} <i class="fa-solid fa-chevron-right chev"></i></h2>
-      <div class="content">
-        ${(cat.items||[]).map(it=>`
-          <div class="item">
-            <span class="name">${escapeHtml(it.name)}</span>
-            <div class="right-box">
-              <span class="price">${trPrice(it.price)}</span>
-              <button class="add-btn" data-name="${escapeHtml(it.name)}" data-price="${+it.price||0}">
-                <i class="fa-solid fa-circle-plus"></i> Sepete Ekle
-              </button>
+
+  /* ===== Sepet state ===== */
+  const openCartBtn = document.getElementById('openCart');
+  const closeCartBtn = document.getElementById('closeCart');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartItemsEl = document.getElementById('cartItems');
+  const subTotalEl = document.getElementById('subTotal');
+  const discountEl = document.getElementById('discount');
+  const grandTotalEl = document.getElementById('grandTotal');
+  const cartBadge = document.getElementById('cartBadge');
+
+  const nameEl = document.getElementById('custName');
+  const addrEl = document.getElementById('custAddress');
+  const noteEl = document.getElementById('custNote');
+  const sendBtn = document.getElementById('sendWhatsapp');
+
+  let cart = [];
+  const LS_KEY = "buca-citir-cart";
+
+  function loadCart(){
+    try{ cart = JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch(e){ cart = []; }
+    renderCart();
+  }
+  function saveCart(){ localStorage.setItem(LS_KEY, JSON.stringify(cart)); }
+
+  function cartTotals(){
+    const sub = cart.reduce((s,i)=> s + i.price*i.qty, 0);
+    const disc = sub*DISCOUNT_RATE;
+    const grand = Math.max(0, sub-disc);
+    const count = cart.reduce((s,i)=> s + i.qty, 0);
+    return {sub, disc, grand, count};
+  }
+
+  function renderCart(){
+    if(cart.length===0){
+      cartItemsEl.innerHTML = '<div class="cart-empty">Sepetiniz boş. Menülerden ürün ekleyin.</div>';
+    }else{
+      cartItemsEl.innerHTML = cart.map((i,idx)=>{
+        const unitDisc = i.price*(1-DISCOUNT_RATE);
+        return `
+          <div class="cart-item">
+            <div>
+              <strong>${i.name}</strong>
+              <div class="muted-mini">
+                <span class="strike">${formatTL(i.price)}</span>
+                &nbsp;→&nbsp;<span class="disc">${formatTL(unitDisc)}</span> / adet
+              </div>
+            </div>
+            <div class="qty" aria-label="Adet">
+              <button aria-label="Azalt" onclick="decItem(${idx})">−</button>
+              <span><strong>${i.qty}</strong></span>
+              <button aria-label="Arttır" onclick="incItem(${idx})">＋</button>
+            </div>
+            <div>
+              <strong>${formatTL(unitDisc*i.qty)}</strong>
+              <div class="remove" title="Kaldır" onclick="removeItem(${idx})"><i class="fa-solid fa-trash-can"></i></div>
             </div>
           </div>
-        `).join('')}
-      </div>
-    </section>
-  `).join('');
-  menuRoot.querySelectorAll('.cat h2').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
-  menuRoot.querySelectorAll('.add-btn').forEach(b=>b.addEventListener('click',()=>addToCart(b.dataset.name, parseFloat(b.dataset.price)||0)));
-}
-(async()=>{ renderMenuData(await fetchMenu()); })();
-
-/* === Harita gecikmeli === */
-document.getElementById('showMap').addEventListener('click', function(){
-  const holder = document.getElementById('mapHolder');
-  if(holder.dataset.loaded) return;
-  holder.innerHTML = '<iframe title="Buca Çıtır Pide Konum" style="width:100%;height:320px;border:0;border-radius:12px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed"></iframe>';
-  holder.dataset.loaded = '1';
-  this.style.display='none';
-});
-
-/* === Sepet & WhatsApp === */
-const WHATSAPP_TO = "905517112064";
-const DISCOUNT = 0.10;
-const cartOverlay = document.getElementById('cartOverlay');
-const openCartBtn = document.getElementById('openCart');
-const closeCartBtn = document.getElementById('closeCart');
-const cartItemsEl = document.getElementById('cartItems');
-const subTotalEl = document.getElementById('subTotal');
-const discountEl = document.getElementById('discount');
-const grandTotalEl = document.getElementById('grandTotal');
-const cartBadge = document.getElementById('cartBadge');
-const nameEl = document.getElementById('custName');
-const addrEl = document.getElementById('custAddress');
-const noteEl = document.getElementById('custNote');
-
-let cart = JSON.parse(localStorage.getItem('buca-citir-cart') || '[]');
-function saveCart(){ localStorage.setItem('buca-citir-cart', JSON.stringify(cart)); }
-function addToCart(name, price){ const i=cart.findIndex(x=>x.name===name && x.price===price); if(i>-1) cart[i].qty++; else cart.push({name,price,qty:1}); saveCart(); renderCart(); }
-function incItem(i){ cart[i].qty++; saveCart(); renderCart(); }
-function decItem(i){ cart[i].qty=Math.max(1,cart[i].qty-1); saveCart(); renderCart(); }
-function removeItem(i){ cart.splice(i,1); saveCart(); renderCart(); }
-function totals(){ const sub=cart.reduce((s,i)=>s+i.price*i.qty,0); const disc=sub*DISCOUNT; const grand=Math.max(0,sub-disc); const count=cart.reduce((s,i)=>s+i.qty,0); return {sub,disc,grand,count}; }
-function tr(n){ return n.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+'₺'; }
-function renderCart(){
-  if(cart.length===0){ cartItemsEl.innerHTML='<div class="cart-empty">Sepetiniz boş. Menülerden ürün ekleyin.</div>'; }
-  else{
-    cartItemsEl.innerHTML = cart.map((i,idx)=>`
-      <div class="cart-item">
-        <div><strong>${i.name.replace(/</g,'&lt;')}</strong>
-          <div class="muted-mini"><span class="strike">${tr(i.price)}</span> → <span class="disc">${tr(i.price*(1-DISCOUNT))}</span> / adet</div>
-        </div>
-        <div class="qty"><button onclick="decItem(${idx})">−</button><span><strong>${i.qty}</strong></span><button onclick="incItem(${idx})">＋</button></div>
-        <div><strong>${tr(i.price*(1-DISCOUNT)*i.qty)}</strong><div class="remove" onclick="removeItem(${idx})"><i class="fa-solid fa-trash-can"></i></div></div>
-      </div>`).join('');
+        `;
+      }).join('');
+    }
+    const {sub, disc, grand, count} = cartTotals();
+    subTotalEl.textContent = formatTL(sub);
+    discountEl.textContent = '-' + formatTL(disc);
+    grandTotalEl.textContent = formatTL(grand);
+    cartBadge.textContent = `Sepet (${count}) — ${formatTL(grand)}`;
   }
-  const {sub,disc,grand,count}=totals();
-  subTotalEl.textContent=tr(sub); discountEl.textContent='-'+tr(disc); grandTotalEl.textContent=tr(grand); cartBadge.textContent=`Sepet (${count}) — ${tr(grand)}`;
-}
-function openCart(){ cartOverlay.hidden=false; document.body.classList.add('lock-scroll'); }
-function closeCart(){ cartOverlay.hidden=true; document.body.classList.remove('lock-scroll'); }
-openCartBtn.addEventListener('click', e=>{e.preventDefault(); openCart();});
-closeCartBtn.addEventListener('click', closeCart);
-cartOverlay.addEventListener('click', closeCart);
-document.getElementById('cartSheet').addEventListener('click', e=>e.stopPropagation());
-function selectedPayment(){ const el=document.querySelector('input[name="pay"]:checked'); return el?el.value:'Nakit'; }
-function iconForItem(name){ const n=name.toLowerCase(); if(n.includes('dürüm')) return '🌯'; if(n.includes('lahmacun')||n.includes('pide')) return '🫓'; if(n.includes('kebap')||n.includes('köfte')||n.includes('tavuk')) return '🍖'; if(n.includes('ayran')||n.includes('kola')||n.includes('fanta')||n.includes('sprite')||n.includes('soda')||n.includes('gazoz')||n.includes('su')||n.includes('şalgam')) return '🥤'; return '🍽️'; }
-function buildMessage(){
-  const {sub,disc,grand}=totals(); const lines=[];
-  lines.push("🧾 Buca Çıtır Pide - Online Sipariş"); lines.push("================================");
-  if(cart.length){ lines.push("🛒 Ürünler:"); cart.forEach(i=>{ const unitDisc=i.price*(1-DISCOUNT); lines.push(`• ${iconForItem(i.name)} ${i.name} x ${i.qty} = ${tr(i.price*i.qty)} → ${tr(unitDisc*i.qty)}`); });
-    lines.push("--------------------------------"); lines.push(`💵 Ara Toplam: ${tr(sub)}`); lines.push(`🎁 WhatsApp İndirimi (%10): -${tr(disc)}`); lines.push(`✅ Ödenecek: ${tr(grand)}`); lines.push("ℹ️ WhatsApp ile verilen siparişlerde %10 indirim uygulanmıştır."); }
-  else{ lines.push("(Sepet boş)"); }
-  lines.push(""); lines.push(`👤 Ad Soyad: ${nameEl.value||"-"}`); lines.push(`📍 Adres: ${addrEl.value||"-"}`); if(noteEl.value.trim()) lines.push(`✍️ Not: ${noteEl.value.trim()}`); lines.push(`💳 Ödeme Yöntemi: ${selectedPayment()}`); lines.push(""); lines.push("🚚 Mümkünse konum paylaşabilir misiniz?"); return lines.join("\n");
-}
-document.getElementById('sendWhatsapp').addEventListener('click', ()=>{
-  if(!cart.length){ alert("Sepetiniz boş. Lütfen ürün ekleyin."); return; }
-  if(!nameEl.value.trim() || !addrEl.value.trim()){ alert("Lütfen ad soyad ve adres bilgilerini doldurun."); return; }
-  window.open(`https://wa.me/${WHATSAPP_TO}?text=${encodeURIComponent(buildMessage())}`, "_blank");
-});
-renderCart();
+
+  function saveAndRender(){ saveCart(); renderCart(); }
+  window.incItem = (i)=>{ cart[i].qty++; saveAndRender(); }
+  window.decItem = (i)=>{ cart[i].qty = Math.max(1, cart[i].qty-1); saveAndRender(); }
+  window.removeItem = (i)=>{ cart.splice(i,1); saveAndRender(); }
+
+  function openCart(){ cartOverlay.hidden=false; document.body.classList.add('lock-scroll'); }
+  function closeCart(){ cartOverlay.hidden=true; document.body.classList.remove('lock-scroll'); }
+  openCartBtn.addEventListener('click', (e)=>{ e.preventDefault(); openCart(); }, {passive:true});
+  closeCartBtn.addEventListener('click', closeCart, {passive:true});
+  cartOverlay.addEventListener('click', closeCart, {passive:true});
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeCart(); });
+
+  function selectedPayment(){
+    const el = document.querySelector('input[name="pay"]:checked');
+    return el ? el.value : 'Nakit';
+  }
+
+  function iconForItem(name){
+    const n = name.toLowerCase();
+    if(n.includes('dürüm')) return '🌯';
+    if(n.includes('lahmacun') || n.includes('pide')) return '🫓';
+    if(n.includes('kebap') || n.includes('köfte') || n.includes('tavuk')) return '🍖';
+    if(n.includes('ayran') || n.includes('kola') || n.includes('fanta') || n.includes('sprite') || n.includes('soda') || n.includes('gazoz') || n.includes('su') || n.includes('şalgam')) return '🥤';
+    return '🍽️';
+  }
+
+  function buildMessage(){
+    const {sub, disc, grand} = cartTotals();
+    const lines = [];
+    lines.push("🧾 Buca Çıtır Pide - Online Sipariş");
+    lines.push("================================");
+    if(cart.length){
+      lines.push("🛒 Ürünler:");
+      cart.forEach(i=>{
+        const unitDisc = i.price*(1-DISCOUNT_RATE);
+        const icon = iconForItem(i.name);
+        lines.push(`• ${icon} ${i.name} x ${i.qty} = ${formatTL(i.price*i.qty)} → ${formatTL(unitDisc*i.qty)}`);
+      });
+      lines.push("--------------------------------");
+      lines.push(`💵 Ara Toplam: ${formatTL(sub)}`);
+      lines.push(`🎁 WhatsApp İndirimi (%10): -${formatTL(disc)}`);
+      lines.push(`✅ Ödenecek: ${formatTL(grand)}`);
+      lines.push("ℹ️ WhatsApp ile verilen siparişlerde %10 indirim uygulanmıştır.");
+    }else{
+      lines.push("(Sepet boş)");
+    }
+    lines.push("");
+    lines.push(`👤 Ad Soyad: ${nameEl.value || "-"}`);
+    lines.push(`📍 Adres: ${addrEl.value || "-"}`);
+    if(noteEl.value.trim()) lines.push(`✍️ Not: ${noteEl.value.trim()}`);
+    lines.push(`💳 Ödeme Yöntemi: ${selectedPayment()}`);
+    lines.push("");
+    lines.push("🚚 Mümkünse konum paylaşabilir misiniz?");
+    return lines.join("\n");
+  }
+
+  function sendToWhatsapp(){
+    if(!cart.length){ alert("Sepetiniz boş. Lütfen ürün ekleyin."); return; }
+    if(!nameEl.value.trim() || !addrEl.value.trim()){ alert("Lütfen ad soyad ve adres bilgilerini doldurun."); return; }
+    const url = `https://wa.me/${WHATSAPP_TO}?text=${encodeURIComponent(buildMessage())}`;
+    window.open(url, "_blank");
+  }
+  document.getElementById('sendWhatsapp').addEventListener('click', sendToWhatsapp, {passive:true});
+
+  /* ===== Sepete Ekle & Menü Butonları ===== */
+  function addToCart(name, price){
+    const idx = cart.findIndex(i=>i.name===name && i.price===price);
+    if(idx>-1) cart[idx].qty += 1;
+    else cart.push({name, price, qty:1});
+    try{ if(navigator.vibrate) navigator.vibrate(10); }catch(e){}
+    saveAndRender();
+  }
+
+  function enhanceMenu(){
+    document.querySelectorAll('section.cat .content .item').forEach((row)=>{
+      const nameEl = row.querySelector('.name');
+      const priceEl = row.querySelector('.price');
+      if(!nameEl || !priceEl) return;
+      if(row.querySelector('.add-btn')) return;
+
+      const name = nameEl.textContent.trim();
+      const price = parsePrice(priceEl.textContent.trim());
+
+      const right = document.createElement('div');
+      right.className = 'right-box';
+      right.appendChild(priceEl);
+
+      const btn = document.createElement('button');
+      btn.className = 'add-btn';
+      btn.type = 'button';
+      btn.innerHTML = `<i class="fa-solid fa-circle-plus"></i> Sepete Ekle`;
+      btn.addEventListener('click', ()=> addToCart(name, price), {passive:true});
+      right.appendChild(btn);
+
+      row.appendChild(right);
+    });
+  }
+
+  /* ===== Kategori aç/kapa (hafif) ===== */
+  document.querySelectorAll('.cat h2').forEach(h=>{
+    h.addEventListener('click',()=> h.parentElement.classList.toggle('open'), {passive:true});
+  });
+
+  /* ===== Harita: tıklayınca yükle ===== */
+  function setupLazyMap(){
+    const btn = document.getElementById('showMap');
+    const holder = document.getElementById('mapHolder');
+    btn.addEventListener('click', function(){
+      if(holder.dataset.loaded) return;
+      holder.innerHTML = '<iframe title="Buca Çıtır Pide Konum" style="width:100%;height:320px;border:0;border-radius:12px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Menderes,%20Erdem%20Cd.%20No:125%20Buca/İzmir&output=embed"></iframe>';
+      holder.dataset.loaded = '1';
+      this.style.display='none';
+    }, {passive:true});
+  }
+
+  /* ===== Init ===== */
+  window.addEventListener('DOMContentLoaded', ()=>{
+    enhanceMenu();
+    loadCart();
+    setupLazyMap();
+  }, {passive:true});
 </script>
 
+<!-- Structured Data -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Restaurant","name":"Buca Çıtır Pide","address":{"@type":"PostalAddress","streetAddress":"Menderes, Erdem Cd. No:125","addressLocality":"Buca","addressRegion":"İzmir","addressCountry":"TR"},"telephone":"+90-232-442-4555","servesCuisine":["Türk","Pide","Kebap","Lahmacun"],"priceRange":"₺₺"}
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Buca Çıtır Pide",
+  "address":{"@type":"PostalAddress","streetAddress":"Menderes, Erdem Cd. No:125","addressLocality":"Buca","addressRegion":"İzmir","addressCountry":"TR"},
+  "telephone":"+90-232-442-4555",
+  "servesCuisine":["Türk","Pide","Kebap","Lahmacun"],
+  "priceRange":"₺₺"
+}
 </script>
+
+<footer style="text-align:center; font-size:0.8em; color:#9aa6bb; padding:10px 0;">
+  © 2025 Ferit Tahir Asil tarafından hazırlanmıştır
+</footer>
 </body>
 </html>
